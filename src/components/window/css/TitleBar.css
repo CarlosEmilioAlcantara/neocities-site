@@ -1,0 +1,77 @@
+.title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4em;
+  background: 
+    radial-gradient(
+      var(--foreground-color) 29%, 
+      transparent 16%
+    ), 
+    radial-gradient(
+      var(--foreground-color) 29%, 
+      transparent 16%
+    )
+  ; 
+  background-size: 5px 5px; 
+  background-position: 0px 0px, 2.5px 2.5px;
+  border-bottom: 0.1em solid var(--foreground-color);
+  overflow: hidden;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5em;
+}
+
+.buttons > .button {
+  display: flex;
+  align-items: center;
+  width: 2.1em;
+  height: 2.1em;
+  padding: 1em;
+  border: 0.1em solid var(--foreground-color);
+  background-color: var(--background-color);
+  background-size: 1.8em;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.buttons > .button:hover {
+  background-color: var(--accent-color);
+}
+
+.buttons > .button:active {
+  background-color: var(--foreground-color);
+}
+
+.buttons > .close-button {
+  background-image: url("../../../assets/icons/titlebar/close.webp");
+}
+
+.buttons > .close-button:active {
+  background-image: url("../../../assets/icons/titlebar/close-clicked.webp");
+}
+
+.buttons > .drag-button {
+  background-image: url("../../../assets/icons/titlebar/move.webp");
+}
+
+.buttons > .drag-button:active {
+  background-image: url("../../../assets/icons/titlebar/move-clicked.webp");
+}
+
+.buttons > .minimize-button {
+  background-image: url("../../../assets/icons/action/down.webp");
+}
+
+.title {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  border: 0.05em solid var(--foreground-color);
+  background-color: var(--background-color);
+  font-size: 2.8em;
+  color: var(--foreground-color);
+  text-align: center;
+}

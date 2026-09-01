@@ -1,0 +1,59 @@
+/* VARIABLES */
+:root {
+  --background-color: #ffffff;
+  --foreground-color: #000000;
+  --accent-color: #EFEFEF;
+}
+
+/* RESET */
+*, 
+*::before, 
+*::after {
+  box-sizing: border-box;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+@font-face {
+  font-family: ChiKareGo;
+  src: url(./assets/fonts/ChiKareGo.ttf);
+}
+
+html {
+  color-scheme: light dark;
+  font-family: ChiKareGo;
+  font-size: 10px;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--background-color);
+  background-image: url("./assets/images/v08-bg-rose.png");
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position: center;
+  color: var(--foreground-color);
+  overflow: hidden;
+}
+
+img, 
+picture, 
+svg, 
+video {
+  display: block;
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+

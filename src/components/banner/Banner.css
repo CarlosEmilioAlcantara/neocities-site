@@ -1,0 +1,46 @@
+.banner-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw; 
+  padding: 0.4em;
+  border-top: 0.1em solid var(--foreground-color);
+  border-bottom: 0.1em solid var(--foreground-color);
+  background-color: var(--background-color);
+  overflow: hidden;
+}
+
+.banner {
+  display: flex;
+  padding: 0.4em;
+  background: linear-gradient(var(--foreground-color) 50%, transparent 0);
+  background-clip: content-box;
+  background-size: 6.6666666667% 13.3333333333%;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  flex-shrink: 0;
+  background-color: var(--background-color);
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  font-size: 4.8em;
+  color: var(--foreground-color);
+  animation: scroll-left 20s linear infinite;
+}
+
+.icon {
+  width: 0.9em;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(100vw);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
