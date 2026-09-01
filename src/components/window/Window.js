@@ -1,6 +1,6 @@
 class Window extends HTMLElement {
   static get observedAttributes() {
-    return ["start-x", "start-y"];
+    return ["start-x", "start-y", "starti-width", "start-height"];
   }
 
   constructor() {
@@ -158,6 +158,10 @@ class Window extends HTMLElement {
     this.x = Number(this.getAttribute("start-x")) || 0;
     this.y = Number(this.getAttribute("start-y")) || 0;
 
+    this.width = Number(this.getAttribute("start-width")) || null;
+    this.height = Number(this.getAttribute("start-height")) || null;
+
+
     this.render();
 
     this.addEventListener("window-close", this.handleClose);
@@ -186,6 +190,14 @@ class Window extends HTMLElement {
     this.style.position = "absolute";
     this.style.left = `${this.x}px`;
     this.style.top = `${this.y}px`;
+
+    if (this.width) {
+      this.style.width = `${this.width}px`;
+    }
+
+    if (this.height) {
+      this.style.height = `${this.height}px`;
+    }
 
     this.shadowRoot.innerHTML = `
       <style>

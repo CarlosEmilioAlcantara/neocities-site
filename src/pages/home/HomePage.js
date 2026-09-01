@@ -26,7 +26,7 @@ class HomePage extends HTMLElement {
           warning="true"
         ></alert-banner>
 
-        <window-container start-x="620" start-y="315" start-width="600" start-height="320">
+        <window-container start-x="625" start-y="220" start-width="600" start-height="560">
           <title-bar title="Greetings" slot="title-bar"></title-bar>
           <window-content slot="window-content" center>
             <img 
@@ -34,8 +34,26 @@ class HomePage extends HTMLElement {
               src="../../assets/images/yuuri-yapping.jpg" 
             />
 
-            <p>Hello</p>
-            <p>World</p>
+            <p style="text-align: center;">
+              Hello! If you've somehow found this site, welcome!
+              This is my personal homepage/space/land/territory/structure 
+              on the internet where I intend to write and talk about whatever 
+              interests me or comes to my mind at the moment :^)
+            </p>
+
+            <p style="text-align: center;">
+              Obviously there's not much here yet, but I intend to have all
+              kinds of fun things here, such as:
+            </p>
+
+            <ul>
+              <li>Blog posts - so I can yap</li>
+              <li>Microblog posts - so I can vent</li>
+              <li>
+                Radio - so I can show off my totally niche and cool music taste
+              </li>
+              <li>Favorites page, shrines, etc.</li>
+            </ul>
           </window-content>
         </window-container>
       </div>

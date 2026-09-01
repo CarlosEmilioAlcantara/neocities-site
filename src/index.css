@@ -49,11 +49,16 @@ video {
   width: 100%;
 }
 
-ul {
-  list-style: none;
+ul,
+ol {
+  font-size: 1.8em;
 }
 
 a {
   text-decoration: none;
 }
 
+p {
+  font-size: 1.8em;
+  text-wrap: auto;
+}
