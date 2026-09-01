@@ -11,6 +11,7 @@ class Window extends HTMLElement {
     this.y = 0;
     this.dragging = false;
     this.resizing = false;
+    this.contentVisible = true;
   }
 
   handleClose = () => {
@@ -18,9 +19,12 @@ class Window extends HTMLElement {
   }
 
   handleMinimize = (e) => {
-    this.shadowRoot
-      .querySelector(".window-content")
+    this.querySelector("window-content")
       .style.display = `${e.detail.visible ? "block" : "none"}`;
+
+    this.style.height = `${!e.detail.visible ? "fit-content" : ""}`
+
+    this.contentVisible = e.detail.visible;
   };
 
   handleDragStart = (e) => {
@@ -59,6 +63,8 @@ class Window extends HTMLElement {
   handleResizeStart = (e) => {
     e.preventDefault();
     e.stopPropagation();
+
+    if (!this.contentVisible) return;
 
     const rect = this.getBoundingClientRect();
 

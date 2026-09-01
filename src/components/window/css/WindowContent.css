@@ -1,7 +1,7 @@
 .window-content {
   display: flex;
   flex-direction: column;
-  margin: 1em;
+  padding: 1em;
 }
 
 :host([center]) .window-content {
