@@ -1,0 +1,31 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  border-image: url("../../assets/ui/button.svg") 30 stretch;
+  border-style: solid;
+  border-width: 5.5px;
+  background-color: var(--background-color);
+  color: var(--foreground-color);;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.button img {
+  width: 1em;
+}
+
+.button:hover {
+  background-color: var(--accent-color);
+}
+
+.button:active {
+  background-color: var(--foreground-color);
+  color: var(--background-color);
+  border-radius: 6px;
+}
+
+button:active img {
+  fill: white;
+}

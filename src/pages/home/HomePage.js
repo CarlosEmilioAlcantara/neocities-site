@@ -2,6 +2,7 @@ import "../../components/banner/Banner.js";
 import "../../components/window/Window.js";
 import "../../components/window/TitleBar.js";
 import "../../components/window/WindowContent.js";
+import "../../components/button/Button.js";
 
 class HomePage extends HTMLElement {
   constructor() {
@@ -11,7 +12,13 @@ class HomePage extends HTMLElement {
   
   connectedCallback() {
     this.render();
+
+    const button = this.shadowRoot.querySelector("ui-button");
+    // button.action = () => window.location.href = "https://google.com";
+    button.action = () => console.log("https://google.com");
   }
+
+  arrow = new URL("../../assets/icons/notification/Warning.svg", import.meta.url).href;
 
   render() {
     this.shadowRoot.innerHTML = `
@@ -54,6 +61,13 @@ class HomePage extends HTMLElement {
               </li>
               <li>Favorites page, shrines, etc.</li>
             </ul>
+
+            <ui-button 
+              label="ENTER"
+              icon="${this.arrow}"
+              action="console.log(alsjdf;jk)"
+            >
+            </ui-button>
           </window-content>
         </window-container>
       </div>

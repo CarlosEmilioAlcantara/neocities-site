@@ -1,6 +1,6 @@
 class Window extends HTMLElement {
   static get observedAttributes() {
-    return ["start-x", "start-y", "starti-width", "start-height"];
+    return ["start-x", "start-y", "start-width", "start-height"];
   }
 
   constructor() {
