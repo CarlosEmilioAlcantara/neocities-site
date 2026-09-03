@@ -65,7 +65,7 @@ class HomePage extends HTMLElement {
             <ui-button 
               label="ENTER"
               icon="${this.arrow}"
-              action="console.log(alsjdf;jk)"
+              small
             >
             </ui-button>
           </window-content>

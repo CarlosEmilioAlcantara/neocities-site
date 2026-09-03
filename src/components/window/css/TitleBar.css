@@ -67,6 +67,10 @@
   background-image: url("../../../assets/icons/action/down.webp");
 }
 
+.buttons > .minimize-button:active {
+  background-image: url("../../../assets/icons/action/down-clicked.webp");
+}
+
 .title {
   padding-left: 0.5em;
   padding-right: 0.5em;

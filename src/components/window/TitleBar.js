@@ -52,6 +52,16 @@ class TitleBar extends HTMLElement {
     );
 
     this.contentVisible = !this.contentVisible;
+
+    if (!this.contentVisible) {
+      this.shadowRoot
+        .querySelector(".minimize-button")
+        .style.transform = "rotate(180deg)";
+    } else {
+      this.shadowRoot
+        .querySelector(".minimize-button")
+        .style.transform = "rotate(360deg)";
+    }
   };
 
   connectedCallback() {

@@ -1,6 +1,6 @@
 class Button extends HTMLElement {
   static get observedAttributes() {
-    return ["icon", "label", "action"];
+    return ["icon", "label", "action", "large", "small"];
   }
 
   constructor() {
