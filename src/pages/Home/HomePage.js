@@ -1,8 +1,8 @@
-import "../../components/banner/Banner.js";
-import "../../components/window/Window.js";
-import "../../components/window/TitleBar.js";
-import "../../components/window/WindowContent.js";
-import "../../components/button/Button.js";
+import "../../components/Banner/Banner.js";
+import "../../components/window/WindowContainer/WindowContainer.js";
+import "../../components/window/TitleBar/TitleBar.js";
+import "../../components/window/WindowContent/WindowContent.js";
+import "../../components/Button/Button.js";
 
 class HomePage extends HTMLElement {
   constructor() {

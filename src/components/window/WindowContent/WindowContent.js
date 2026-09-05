@@ -21,8 +21,8 @@ class WindowContent extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
       <style>
-        @import url("${new URL("../../index.css", import.meta.url)}");
-        @import url("${new URL("./css/WindowContent.css", import.meta.url)}");
+        @import url("${new URL("../../../index.css", import.meta.url)}");
+        @import url("${new URL("./WindowContent.css", import.meta.url)}");
       </style>
 
       <div class="window-content">
