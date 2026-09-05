@@ -2,6 +2,7 @@ import "../../components/Banner/Banner.js";
 import "../../components/window/WindowContainer/WindowContainer.js";
 import "../../components/window/TitleBar/TitleBar.js";
 import "../../components/window/WindowContent/WindowContent.js";
+import "../../components/window/WindowIcon/WindowIcon.js";
 import "../../components/Button/Button.js";
 
 class HomePage extends HTMLElement {
@@ -13,12 +14,15 @@ class HomePage extends HTMLElement {
   connectedCallback() {
     this.render();
 
-    const button = this.shadowRoot.querySelector("ui-button");
-    // button.action = () => window.location.href = "https://google.com";
-    button.action = () => console.log("https://google.com");
+    this.shadowRoot
+      .querySelector("ui-button")
+      .action = () => {
+        // window.location.href = "https://google.com";
+        console.log("Still working on to do routing");
+      };
   }
 
-  arrow = new URL("../../assets/icons/notification/Warning.svg", import.meta.url).href;
+  info = new URL("../../assets/icons/desktop/info.webp", import.meta.url).href;
 
   render() {
     this.shadowRoot.innerHTML = `
@@ -33,8 +37,17 @@ class HomePage extends HTMLElement {
           warning="true"
         ></alert-banner>
 
-        <window-container start-x="625" start-y="220" start-width="600" start-height="560">
+        <window-icon
+          icon=${this.info}
+          title="Greetings"
+          bottom="1"
+          left="1"
+          window="greetings"
+        ></window-icon>
+
+        <window-container id="greetings" start-x="625" start-y="220" start-width="600" start-height="600">
           <title-bar title="Greetings" slot="title-bar"></title-bar>
+
           <window-content slot="window-content" center>
             <img 
               alt="yuuri-yapping" 
@@ -64,7 +77,6 @@ class HomePage extends HTMLElement {
 
             <ui-button 
               label="ENTER"
-              icon="${this.arrow}"
               small
             >
             </ui-button>

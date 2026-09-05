@@ -1,0 +1,15 @@
+.window-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.window-icon img {
+  width: 6.4rem;
+}
+
+.window-icon p {
+  background-color: var(--background-color);
+  border: 0.1em solid var(--foreground-color);
+  padding: 0.1em;
+}

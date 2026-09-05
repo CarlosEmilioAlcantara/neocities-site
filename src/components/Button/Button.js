@@ -35,8 +35,8 @@ class Button extends HTMLElement {
       </style>
 
       <button class="button">
-        ${icon && `<img src=${icon} />`}
-        ${label && `<span>${label}</span>`}
+        ${icon ? `<img src=${icon} />` : ""}
+        ${label ? `<span>${label}</span>` : ""}
       </button>
     `
   }
