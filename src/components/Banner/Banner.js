@@ -36,7 +36,7 @@ class Banner extends HTMLElement {
               ${warning && `
                 <img 
                   class="warning icon" 
-                  src="../../assets/icons/notification/Warning.svg" 
+                  src="../../assets/icons/notification/warning.svg" 
                 />
               `}
 
@@ -45,7 +45,7 @@ class Banner extends HTMLElement {
               ${warning && `
                 <img 
                   class="warning icon" 
-                  src="../../assets/icons/notification/Warning.svg" 
+                  src="../../assets/icons/notification/warning.svg" 
                 />
               `}
             </div>

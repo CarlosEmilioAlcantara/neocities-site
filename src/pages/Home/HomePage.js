@@ -4,22 +4,26 @@ import "../../components/window/TitleBar/TitleBar.js";
 import "../../components/window/WindowContent/WindowContent.js";
 import "../../components/window/WindowIcon/WindowIcon.js";
 import "../../components/Button/Button.js";
+import "../../components/Alert/Alert.js";
 
 class HomePage extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
+
+    this.alertShow = false;
   }
   
   connectedCallback() {
     this.render();
-
-    this.shadowRoot
-      .querySelector("ui-button")
-      .action = () => {
-        // window.location.href = "https://google.com";
-        console.log("Still working on to do routing");
-      };
+  
+    const button = this.shadowRoot.querySelector("ui-button");
+    const alert = this.shadowRoot.querySelector("alert-box");
+  
+    button.action = () => {
+      alert.style.display = "block";
+      alert.style.pointerEvents = "auto";
+    };
   }
 
   info = new URL("../../assets/icons/desktop/info.webp", import.meta.url).href;
@@ -77,11 +81,19 @@ class HomePage extends HTMLElement {
 
             <ui-button 
               label="ENTER"
-              small
             >
             </ui-button>
+
           </window-content>
         </window-container>
+
+        <alert-box 
+          variant="alert" 
+          message="
+            Yay, we have a modal popup now. I'll work on actual content soon
+            I promise. Imma just have to finish the site's UI first.
+          "
+        ></alert-box>
       </div>
     `;
   }

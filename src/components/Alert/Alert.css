@@ -1,0 +1,54 @@
+:host {
+  display: none;
+  pointer-events: none;
+}
+
+.alert-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.outer-border {
+  position: fixed;
+  border: 2px solid;
+  padding: 3px;
+  background-color: var(--background-color);
+  z-index: 10;
+}
+
+.inner-border {
+  border-style: solid;
+  border-width: 3.5px 5px;
+}
+
+.contents {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  min-width: 30rem;
+  max-width: 50rem;
+  padding: 1rem;
+  padding-left: 3rem;
+  padding-right: 2rem;
+}
+
+.dialog {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.dialog p {
+  font-size: 2.2rem;
+}
+
+.dialog img {
+  width: 6.4rem;
+}
+
+.button {
+  display: flex;
+  justify-content: end;
+}

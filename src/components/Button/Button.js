@@ -7,6 +7,12 @@ class Button extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
   }
+    
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue !== newValue) {
+      this.render();
+    }
+  }
 
   connectedCallback() {
     this.render();
@@ -16,12 +22,6 @@ class Button extends HTMLElement {
       .addEventListener("click", (e) => {
         if (this.action) this.action(e);
       });
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (oldValue !== newValue) {
-      this.render();
-    }
   }
 
   render() {
