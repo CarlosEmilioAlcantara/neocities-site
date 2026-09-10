@@ -1,4 +1,8 @@
-async function navigate(path) {
+function getPath() {
+  return window.location.hash.slice(1) || "/"
+}
+
+async function renderPage(path) {
   const page = {
     "/": {
         path: "./pages/Welcome/WelcomePage.js",
@@ -17,22 +21,23 @@ async function navigate(path) {
   await import(page.path);
 
   const root = document.querySelector("root");
- 
+
   root.replaceChildren(
     document.createElement(page.name)
   );
 }
 
-function getPath() {
-  return window.location.hash.slice(1) || "/"
+async function navigate(path) {
+  history.pushState({}, "", `#${path}`);
+  renderPage(path);
 }
 
 // Initial page
-navigate(getPath());
+renderPage(getPath());
 
 // Handle forward and backwards in history
-window.addEventListener("hashchange", () => {
-  navigate(getPath());
+window.addEventListener("popstate", () => {
+  renderPage(getPath());
 })
 
 export { navigate };

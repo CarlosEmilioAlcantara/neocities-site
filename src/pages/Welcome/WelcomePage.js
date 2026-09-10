@@ -4,7 +4,6 @@ import "../../components/window/TitleBar/TitleBar.js";
 import "../../components/window/WindowContent/WindowContent.js";
 import "../../components/window/WindowIcon/WindowIcon.js";
 import "../../components/Button/Button.js";
-// import "../../components/Alert/Alert.js";
 import { navigate } from "../../main.js";
 
 class WelcomePage extends HTMLElement {
@@ -19,11 +18,8 @@ class WelcomePage extends HTMLElement {
     this.render();
   
     const button = this.shadowRoot.querySelector("ui-button");
-    // const alert = this.shadowRoot.querySelector("alert-box");
   
     button.action = () => {
-      // alert.style.display = "block";
-      // alert.style.pointerEvents = "auto";
       navigate("/home");
     };
   }
@@ -88,16 +84,6 @@ class WelcomePage extends HTMLElement {
 
           </window-content>
         </window-container>
-
-        <!-- 
-          <alert-box 
-            variant="alert" 
-            message="
-              Yay, we have a modal popup now. I'll work on actual content soon
-              I promise. Imma just have to finish the site's UI first.
-            "
-          ></alert-box>
-        -->
       </div>
     `;
   }
