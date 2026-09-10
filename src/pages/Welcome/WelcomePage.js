@@ -47,7 +47,13 @@ class WelcomePage extends HTMLElement {
           window="greetings"
         ></window-icon>
 
-        <window-container id="greetings" start-x="625" start-y="220" start-width="600" start-height="600">
+        <window-container 
+          id="greetings" 
+          start-x="400" 
+          start-y="105" 
+          start-width="600" 
+          start-height="600"
+        >
           <title-bar title="Greetings" slot="title-bar"></title-bar>
 
           <window-content slot="window-content" center>

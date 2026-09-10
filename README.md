@@ -11,3 +11,4 @@
 - []  Custom 404 page
 - [*] Change pathname on navigate so when user refreshes we don't go back to welcome
 - []  Restyle for 1366x768
+- []  Scrollbar

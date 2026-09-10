@@ -1,5 +1,9 @@
 const handleClose = (component) => {
   component.style.display = "none";
+  component.style.left = `${component.getAttribute("start-x")}px`;
+  component.style.top = `${component.getAttribute("start-y")}px`;
+  component.x = Number(component.getAttribute("start-x")) || 0;
+  component.y = Number(component.getAttribute("start-y")) || 0;
 }
 
 const handleMinimize = (component, e) => {
