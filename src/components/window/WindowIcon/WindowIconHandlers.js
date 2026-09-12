@@ -3,10 +3,21 @@ export const handleOpen = (component) => {
   if (component.clickCount >= 2) component.clickCount = 0;
 
   if (component.clickCount === 0) {
-    component
+    const window = component
       .getRootNode()
       .querySelector(`#${component.getAttribute("window")}`)
-      .style.display = "block";
+
+    const titleBar = window
+      .shadowRoot
+      .querySelector('slot[name="title-bar"]')
+      .assignedElements()[0];
+
+    window.style.display = "block";
+
+    titleBar
+      .shadowRoot
+      .querySelector(".title")
+      .style.color = "#000000";
   }
 
   component.shadowRoot
