@@ -5,6 +5,7 @@ import "../../components/window/WindowContent/WindowContent.js";
 import "../../components/window/WindowIcon/WindowIcon.js";
 import "../../components/Button/Button.js";
 import { navigate } from "../../main.js";
+import { getWindowWidth } from "../../utils/getWindowWidth.js";
 
 class WelcomePage extends HTMLElement {
   constructor() {
@@ -16,7 +17,7 @@ class WelcomePage extends HTMLElement {
   
   connectedCallback() {
     this.render();
-  
+
     const button = this.shadowRoot.querySelector("ui-button");
   
     button.action = () => {
@@ -49,8 +50,8 @@ class WelcomePage extends HTMLElement {
 
         <window-container 
           id="greetings" 
-          start-x="400" 
-          start-y="105" 
+          start-x="${getWindowWidth() >= 1536 ? 650 : 400}" 
+          start-y="${getWindowWidth() >= 1536 ? 220 : 105}" 
           start-width="600" 
           start-height="600"
           active
