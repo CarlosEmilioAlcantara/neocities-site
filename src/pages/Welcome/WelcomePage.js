@@ -53,6 +53,7 @@ class WelcomePage extends HTMLElement {
           start-y="105" 
           start-width="600" 
           start-height="600"
+          active
         >
           <title-bar title="Greetings" slot="title-bar"></title-bar>
 

@@ -1,10 +1,56 @@
+const isActiveOnStart = async (component) => {
+  const isActive = component.hasAttribute("active");
+
+  if (isActive) {
+    await customElements.whenDefined("title-bar");
+      
+    const titleBar = component
+      .shadowRoot
+      .querySelector('slot[name="title-bar"]')
+      .assignedElements()[0];
+
+    titleBar
+      .shadowRoot
+      .querySelector(".title")
+      .style.color = "#000000";
+  }
+};
+
+const handleFocus = (component) => {
+  const titleBar = component
+    .shadowRoot
+    .querySelector('slot[name="title-bar"]')
+    .assignedElements()[0];
+
+  titleBar
+    .shadowRoot
+    .querySelector(".title")
+    .style.color = "#000000";
+};
+
+const handleUnfocus = (component, e) => {
+  const insideWindow = e.composedPath().includes(component);
+
+  if (!insideWindow) {
+    const titleBar = component
+      .shadowRoot
+      .querySelector('slot[name="title-bar"]')
+      .assignedElements()[0];
+
+    titleBar
+      .shadowRoot
+      .querySelector(".title")
+      .style.color = "#b5b5b5";
+    }
+};
+
 const handleClose = (component) => {
   component.style.display = "none";
   component.style.left = `${component.getAttribute("start-x")}px`;
   component.style.top = `${component.getAttribute("start-y")}px`;
   component.x = Number(component.getAttribute("start-x")) || 0;
   component.y = Number(component.getAttribute("start-y")) || 0;
-}
+};
 
 const handleMinimize = (component, e) => {
   component.querySelector("window-content")
@@ -143,6 +189,9 @@ const handleResizeEnd = (component) => {
 };
 
 export {
+  isActiveOnStart,
+  handleFocus,
+  handleUnfocus,
   handleClose,
   handleMinimize,
   handleDragStart,

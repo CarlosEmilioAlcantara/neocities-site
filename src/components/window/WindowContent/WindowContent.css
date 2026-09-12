@@ -20,3 +20,7 @@
 :host([center]) .window-content {
   align-items: center;
 }
+
+:host([right]) .window-content {
+  align-items: end;
+}

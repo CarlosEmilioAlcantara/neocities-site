@@ -1,4 +1,7 @@
 import { 
+  isActiveOnStart,
+  handleFocus,
+  handleUnfocus,
   handleClose,
   handleMinimize,
   handleDragStart,
@@ -11,7 +14,7 @@ import {
 
 class WindowContainer extends HTMLElement {
   static get observedAttributes() {
-    return ["start-x", "start-y", "start-width", "start-height"];
+    return ["start-x", "start-y", "start-width", "start-height", "active"];
   }
 
   constructor() {
@@ -24,6 +27,8 @@ class WindowContainer extends HTMLElement {
     this.resizing = false;
     this.contentVisible = true;
 
+    this.onFocus = () => handleFocus(this);
+    this.onUnfocus = (e) => handleUnfocus(this, e);
     this.onClose = () => handleClose(this);
     this.onMinimize = (e) => handleMinimize(this, e);
     this.onDragStart = (e) => handleDragStart(this, e);
@@ -44,17 +49,25 @@ class WindowContainer extends HTMLElement {
       .forEach((handle) => {
         handle.addEventListener("pointerdown", this.onResizeStart);
       });
+
+    this.shadowRoot
+      .querySelector(".window")
+      .addEventListener("pointerdown", this.onFocus);
+
+    window.addEventListener("pointerdown", this.onUnfocus);
   }
 
   detachEventListeners() {
     this.removeEventListener("window-close", this.onClose);
     this.removeEventListener("window-minimize", this.onMinimize);
     this.removeEventListener("window-drag", this.onDragStart);
+    this.removeEventListener("pointerdown", this.onFocus);
 
     window.removeEventListener("pointermove", this.onResize);
     window.removeEventListener("pointerup", this.onResizeEnd);
     window.removeEventListener("pointermove", this.onDrag);
     window.removeEventListener("pointerup", this.onDragEnd);
+    window.removeEventListener("pointerdown", this.onUnfocus);
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -72,6 +85,7 @@ class WindowContainer extends HTMLElement {
     this.height = Number(this.getAttribute("start-height")) || 100;
 
     this.render();
+    isActiveOnStart(this);
     this.attachEventListeners();
   }
 
@@ -99,7 +113,7 @@ class WindowContainer extends HTMLElement {
       </style>
 
       <div class="window">
-        <slot name="title-bar"></slot>
+        <slot name="title-bar" id="title-bar"></slot>
         <slot name="window-content" class="window-content"></slot>
 
         <div class="resize resize-n" data-resize="n"></div>
