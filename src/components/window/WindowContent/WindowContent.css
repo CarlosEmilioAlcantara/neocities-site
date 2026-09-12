@@ -15,6 +15,7 @@
   min-width: 0;
   min-height: 0;
   padding: 1rem;
+  overflow: auto;
 }
 
 :host([center]) .window-content {

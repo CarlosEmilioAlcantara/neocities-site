@@ -13,6 +13,35 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  /* 
+  background: 
+    radial-gradient(
+      var(--foreground-color) 29%, 
+      transparent 16%
+    ), 
+    radial-gradient(
+      var(--foreground-color) 29%, 
+      transparent 16%
+    )
+  ; 
+  background-size: 5px 5px; 
+  background-position: 0px 0px, 2.5px 2.5px;
+  */
+  background-color: var(--foreground-color);
+  width: 18px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--background-color); 
+  border: 3px solid var(--foreground-color);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-left: 3px solid var(--foreground-color);
+}
+
 *{
   margin: 0;
   padding: 0;
