@@ -1,0 +1,11 @@
+{
+  "date": "2002-07-04",
+  "image": "../assets/images/v08-bg-rose.png",
+  "imageAlt": "This is an alternative text",
+  "title": "This is a blog title 2",
+  "description": "This is a blog description 2",
+  "content": [
+    "<p>This is a blog content 2</p>",
+    "<img src='../assets/icons/notification/alert.svg' />"
+  ]
+}
