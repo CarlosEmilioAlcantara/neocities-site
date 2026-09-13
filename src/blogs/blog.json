@@ -1,11 +1,14 @@
 {
-  "date": "2001-07-04",
+  "date": "2001-07-04 16:19:00",
   "image": "../assets/images/v08-bg-rose.png",
   "imageAlt": "This is an alternative text",
   "title": "This is a blog title",
   "description": "This is a blog description",
   "content": [
     "<p>This is a blog content</p>",
-    "<img src='../assets/icons/notification/alert.svg' />"
+    "<div class='image-wrapper'>",
+      "<img src='../assets/icons/notification/alert.svg' />",
+    "</div>",
+    "<p>More content here</p>"
   ]
 }

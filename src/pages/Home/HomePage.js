@@ -62,7 +62,7 @@ class HomePage extends HTMLElement {
           </window-content>
         </window-container>
 
-        <blog-window></blog-window>
+        <blog-window closed></blog-window>
       </div>
     `
   }

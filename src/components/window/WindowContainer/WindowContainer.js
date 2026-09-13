@@ -14,7 +14,14 @@ import {
 
 class WindowContainer extends HTMLElement {
   static get observedAttributes() {
-    return ["start-x", "start-y", "start-width", "start-height", "active"];
+    return [
+      "start-x", 
+      "start-y", 
+      "start-width", 
+      "start-height", 
+      "active",
+      "closed",
+    ];
   }
 
   constructor() {

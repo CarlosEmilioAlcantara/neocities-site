@@ -16,4 +16,5 @@
 - [*] Function that get's window width so we can decide window starting location
       or maybe we should just use percentages
 - [*] Blog item: date, title, description
-- []  Clean up blog window code
+- [*] Clean up blog window code
+- []  Blog script => Creates json, xml for rss, modifies blogs.js

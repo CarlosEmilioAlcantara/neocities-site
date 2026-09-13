@@ -79,8 +79,10 @@
   cursor: nwse-resize;
 }
 
+/*
 ::slotted(window-content) {
   min-width: 0;
   min-height: 0;
   flex: 1;
 }
+*/

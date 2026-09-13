@@ -26,6 +26,7 @@ class BlogWindow extends HTMLElement {
   render() {
     const date = this.getAttribute("date");
     const title = this.getAttribute("title");
+    const image = this.getAttribute("image");
     const imageAlt = this.getAttribute("image-alt");
 
     let content;
@@ -40,10 +41,10 @@ class BlogWindow extends HTMLElement {
 
       <window-container
         id="${title}"
-        start-x="${getWindowWidth() >= 1536 ? 20 : 20}" 
-        start-y="${getWindowWidth() >= 1536 ? 25 : 25}" 
+        start-x="430" 
+        start-y="25" 
         start-width="600" 
-        start-height="600"
+        start-height="${getWindowWidth() >= 1536 ? 800 : 700}"
         active
       >
         <title-bar title="${title}" slot="title-bar"></title-bar>
@@ -53,6 +54,10 @@ class BlogWindow extends HTMLElement {
             ${title ? `<h2>${title}</h2>` : ''}
             ${date ? `<small>${date}</small>` : ''}
             <hr />
+          </div>
+
+          <div class="image-wrapper">
+            ${image ? `<img src=${image} alt="${imageAlt}" />` : ''}
           </div>
 
           <div class="content">

@@ -1,2 +1,26 @@
-/*
-*/
+:host([closed]) {
+  display: none;
+}
+
+.banner h2 {
+  font-size: 3.0rem;
+}
+
+.banner small {
+  font-size: 1.6rem;
+}
+
+.banner hr {
+  margin-top: 0.6em;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+img {
+  width: 60%;
+}

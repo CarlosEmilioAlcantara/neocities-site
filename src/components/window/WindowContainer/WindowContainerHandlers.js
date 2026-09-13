@@ -48,6 +48,8 @@ const handleClose = (component) => {
   component.style.display = "none";
   component.style.left = `${component.getAttribute("start-x")}px`;
   component.style.top = `${component.getAttribute("start-y")}px`;
+  component.style.width = `${component.getAttribute("start-width")}px`;
+  component.style.height = `${component.getAttribute("start-height")}px`;
   component.x = Number(component.getAttribute("start-x")) || 0;
   component.y = Number(component.getAttribute("start-y")) || 0;
 
@@ -59,8 +61,6 @@ const handleClose = (component) => {
   component.querySelector("window-content")
     .style.display = "block";
   
-  component.style.height = "fit-content";
-
   titleBar.contentVisible = true;
   component.contentVisible = true;
 };

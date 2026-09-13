@@ -1,3 +1,4 @@
+import { handleOpen } from "./BlogItemHandlers.js";
 import "../../Button/Button.js";
 
 class BlogItem extends HTMLElement {
@@ -8,6 +9,8 @@ class BlogItem extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
+
+    this.onOpen = () => handleOpen(this);
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -16,31 +19,13 @@ class BlogItem extends HTMLElement {
     }
   }
 
-  handleOpen() {
-    const page = document.documentElement
-      .querySelector("home-page");
-
-    const window = page
-      .shadowRoot
-      .querySelector("blog-window");
-
-    window.setAttribute("title", this.getAttribute("title"));
-    window.setAttribute("date", this.getAttribute("date"));
-    window.setAttribute("image", this.getAttribute("image"));
-    window.setAttribute("image-alt", this.getAttribute("image-alt"));
-    window.setAttribute("content", this.getAttribute("content"));
-  }
-
   connectedCallback() {
     this.render();
 
-    this.shadowRoot
-      .querySelector(".open-window")
-      .addEventListener("click", this.handleOpen.bind(this));
-  }
+    const button = this.shadowRoot
+      .querySelector("ui-button");
 
-  disconnectedCallback() {
-    this.removeEventListener("click", this.handleOpen);
+    button.action = () => this.onOpen();
   }
 
   render() {
@@ -55,15 +40,17 @@ class BlogItem extends HTMLElement {
       </style>
 
       <div class="blog-item">
-        ${title ? `<h2>${title}</h2>` : ''}
+        <div class="header">
+          ${title ? `<h2>${title}</h2>` : ''}
+
+          <span class="link-and-date">
+            ${date ? `<small>${date}</small>` : ''}
+            <ui-button label="View" blog></ui-button>
+          </span>
+        </div>
         <hr />
 
         <div class="item">
-          <div class="link-and-date">
-            ${date ? `<small>${date}</small>` : ''}
-            <p class="open-window">[test]</p>
-          </div>
-
           ${description ? `<p>${description}</p>` : ''}
         </div>
       </div>
