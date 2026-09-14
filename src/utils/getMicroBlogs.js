@@ -1,9 +1,9 @@
-import { blogs } from "../public/blogs/blogs.js";
+import { microBlogs } from "../public/microblogs/microBlogs.js";
 
-export const getBlogs = async () => {
+export const getMicroBlogs = async () => {
   try {
     const responses = await Promise.all(
-      blogs.map((response) => fetch(response))
+      microBlogs.map((response) => fetch(response))
     );
 
     return await Promise.all(

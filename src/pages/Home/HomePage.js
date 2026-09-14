@@ -4,8 +4,10 @@ import "../../components/window/WindowContent/WindowContent.js";
 import "../../components/window/WindowIcon/WindowIcon.js";
 import "../../components/blog/BlogItem/BlogItem.js";
 import "../../components/blog/BlogWindow/BlogWindow.js";
+import "../../components/MicroBlog/MicroBlog.js";
 import { getWindowWidth } from "../../utils/getWindowWidth.js";
 import { getBlogs } from "../../utils/getBlogs.js";
+import { getMicroBlogs } from "../../utils/getMicroBlogs.js";
 
 class HomePage extends HTMLElement {
   constructor() {
@@ -13,10 +15,12 @@ class HomePage extends HTMLElement {
     this.attachShadow({ mode: "open" });
 
     this.blogBata = [];
+    this.microBlogBata = [];
   }
 
   async connectedCallback() {
     this.blogData = await getBlogs();
+    this.microBlogBata = await getMicroBlogs();
     this.render();
   }
 
@@ -36,6 +40,14 @@ class HomePage extends HTMLElement {
           bottom="1"
           left="1"
           window="blogs"
+        ></window-icon>
+
+        <window-icon
+          icon=${this.blogs}
+          title="Micro Blogs"
+          bottom="1"
+          left="7"
+          window="micro-blogs"
         ></window-icon>
 
         <window-container
@@ -58,6 +70,26 @@ class HomePage extends HTMLElement {
                 description="${blog.description}"
                 content="${blog.content}"
               ></blog-item>
+            `).join("")}
+          </window-content>
+        </window-container>
+
+        <window-container
+          id="micro-blogs"
+          start-x="620" 
+          start-y="25" 
+          start-width="400" 
+          start-height="${getWindowWidth() ? 600 : 400}"
+          closed
+        >
+          <title-bar title="Micro Blogs" slot="title-bar"></title-bar>
+
+          <window-content slot="window-content">
+            ${this.microBlogBata.map((blog) => `
+              <micro-blog 
+                date="${blog.date}"
+                post="${blog.post}"
+              ></micro-blog>
             `).join("")}
           </window-content>
         </window-container>

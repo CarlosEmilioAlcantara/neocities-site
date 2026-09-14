@@ -1,0 +1,8 @@
+.micro-blog {
+  padding: 2rem;
+  border: 1px solid var(--foreground-color);
+}
+
+.micro-blog footer {
+  margin: 12px 0 0 12px;
+}

@@ -18,3 +18,4 @@
 - [*] Blog item: date, title, description
 - [*] Clean up blog window code
 - []  Blog script => Creates json, xml for rss, modifies blogs.js
+- []  Active window should be on top of everything else

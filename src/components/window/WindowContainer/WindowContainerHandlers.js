@@ -69,7 +69,8 @@ const handleMinimize = (component, e) => {
   component.querySelector("window-content")
     .style.display = `${e.detail.visible ? "block" : "none"}`;
   
-  component.style.height = `${!e.detail.visible ? "fit-content" : ""}`
+  component.style.height = 
+    `${e.detail.visible ? `${component.height}px` : "fit-content"}`
   
   component.contentVisible = e.detail.visible;
 };

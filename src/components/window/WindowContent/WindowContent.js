@@ -3,6 +3,12 @@ class WindowContent extends HTMLElement {
     return ["center", "right"];
   }
 
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue !== newValue) {
+      this.render();
+    }
+  }
+
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
@@ -10,12 +16,6 @@ class WindowContent extends HTMLElement {
   
   connectedCallback() {
     this.render();
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (oldValue !== newValue) {
-      this.render();
-    }
   }
 
   render() {
