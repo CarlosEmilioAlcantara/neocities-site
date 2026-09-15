@@ -13,6 +13,7 @@ export const handleOpen = (component) => {
       .assignedElements()[0];
 
     windowContainer.style.display = "block";
+    windowContainer.style.zIndex = 10;
 
     titleBar
       .shadowRoot
