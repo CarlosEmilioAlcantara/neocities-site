@@ -17,6 +17,8 @@ const isActiveOnStart = async (component) => {
 };
 
 const handleFocus = (component) => {
+  component.style.zIndex = 10;
+
   const titleBar = component
     .shadowRoot
     .querySelector('slot[name="title-bar"]')
@@ -32,6 +34,8 @@ const handleUnfocus = (component, e) => {
   const insideWindow = e.composedPath().includes(component);
 
   if (!insideWindow) {
+    component.style.zIndex = 0;
+
     const titleBar = component
       .shadowRoot
       .querySelector('slot[name="title-bar"]')
