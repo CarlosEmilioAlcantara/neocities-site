@@ -19,5 +19,5 @@
 - [*] Clean up blog window code
 - []  Blog script => Creates json, xml for rss, modifies blogs.js
 - [*] Active window should be on top of everything else
-- []  Window should not exceed page dimension
+- [*] Window should not exceed page dimension
 - []  To keep JSON blogs format or just use html?

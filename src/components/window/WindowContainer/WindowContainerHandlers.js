@@ -1,3 +1,9 @@
+import { getWindowWidth } from "../../../utils/getWindowWidth.js";
+import { getWindowHeight } from "../../../utils/getWindowHeight.js";
+
+const windowWidth = getWindowWidth();
+const windowHeight = getWindowHeight();
+
 const isActiveOnStart = async (component) => {
   const isActive = component.hasAttribute("active");
 
@@ -100,9 +106,18 @@ const handleDrag = (component, e) => {
   
   component.x = component.startWindowX + dx;
   component.y = component.startWindowY + dy;
-  
-  component.style.left = `${component.x}px`;
-  component.style.top = `${component.y}px`;
+
+  if ((e.clientX <= 0) || (e.clientX >= windowWidth)) {
+    return;
+  } else if ((e.clientX >= 1) || (e.clientX <= windowWidth)) {
+    component.style.left = `${component.x}px`;
+  }
+
+  if ((e.clientY <= 0) || (e.clientY >= windowHeight)) {
+    return;
+  } else if ((e.clientY >= 1) || (e.clientY <= windowHeight)) {
+    component.style.top = `${component.y}px`;
+  }
 };
 
 const handleDragEnd = (component) => {
@@ -113,9 +128,6 @@ const handleDragEnd = (component) => {
 };
 
 const handleResizeStart = (component, e) => {
-  e.preventDefault();
-  e.stopPropagation();
-  
   if (!component.contentVisible) return;
   
   const rect = component.getBoundingClientRect();
