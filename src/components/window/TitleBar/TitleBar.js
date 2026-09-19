@@ -65,16 +65,15 @@ class TitleBar extends HTMLElement {
         @import url("${new URL("./TitleBar.css", import.meta.url)}");
       </style>
 
-
       <div class="title-bar">
         <div class="buttons">
-          <button class="button close-button">
+          <button tabindex="-1" class="button close-button">
           </button>
 
-          <button class="button drag-button">
+          <button tabindex="-1" class="button drag-button">
           </button>
 
-          <button class="button minimize-button">
+          <button tabindex="-1" class="button minimize-button">
           </button>
         </div>
 

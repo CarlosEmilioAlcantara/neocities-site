@@ -101,21 +101,19 @@ const handleDragStart = (component, e) => {
 const handleDrag = (component, e) => {
   if (!component.dragging || component.resizing) return;
   
-  const dx = e.clientX - component.startX;
-  const dy = e.clientY - component.startY;
-  
-  component.x = component.startWindowX + dx;
-  component.y = component.startWindowY + dy;
-
   if ((e.clientX <= 0) || (e.clientX >= windowWidth)) {
     return;
   } else if ((e.clientX >= 1) || (e.clientX <= windowWidth)) {
+    const dx = e.clientX - component.startX;
+    component.x = component.startWindowX + dx;
     component.style.left = `${component.x}px`;
   }
 
   if ((e.clientY <= 0) || (e.clientY >= windowHeight)) {
     return;
   } else if ((e.clientY >= 1) || (e.clientY <= windowHeight)) {
+    const dy = e.clientY - component.startY;
+    component.y = component.startWindowY + dy;
     component.style.top = `${component.y}px`;
   }
 };
