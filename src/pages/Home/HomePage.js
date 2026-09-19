@@ -25,6 +25,10 @@ class HomePage extends HTMLElement {
   }
 
   blogs = new URL("../../assets/icons/desktop/blogs.webp", import.meta.url).href;
+  microBlogs = new URL(
+    "../../assets/icons/desktop/micro-blogs.webp", 
+    import.meta.url
+  ).href;
 
   render() {
     this.shadowRoot.innerHTML = `
@@ -43,10 +47,10 @@ class HomePage extends HTMLElement {
         ></window-icon>
 
         <window-icon
-          icon=${this.blogs}
+          icon=${this.microBlogs}
           title="Micro Blogs"
           bottom="1"
-          left="7"
+          left="5"
           window="micro-blogs"
         ></window-icon>
 

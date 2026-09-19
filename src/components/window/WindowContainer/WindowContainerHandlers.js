@@ -86,8 +86,6 @@ const handleMinimize = (component, e) => {
 };
 
 const handleDragStart = (component, e) => {
-  component.dragging = true;
-  
   component.startX = e.detail.x;
   component.startY = e.detail.y;
   
@@ -99,8 +97,6 @@ const handleDragStart = (component, e) => {
 };
 
 const handleDrag = (component, e) => {
-  if (!component.dragging || component.resizing) return;
-  
   if ((e.clientX <= 0) || (e.clientX >= windowWidth)) {
     return;
   } else if ((e.clientX >= 1) || (e.clientX <= windowWidth)) {
@@ -119,8 +115,6 @@ const handleDrag = (component, e) => {
 };
 
 const handleDragEnd = (component) => {
-  component.dragging = false;
-  
   window.removeEventListener("pointermove", component.onDrag);
   window.removeEventListener("pointerup", component.onDragEnd);
 };
@@ -151,8 +145,6 @@ const handleResizeStart = (component, e) => {
 };
   
 const handleResize = (component, e) => {
-  if (!component.resizing || component.dragging) return;
-  
   const dx = e.clientX - component.startX;
   const dy = e.clientY - component.startY;
   
@@ -210,8 +202,6 @@ const handleResize = (component, e) => {
 };
 
 const handleResizeEnd = (component) => {
-  component.resizing = false;
-  
   window.removeEventListener("pointermove", component.onResize);
   window.removeEventListener("pointerup", component.onResizeEnd);
 };

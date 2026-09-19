@@ -30,8 +30,6 @@ class WindowContainer extends HTMLElement {
 
     this.x = 0;
     this.y = 0;
-    this.dragging = false;
-    this.resizing = false;
     this.contentVisible = true;
 
     this.onFocus = () => handleFocus(this);
