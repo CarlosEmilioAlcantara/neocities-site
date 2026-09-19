@@ -131,21 +131,22 @@ class HomePage extends HTMLElement {
             <div style="display: flex; gap: 2em; justify-content: end;">
               ${this.blogData.length > 0 
                 ? `<ui-button 
-                    id="next-page" 
-                    label="test"
+                    id="prev-page" 
                     page-control
+                    left
                    ></ui-button>`
-                : `<button disabled class="ewan">Ewan</button>`
+                : `<button disabled class="ewan">Test</button>`
               }
 
               ${this.blogData.length > 0 
                 ? `<ui-button 
-                    id="prev-page" 
-                    label="test"
+                    id="next-page" 
                     page-control
+                    right
                    ></ui-button>`
-                : `<button disabled class="ewan">Ewan</button>`
+                : `<button disabled class="ewan">Test</button>`
               }
+
             </div>
           </window-content>
         </window-container>
