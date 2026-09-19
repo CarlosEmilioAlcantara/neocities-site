@@ -1,0 +1,14 @@
+{
+  "date": "2002-07-04 16:19:00",
+  "image": "../assets/images/v08-bg-rose.png",
+  "imageAlt": "This is an alternative text",
+  "title": "This is a blog title 4",
+  "description": "This is a blog description 4",
+  "content": [
+    "<p>This is a blog content 4</p>",
+    "<div class='image-wrapper'>",
+      "<img src='../assets/icons/notification/alert.svg' />",
+    "</div>",
+    "<p>More content here</p>"
+  ]
+}

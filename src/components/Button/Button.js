@@ -1,6 +1,14 @@
 class Button extends HTMLElement {
   static get observedAttributes() {
-    return ["icon", "label", "action", "large", "small", "blog"];
+    return [
+      "icon", 
+      "label", 
+      "action", 
+      "large", 
+      "small", 
+      "blog", 
+      "page-control",
+    ];
   }
 
   constructor() {
@@ -27,6 +35,7 @@ class Button extends HTMLElement {
   render() {
     const label = this.getAttribute("label");
     const icon = this.getAttribute("icon");
+    const pageControl = this.getAttribute("page-control");
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -36,6 +45,7 @@ class Button extends HTMLElement {
 
       <button class="button">
         ${icon ? `<img src=${icon} />` : ""}
+        ${pageControl ? `<span class="arrow"></span>` : ""}
         ${label ? `<span>${label}</span>` : ""}
       </button>
     `

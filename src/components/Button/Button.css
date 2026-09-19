@@ -28,10 +28,6 @@
   border-radius: 6px;
 }
 
-button:active img {
-  fill: white;
-}
-
 :host([large]) .button {
   min-width: 13rem;
   min-height: 3rem;
@@ -71,4 +67,29 @@ button:active img {
   background-color: var(--background-color);
   color: var(--foreground-color);
   border-radius: 0;
+}
+
+:host([page-control]) .button {
+  min-width: 0;
+  min-height: 0;
+  border-image: none;
+  border: none;
+  border-radius: 0;
+  font-size: 1.8rem;
+}
+
+.arrow {
+  width: 500px;
+}
+
+:host([page-control]) .button:active {
+  background-color: none;
+}
+
+:host([page-control]) .button .arrow {
+  background-image: url("../../assets/icons/action/arrow.webp");
+}
+
+:host([page-control]) .button:active .arrow {
+  background-image: url("../../assets/icons/action/arrow-clicked.webp");
 }

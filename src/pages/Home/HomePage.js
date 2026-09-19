@@ -5,6 +5,7 @@ import "../../components/window/WindowIcon/WindowIcon.js";
 import "../../components/blog/BlogItem/BlogItem.js";
 import "../../components/blog/BlogWindow/BlogWindow.js";
 import "../../components/MicroBlog/MicroBlog.js";
+import "../../components/Button/Button.js";
 import { getWindowWidth } from "../../utils/getWindowWidth.js";
 import { getBlogs } from "../../utils/getBlogs.js";
 import { getMicroBlogs } from "../../utils/getMicroBlogs.js";
@@ -14,17 +15,68 @@ class HomePage extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
 
-    this.blogBata = [];
-    this.microBlogBata = [];
+    this.blogData = [];
+    this.microBlogData = [];
+    this.offset = 0;
+    this.limit = 2;
+  }
+
+  handleGetNextBlogs = async () => {
+    this.offset = this.offset + this.limit;
+    this.blogData = await getBlogs({offset: this.offset});
+    this.render();
+
+    const nextPageBtn =
+      this.shadowRoot
+      .querySelector("#next-page");
+
+    nextPageBtn.action = () => this.handleGetNextBlogs();
+
+    const prevPageBtn =
+      this.shadowRoot
+      .querySelector("#prev-page");
+
+    prevPageBtn.action = () => this.handleGetPrevBlogs();
+  }
+
+  handleGetPrevBlogs = async () => {
+    this.offset = this.offset - this.limit;
+    this.blogData = await getBlogs({offset: this.offset});
+    this.render();
+
+    const nextPageBtn =
+      this.shadowRoot
+      .querySelector("#next-page");
+
+    nextPageBtn.action = () => this.handleGetNextBlogs();
+
+    const prevPageBtn =
+      this.shadowRoot
+      .querySelector("#prev-page");
+
+    prevPageBtn.action = () => this.handleGetPrevBlogs();
   }
 
   async connectedCallback() {
-    this.blogData = await getBlogs();
+    this.blogData = await getBlogs({});
     this.microBlogBata = await getMicroBlogs();
     this.render();
+
+    const nextPageBtn =
+      this.shadowRoot
+      .querySelector("#next-page");
+
+    nextPageBtn.action = () => this.handleGetNextBlogs();
+
+    const prevPageBtn =
+      this.shadowRoot
+      .querySelector("#prev-page");
+
+    prevPageBtn.action = () => this.handleGetPrevBlogs();
   }
 
   blogs = new URL("../../assets/icons/desktop/blogs.webp", import.meta.url).href;
+
   microBlogs = new URL(
     "../../assets/icons/desktop/micro-blogs.webp", 
     import.meta.url
@@ -39,7 +91,7 @@ class HomePage extends HTMLElement {
 
       <div class="home">
         <window-icon
-          icon=${this.blogs}
+          icon="${this.blogs}"
           title="Blogs"
           bottom="1"
           left="1"
@@ -47,10 +99,10 @@ class HomePage extends HTMLElement {
         ></window-icon>
 
         <window-icon
-          icon=${this.microBlogs}
+          icon="${this.microBlogs}"
           title="Micro Blogs"
           bottom="1"
-          left="5"
+          left="${getWindowWidth() >= 1536 ? 5 : 7}"
           window="micro-blogs"
         ></window-icon>
 
@@ -59,7 +111,7 @@ class HomePage extends HTMLElement {
           start-x="20" 
           start-y="25" 
           start-width="400" 
-          start-height="${getWindowWidth() ? 600 : 400}"
+          start-height="${getWindowWidth() >= 1536 ? 600 : 400}"
           active
         >
           <title-bar title="Blogs" slot="title-bar"></title-bar>
@@ -75,6 +127,26 @@ class HomePage extends HTMLElement {
                 content="${blog.content}"
               ></blog-item>
             `).join("")}
+
+            <div style="display: flex; gap: 2em; justify-content: end;">
+              ${this.blogData.length > 0 
+                ? `<ui-button 
+                    id="next-page" 
+                    label="test"
+                    page-control
+                   ></ui-button>`
+                : `<button disabled class="ewan">Ewan</button>`
+              }
+
+              ${this.blogData.length > 0 
+                ? `<ui-button 
+                    id="prev-page" 
+                    label="test"
+                    page-control
+                   ></ui-button>`
+                : `<button disabled class="ewan">Ewan</button>`
+              }
+            </div>
           </window-content>
         </window-container>
 
