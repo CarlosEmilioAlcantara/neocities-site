@@ -21,3 +21,4 @@
 - [*] Active window should be on top of everything else
 - [*] Window should not exceed page dimension
 - []  To keep JSON blogs format or just use html?
+- []  Handler for restoring windows' position and dimension in HomePage

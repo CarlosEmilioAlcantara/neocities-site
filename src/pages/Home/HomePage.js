@@ -18,12 +18,29 @@ class HomePage extends HTMLElement {
     this.attachShadow({ mode: "open" });
 
     this.blogs = {};
-    this.microBlogData = [];
-    this.offset = 0;
+    this.microBlogs = {};
+    this.blogsOffset = 0;
+    this.microBlogsOffset = 0;
     this.limit = 2;
 
-    this.onBlogsClickNext = () => paginateNext(this, fetchBlogs, "#blogs");
-    this.onBlogsClickPrev = () => paginatePrev(this, fetchBlogs, "#blogs");
+    this.onBlogsClickNext = () => 
+      paginateNext(this, "blogsOffset", "blogs", fetchBlogs, "#blogs");
+    this.onBlogsClickPrev = () => 
+      paginatePrev(this, "blogsOffset", "blogs", fetchBlogs, "#blogs");
+    this.onMicroBlogsClickNext = () => paginateNext(
+        this, 
+        "microBlogsOffset", 
+        "microBlogs", 
+        fetchMicroBlogs, 
+        "#micro-blogs"
+    );
+    this.onMicroBlogsClickPrev = () => paginatePrev(
+        this, 
+        "microBlogsOffset", 
+        "microBlogs", 
+        fetchMicroBlogs, 
+        "#micro-blogs"
+    )
   }
 
   attachButtonActions () {
@@ -34,11 +51,19 @@ class HomePage extends HTMLElement {
     this.shadowRoot
       .querySelector("#prev-blogs-page")
       .action = () => this.onBlogsClickPrev();
+
+    this.shadowRoot
+      .querySelector("#next-microblogs-page")
+      .action = () => this.onMicroBlogsClickNext();
+
+    this.shadowRoot
+      .querySelector("#prev-microblogs-page")
+      .action = () => this.onMicroBlogsClickPrev();
   }
 
   async connectedCallback() {
     this.blogs = await fetchBlogs({});
-    this.microBlogBata = await fetchMicroBlogs();
+    this.microBlogs = await fetchMicroBlogs({});
     this.render();
     this.attachButtonActions();
   }
@@ -101,14 +126,16 @@ class HomePage extends HTMLElement {
                 id="prev-blogs-page" 
                 page-control
                 page-control-left
-                ${(this.offset - this.limit) < 0 && 'disabled'}
+                ${(this.blogsOffset - this.limit) < 0 && 'disabled'}
               ></ui-button>
 
               <ui-button 
                 id="next-blogs-page" 
                 page-control
                 page-control-right
-                ${((this.offset + this.limit) >= this.blogs.length) && 'disabled'}
+                ${((this.blogsOffset + this.limit) >= 
+                  this.blogs.length) && 'disabled'
+                }
               ></ui-button>
             </div>
           </window-content>
@@ -120,17 +147,34 @@ class HomePage extends HTMLElement {
           start-y="25" 
           start-width="400" 
           start-height="${getWindowWidth() ? 600 : 400}"
-          closed
         >
           <title-bar title="Micro Blogs" slot="title-bar"></title-bar>
 
           <window-content slot="window-content">
-            ${this.microBlogBata.map((blog) => `
+            ${this.microBlogs.microBlogData.map((blog) => `
               <micro-blog 
                 date="${blog.date}"
                 post="${blog.post}"
               ></micro-blog>
             `).join("")}
+
+            <div style="display: flex; gap: 2em; justify-content: end;">
+              <ui-button 
+                id="prev-microblogs-page" 
+                page-control
+                page-control-left
+                ${(this.microBlogsOffset - this.limit) < 0 && 'disabled'}
+              ></ui-button>
+
+              <ui-button 
+                id="next-microblogs-page" 
+                page-control
+                page-control-right
+                ${((this.microBlogsOffset + this.limit) >= 
+                  this.microBlogs.length) && 'disabled'
+                }
+              ></ui-button>
+            </div>
           </window-content>
         </window-container>
 

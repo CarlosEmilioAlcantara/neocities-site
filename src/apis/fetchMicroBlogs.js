@@ -1,14 +1,19 @@
 import { microBlogs } from "../public/microblogs/microBlogs.js";
 
-export const fetchMicroBlogs = async () => {
+export const fetchMicroBlogs = async ({offset = 0, limit = 2}) => {
   try {
+    const indexedMicroBlogs = microBlogs.slice(offset, (limit + offset));
     const responses = await Promise.all(
-      microBlogs.map((response) => fetch(response))
+      indexedMicroBlogs.map((response) => fetch(response))
     );
 
-    return await Promise.all(
+    const microBlogData = await Promise.all(
       responses.map((response) => response.json())
     );
+
+    const length = microBlogs.length;
+
+    return {microBlogData, length};
   } catch (err) {
     console.log(err);
   }     
