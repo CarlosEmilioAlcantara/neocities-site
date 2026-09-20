@@ -8,8 +8,9 @@ class Button extends HTMLElement {
       "small", 
       "blog", 
       "page-control",
-      "right",
-      "left",
+      "page-control-right",
+      "page-control-left",
+      "disabled",
     ];
   }
 
@@ -30,6 +31,7 @@ class Button extends HTMLElement {
     this.shadowRoot
       .querySelector(".button")
       .addEventListener("click", (e) => {
+        e.preventDefault();
         if (this.action) this.action(e);
       });
   }

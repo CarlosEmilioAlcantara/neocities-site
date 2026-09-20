@@ -1,5 +1,5 @@
-import { getWindowWidth } from "../../../utils/getWindowWidth.js";
-import { getWindowHeight } from "../../../utils/getWindowHeight.js";
+import { getWindowWidth } from "../../../utils/viewport/getWindowWidth.js";
+import { getWindowHeight } from "../../../utils/viewport/getWindowHeight.js";
 
 const windowWidth = getWindowWidth();
 const windowHeight = getWindowHeight();

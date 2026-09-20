@@ -1,7 +1,7 @@
 import "../../window/WindowContainer/WindowContainer.js";
 import "../../window/WindowContent/WindowContent.js";
 import "../../window/TitleBar/TitleBar.js";
-import { getWindowWidth } from "../../../utils/getWindowWidth.js";
+import { getWindowWidth } from "../../../utils/viewport/getWindowWidth.js";
 
 class BlogWindow extends HTMLElement {
   static get observedAttributes() {

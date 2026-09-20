@@ -6,78 +6,46 @@ import "../../components/blog/BlogItem/BlogItem.js";
 import "../../components/blog/BlogWindow/BlogWindow.js";
 import "../../components/MicroBlog/MicroBlog.js";
 import "../../components/Button/Button.js";
-import { getWindowWidth } from "../../utils/getWindowWidth.js";
-import { getBlogs } from "../../utils/getBlogs.js";
-import { getMicroBlogs } from "../../utils/getMicroBlogs.js";
+import { getWindowWidth } from "../../utils/viewport/getWindowWidth.js";
+import { fetchBlogs } from "../../apis/fetchBlogs.js";
+import { fetchMicroBlogs } from "../../apis/fetchMicroBlogs.js";
+import { paginateNext } from "../../utils/pagination/paginateNext.js";
+import { paginatePrev } from "../../utils/pagination/paginatePrev.js";
 
 class HomePage extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
 
-    this.blogData = [];
+    this.blogs = {};
     this.microBlogData = [];
     this.offset = 0;
     this.limit = 2;
+
+    this.onBlogsClickNext = () => paginateNext(this, fetchBlogs, "#blogs");
+    this.onBlogsClickPrev = () => paginatePrev(this, fetchBlogs, "#blogs");
   }
 
-  handleGetNextBlogs = async () => {
-    this.offset = this.offset + this.limit;
-    this.blogData = await getBlogs({offset: this.offset});
-    this.render();
+  attachButtonActions () {
+    this.shadowRoot
+      .querySelector("#next-blogs-page")
+      .action = () => this.onBlogsClickNext();
 
-    const nextPageBtn =
-      this.shadowRoot
-      .querySelector("#next-page");
-
-    nextPageBtn.action = () => this.handleGetNextBlogs();
-
-    const prevPageBtn =
-      this.shadowRoot
-      .querySelector("#prev-page");
-
-    prevPageBtn.action = () => this.handleGetPrevBlogs();
-  }
-
-  handleGetPrevBlogs = async () => {
-    this.offset = this.offset - this.limit;
-    this.blogData = await getBlogs({offset: this.offset});
-    this.render();
-
-    const nextPageBtn =
-      this.shadowRoot
-      .querySelector("#next-page");
-
-    nextPageBtn.action = () => this.handleGetNextBlogs();
-
-    const prevPageBtn =
-      this.shadowRoot
-      .querySelector("#prev-page");
-
-    prevPageBtn.action = () => this.handleGetPrevBlogs();
+    this.shadowRoot
+      .querySelector("#prev-blogs-page")
+      .action = () => this.onBlogsClickPrev();
   }
 
   async connectedCallback() {
-    this.blogData = await getBlogs({});
-    this.microBlogBata = await getMicroBlogs();
+    this.blogs = await fetchBlogs({});
+    this.microBlogBata = await fetchMicroBlogs();
     this.render();
-
-    const nextPageBtn =
-      this.shadowRoot
-      .querySelector("#next-page");
-
-    nextPageBtn.action = () => this.handleGetNextBlogs();
-
-    const prevPageBtn =
-      this.shadowRoot
-      .querySelector("#prev-page");
-
-    prevPageBtn.action = () => this.handleGetPrevBlogs();
+    this.attachButtonActions();
   }
 
-  blogs = new URL("../../assets/icons/desktop/blogs.webp", import.meta.url).href;
+  blogsIcn = new URL("../../assets/icons/desktop/blogs.webp", import.meta.url).href;
 
-  microBlogs = new URL(
+  microBlogsIcn = new URL(
     "../../assets/icons/desktop/micro-blogs.webp", 
     import.meta.url
   ).href;
@@ -91,7 +59,7 @@ class HomePage extends HTMLElement {
 
       <div class="home">
         <window-icon
-          icon="${this.blogs}"
+          icon="${this.blogsIcn}"
           title="Blogs"
           bottom="1"
           left="1"
@@ -99,7 +67,7 @@ class HomePage extends HTMLElement {
         ></window-icon>
 
         <window-icon
-          icon="${this.microBlogs}"
+          icon="${this.microBlogsIcn}"
           title="Micro Blogs"
           bottom="1"
           left="${getWindowWidth() >= 1536 ? 5 : 7}"
@@ -117,7 +85,7 @@ class HomePage extends HTMLElement {
           <title-bar title="Blogs" slot="title-bar"></title-bar>
 
           <window-content slot="window-content">
-            ${this.blogData.map((blog) => `
+            ${this.blogs.blogData.map((blog) => `
               <blog-item 
                 date="${blog.date}"
                 title="${blog.title}"
@@ -129,24 +97,19 @@ class HomePage extends HTMLElement {
             `).join("")}
 
             <div style="display: flex; gap: 2em; justify-content: end;">
-              ${this.blogData.length > 0 
-                ? `<ui-button 
-                    id="prev-page" 
-                    page-control
-                    left
-                   ></ui-button>`
-                : `<button disabled class="ewan">Test</button>`
-              }
+              <ui-button 
+                id="prev-blogs-page" 
+                page-control
+                page-control-left
+                ${(this.offset - this.limit) < 0 && 'disabled'}
+              ></ui-button>
 
-              ${this.blogData.length > 0 
-                ? `<ui-button 
-                    id="next-page" 
-                    page-control
-                    right
-                   ></ui-button>`
-                : `<button disabled class="ewan">Test</button>`
-              }
-
+              <ui-button 
+                id="next-blogs-page" 
+                page-control
+                page-control-right
+                ${((this.offset + this.limit) >= this.blogs.length) && 'disabled'}
+              ></ui-button>
             </div>
           </window-content>
         </window-container>

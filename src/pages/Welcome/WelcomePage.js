@@ -5,7 +5,7 @@ import "../../components/window/WindowContent/WindowContent.js";
 import "../../components/window/WindowIcon/WindowIcon.js";
 import "../../components/Button/Button.js";
 import { navigate } from "../../main.js";
-import { getWindowWidth } from "../../utils/getWindowWidth.js";
+import { getWindowWidth } from "../../utils/viewport/getWindowWidth.js";
 
 class WelcomePage extends HTMLElement {
   constructor() {
