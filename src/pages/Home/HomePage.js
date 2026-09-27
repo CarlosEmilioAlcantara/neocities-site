@@ -9,8 +9,10 @@ import "../../components/Button/Button.js";
 import { getWindowWidth } from "../../utils/viewport/getWindowWidth.js";
 import { fetchBlogs } from "../../apis/fetchBlogs.js";
 import { fetchMicroBlogs } from "../../apis/fetchMicroBlogs.js";
-import { paginateNext } from "../../utils/pagination/paginateNext.js";
-import { paginatePrev } from "../../utils/pagination/paginatePrev.js";
+import { 
+  handlePaginateNext, 
+  handlePaginatePrev 
+} from "../../utils/pagination/handlePagination.js";
 
 class HomePage extends HTMLElement {
   constructor() {
@@ -24,23 +26,41 @@ class HomePage extends HTMLElement {
     this.limit = 2;
 
     this.onBlogsClickNext = () => 
-      paginateNext(this, "blogsOffset", "blogs", fetchBlogs, "#blogs");
+      handlePaginateNext(
+        this, 
+        "blogsOffset", 
+        "blogs", 
+        fetchBlogs, 
+        "#blogs",
+        ["#blogs", "#micro-blogs"]
+      );
     this.onBlogsClickPrev = () => 
-      paginatePrev(this, "blogsOffset", "blogs", fetchBlogs, "#blogs");
-    this.onMicroBlogsClickNext = () => paginateNext(
+      handlePaginatePrev(
+        this, 
+        "blogsOffset", 
+        "blogs", 
+        fetchBlogs, 
+        "#blogs",
+        ["#blogs", "#micro-blogs"]
+      );
+    this.onMicroBlogsClickNext = () =>
+      handlePaginateNext(
         this, 
         "microBlogsOffset", 
         "microBlogs", 
         fetchMicroBlogs, 
-        "#micro-blogs"
-    );
-    this.onMicroBlogsClickPrev = () => paginatePrev(
+        "#micro-blogs",
+        ["#blogs", "#micro-blogs"]
+      );
+    this.onMicroBlogsClickPrev = () =>
+      handlePaginatePrev(
         this, 
         "microBlogsOffset", 
         "microBlogs", 
         fetchMicroBlogs, 
-        "#micro-blogs"
-    )
+        "#micro-blogs",
+        ["#blogs", "#micro-blogs"]
+      );
   }
 
   attachButtonActions () {
@@ -68,7 +88,8 @@ class HomePage extends HTMLElement {
     this.attachButtonActions();
   }
 
-  blogsIcn = new URL("../../assets/icons/desktop/blogs.webp", import.meta.url).href;
+  blogsIcn = 
+    new URL("../../assets/icons/desktop/blogs.webp", import.meta.url).href;
 
   microBlogsIcn = new URL(
     "../../assets/icons/desktop/micro-blogs.webp", 

@@ -1,10 +1,4 @@
-const restorePositionDimension = (component, window) => {
-  const windowPrev = component
-    .shadowRoot
-    .querySelector(window);
-
-  component.render();
-
+const restorePositionDimension = (component, windowPrev, window) => {
   const windowCur = component
     .shadowRoot
     .querySelector(window);
@@ -17,4 +11,4 @@ const restorePositionDimension = (component, window) => {
   windowCur.y = windowPrev.y;
 }
 
-export {restorePositionDimension};
+export { restorePositionDimension };
