@@ -139,6 +139,7 @@ class HomePage extends HTMLElement {
                 image-alt="${blog.imageAlt}"
                 description="${blog.description}"
                 content="${blog.content}"
+                link="${blog.link}"
               ></blog-item>
             `).join("")}
 
@@ -164,10 +165,10 @@ class HomePage extends HTMLElement {
 
         <window-container
           id="micro-blogs"
-          start-x="620" 
+          start-x="450" 
           start-y="25" 
           start-width="400" 
-          start-height="${getWindowWidth() ? 600 : 400}"
+          start-height="${getWindowWidth() >= 1536 ? 600 : 400}"
         >
           <title-bar title="Micro Blogs" slot="title-bar"></title-bar>
 

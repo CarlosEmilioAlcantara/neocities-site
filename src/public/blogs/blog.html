@@ -1,0 +1,35 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta 
+   name="description" 
+   content="snibbening&#39;s own personal homepage&#47;website" 
+  />
+  <link rel="stylesheet" type="text/css" href="../../index.css" />
+ </head>
+ <body>
+  <div class="banner">
+   <h2>title</h2>
+   <small>date</small>
+   <button id="test">test</button>
+   <hr />
+  </div>
+
+  <div class="image-wrapper">
+    <img src="${image}" alt="${imagealt}" />
+  </div>
+
+  <div class="content">
+   content
+  </div>
+
+  <script>
+    document.querySelector("#test")
+      .addEventListener(
+        "click", 
+        () => window.location.href = "/#/home"
+      );
+  </script>
+ </body> 
+</html>

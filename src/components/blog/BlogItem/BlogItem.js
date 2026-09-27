@@ -3,7 +3,15 @@ import "../../Button/Button.js";
 
 class BlogItem extends HTMLElement {
   static get observedAttributes() {
-    return ["date", "title", "image", "image-alt", "description", "content"];
+    return [
+      "date", 
+      "title", 
+      "image", 
+      "image-alt", 
+      "description", 
+      "content", 
+      "link"
+    ];
   }
 
   constructor() {

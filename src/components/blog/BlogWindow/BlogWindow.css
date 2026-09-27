@@ -10,6 +10,14 @@
   font-size: 1.6rem;
 }
 
+.banner .link-and-date {
+  display: flex;
+  align-items: center;
+  gap: 0.1em;
+  font-size: 1.6rem;
+  margin-bottom: 0.3em;
+}
+
 .banner hr {
   margin-top: 0.6em;
 }

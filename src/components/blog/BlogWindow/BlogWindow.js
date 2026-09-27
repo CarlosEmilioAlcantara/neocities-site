@@ -2,10 +2,11 @@ import "../../window/WindowContainer/WindowContainer.js";
 import "../../window/WindowContent/WindowContent.js";
 import "../../window/TitleBar/TitleBar.js";
 import { getWindowWidth } from "../../../utils/viewport/getWindowWidth.js";
+import "../../Button/Button.js";
 
 class BlogWindow extends HTMLElement {
   static get observedAttributes() {
-    return ["date", "title", "content", "image", "image-alt"];
+    return ["date", "title", "content", "image", "image-alt", "link"];
   }
 
   constructor() {
@@ -13,14 +14,25 @@ class BlogWindow extends HTMLElement {
     this.attachShadow({ mode: "open" });
   }
 
+  attachBlogPageLink() {
+    const link = this.getAttribute("link");
+    const blogPage = new URL(link, import.meta.url)
+
+    this.shadowRoot
+      .querySelector("#open-blog-btn")
+      .action = () => window.location.href = blogPage;
+  }
+
   attributeChangedCallback(name, oldValue, newValue) {
     if (oldValue !== newValue) {
       this.render();
+      this.attachBlogPageLink();
     }
   }
 
   connectedCallback() {
     this.render();
+    this.attachBlogPageLink();
   }
 
   render() {
@@ -52,7 +64,12 @@ class BlogWindow extends HTMLElement {
         <window-content slot="window-content">
           <div class="banner">
             ${title ? `<h2>${title}</h2>` : ''}
-            ${date ? `<small>${date}</small>` : ''}
+
+            <span class="link-and-date">
+              ${date ? `<small>${date}</small>` : ''}
+              <ui-button id="open-blog-btn" label="Open in own page" blog>
+              </ui-button>
+            </span>
             <hr />
           </div>
 

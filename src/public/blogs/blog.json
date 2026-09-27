@@ -4,6 +4,7 @@
   "imageAlt": "This is an alternative text",
   "title": "This is a blog title",
   "description": "This is a blog description",
+  "link": "../../../public/blogs/blog.html",
   "content": [
     "<p>This is a blog content</p>",
     "<div class='image-wrapper'>",

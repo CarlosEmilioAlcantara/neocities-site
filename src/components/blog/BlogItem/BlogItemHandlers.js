@@ -11,6 +11,7 @@ export const handleOpen = (component) => {
   blogWindow.setAttribute("image", component.getAttribute("image"));
   blogWindow.setAttribute("image-alt", component.getAttribute("image-alt"));
   blogWindow.setAttribute("content", component.getAttribute("content"));
+  blogWindow.setAttribute("link", component.getAttribute("link"));
   blogWindow.removeAttribute("closed");
 
   const windowContainer = blogWindow
