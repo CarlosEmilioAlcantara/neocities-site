@@ -1,0 +1,128 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.window {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 90%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--foreground-color);
+  border-radius: 10px 10px 10px 10px;
+  background-color: var(--background-color);
+  box-shadow: 3px 3px 0 0 var(--foreground-color);
+  overflow: hidden;
+}
+
+.titlebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em 0;
+  border-bottom: 1px solid var(--foreground-color);
+  text-align: center;
+}
+
+.titlebar h2 {
+  font-size: 3.0rem;
+}
+
+.titlebar small {
+  font-size: 1.6rem;
+}
+
+.titlebar .link-and-date {
+  display: flex;
+  align-items: center;
+  gap: 0.1em;
+  font-size: 1.6rem;
+  margin-bottom: 0.3em;
+}
+
+.back-button {
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+  border: none;
+  cursor: pointer;
+}
+
+.back-button::before {
+  content: "[";
+}
+
+.back-button::after {
+  content: "]";
+}
+
+.back-button:hover {
+  background-color: var(--foreground-color);
+  color: var(--background-color);
+}
+
+.back-button:active {
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+}
+
+.scrollbar {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: 
+    radial-gradient(
+      var(--foreground-color) 29%, 
+      transparent 16%
+    ), 
+    radial-gradient(
+      var(--foreground-color) 29%, 
+      transparent 16%
+    ),
+    radial-gradient(
+      var(--foreground-color) 0%, 
+      transparent 90%
+    )
+  ; 
+  background-size: 8px 8px; 
+  background-position: 0px 0px, 4px 4px;
+  overflow-y: auto;
+}
+
+.inside {
+  margin-top: 19em;
+  padding: 5rem;
+}
+
+.content-border {
+  padding: 1em;
+  margin-bottom: 2rem;
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--foreground-color);
+  background-color: var(--background-color);
+  box-shadow: 3px 3px 0 0 var(--foreground-color);
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 3em;
+}
+
+.image-wrapper img {
+  width: 30%;
+}
+
+img {
+  width: 60%;
+}
