@@ -138,7 +138,7 @@ class HomePage extends HTMLElement {
                 image="${blog.image}"
                 image-alt="${blog.imageAlt}"
                 description="${blog.description}"
-                content='${blog.content}' <!-- '' ARE IMPORTANT! -->
+                content='${blog.content}'
                 link="${blog.link}"
               ></blog-item>
             `).join("")}
