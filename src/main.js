@@ -12,10 +12,6 @@ async function renderPage(path) {
         path: "./pages/Home/HomePage.js",
         name: "home-page",
     },
-    "/rolling-blogs": {
-        path: "./pages/RollingBlogs/RollingBlogsPage.js",
-        name: "rolling-blogs-page",
-    },
   }[path];
 
   // Need to make a custom 404 page
