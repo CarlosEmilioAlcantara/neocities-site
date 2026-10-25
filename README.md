@@ -22,3 +22,6 @@
 - [*] Window should not exceed page dimension
 - []  To keep JSON blogs format or just use html?
 - [*] Handler for restoring windows' position and dimension in HomePage
+- [*] Rolling microblogs page
+- []  Shareable blogs and microblogs
+- [] Loading page

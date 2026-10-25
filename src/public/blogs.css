@@ -77,7 +77,6 @@ body {
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
   background: 
     radial-gradient(
       var(--foreground-color) 29%, 
@@ -98,12 +97,15 @@ body {
 }
 
 .inside {
-  margin-top: 19em;
-  padding: 5rem;
+  width: 90%;
+}
+
+.spacer {
+  height: 1rem;
 }
 
 .content-border {
-  padding: 1em;
+  padding: 18px;
   margin-bottom: 2rem;
   border-style: solid;
   border-width: 2px;
@@ -126,4 +128,9 @@ body {
 
 img {
   width: 60%;
+}
+
+footer {
+  font-size: 1.4rem;
+  margin: 12px 0 0 12px;
 }

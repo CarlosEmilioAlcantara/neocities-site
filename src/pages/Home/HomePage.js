@@ -6,6 +6,7 @@ import "../../components/blog/BlogItem/BlogItem.js";
 import "../../components/blog/BlogWindow/BlogWindow.js";
 import "../../components/MicroBlog/MicroBlog.js";
 import "../../components/Button/Button.js";
+import { navigate } from "../../main.js";
 import { getWindowWidth } from "../../utils/viewport/getWindowWidth.js";
 import { fetchBlogs } from "../../apis/fetchBlogs.js";
 import { fetchMicroBlogs } from "../../apis/fetchMicroBlogs.js";
@@ -79,6 +80,11 @@ class HomePage extends HTMLElement {
     this.shadowRoot
       .querySelector("#prev-microblogs-page")
       .action = () => this.onMicroBlogsClickPrev();
+
+    this.shadowRoot
+      .querySelector("#to-rolling-blogs")
+      .action = () => 
+        window.location.href = "../../public/microblogs/rolling-blogs.html";
   }
 
   async connectedCallback() {
@@ -170,7 +176,7 @@ class HomePage extends HTMLElement {
           start-width="400" 
           start-height="${getWindowWidth() >= 1536 ? 600 : 400}"
         >
-          <title-bar title="Micro Blogs" slot="title-bar"></title-bar>
+          <title-bar title="Microblogs" slot="title-bar"></title-bar>
 
           <window-content slot="window-content">
             ${this.microBlogs.microBlogData.map((blog) => `
@@ -180,22 +186,35 @@ class HomePage extends HTMLElement {
               ></micro-blog>
             `).join("")}
 
-            <div style="display: flex; gap: 2em; justify-content: end;">
+            <div 
+              style="
+                display: flex; 
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
               <ui-button 
-                id="prev-microblogs-page" 
-                page-control
-                page-control-left
-                ${(this.microBlogsOffset - this.limit) < 0 && 'disabled'}
+                label="Visit Rolling Microblogs Page" 
+                id="to-rolling-blogs"
               ></ui-button>
 
-              <ui-button 
-                id="next-microblogs-page" 
-                page-control
-                page-control-right
-                ${((this.microBlogsOffset + this.limit) >= 
-                  this.microBlogs.length) && 'disabled'
-                }
-              ></ui-button>
+              <div style="display: flex; gap: 2em;">
+                <ui-button 
+                  id="prev-microblogs-page" 
+                  page-control
+                  page-control-left
+                  ${(this.microBlogsOffset - this.limit) < 0 && 'disabled'}
+                ></ui-button>
+
+                <ui-button 
+                  id="next-microblogs-page" 
+                  page-control
+                  page-control-right
+                  ${((this.microBlogsOffset + this.limit) >= 
+                    this.microBlogs.length) && 'disabled'
+                  }
+                ></ui-button>
+              </div>
             </div>
           </window-content>
         </window-container>
