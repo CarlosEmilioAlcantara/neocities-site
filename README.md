@@ -24,4 +24,5 @@
 - [*] Handler for restoring windows' position and dimension in HomePage
 - [*] Rolling microblogs page
 - []  Shareable blogs and microblogs
-- [] Loading page
+- [*] Loading page
+- [] Loading page styling

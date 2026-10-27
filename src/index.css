@@ -94,3 +94,19 @@ p {
   font-size: 1.8rem;
   text-wrap: auto;
 }
+
+.loading {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3em;
+}
+
+.loading img {
+  width: 20%;
+  height: 30%;
+}
