@@ -25,4 +25,4 @@
 - [*] Rolling microblogs page
 - []  Shareable blogs and microblogs
 - [*] Loading page
-- [] Loading page styling
+- [*] Loading page styling
