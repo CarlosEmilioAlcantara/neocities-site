@@ -117,7 +117,7 @@ p {
 
 .loading .text {
   display: flex;
-  margin-right: 3em;
+  margin-right: 3.2em;
   max-width: 0em;
   font-size: 3.2rem;
   text-wrap: nowrap;
