@@ -18,13 +18,13 @@ async function renderPage(path) {
   // if (!page) {
   // }
 
-  await import(page.path);
+  //await import(page.path);
 
-  const root = document.querySelector("root");
+  //const root = document.querySelector("root");
 
-  root.replaceChildren(
-    document.createElement(page.name)
-  );
+  //root.replaceChildren(
+  //  document.createElement(page.name)
+  //);
 }
 
 async function navigate(path) {
