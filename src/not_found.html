@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta 
+   name="description" 
+   content="Snibbening&#39;s own personal homepage&#47;website" 
+  />
+  <link rel="stylesheet" type="text/css" href="index.css" />
+  <link rel="stylesheet" type="text/css" href="not_found.css" />
+  <script type="module">
+    import "../../components/Button/Button.js";
+
+    document.querySelector("ui-button")
+      .action = () => 
+        window.location.href = "https://www.youtube.com/watch?v=PyK611xjlUU";
+  </script>
+ </head>
+ <body>
+  <div class="not-found">
+   <img src="assets/images/tobacco.webp" alt="Tobacco chapter cover" />
+
+   <div class="message">
+    <p>You have entered the void. </p>
+    <p>While you're here, why not have a little smoke break?</p>
+   </div>
+
+   <ui-button label="Take a breather"></ui-button>
+  </div>
+ </body> 
+</html>

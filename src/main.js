@@ -14,10 +14,6 @@ async function renderPage(path) {
     },
   }[path];
 
-  // Need to make a custom 404 page
-  // if (!page) {
-  // }
-
   await import(page.path);
 
   const root = document.querySelector("root");

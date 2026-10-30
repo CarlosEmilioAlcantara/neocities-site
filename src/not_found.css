@@ -1,0 +1,31 @@
+.not-found {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3em;
+  background-color: var(--background-color);
+}
+
+.not-found img {
+  width: 20%;
+  height: 50%;
+}
+
+.not-found .message {
+  text-align: center;
+}
+
+.not-found .message > p:first-child {
+  margin-bottom: 0.2em;
+}
+
+a {
+  font-size: 1.8rem;
+}
+
+a:hover {
+  text-decoration: underline;
+}
