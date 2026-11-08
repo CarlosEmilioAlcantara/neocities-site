@@ -1,3 +1,5 @@
+import { handleDrag } from "./WidgetBarHandlers.js";
+
 class WidgetBar extends HTMLElement {
   static get observedAttributes() {
     return ["title"];
@@ -6,16 +8,34 @@ class WidgetBar extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
+
+    this.onDrag = (e) => handleDrag(this, e);
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attachEventListeners() {
+    this.shadowRoot
+      .querySelector(".widget-bar")
+      .addEventListener("pointerdown", this.onDrag);
+  }
+
+  detachEventListeners() {
+    this.removeEventListener("pointerdown", this.onDrag);
+  }
+
+  attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
       this.render();
+      this.attachEventListeners();
     }
   }
 
   connectedCallback() {
     this.render();
+    this.attachEventListeners();
+  }
+
+  disconnectedCallback() {
+    this.attachEventListeners();
   }
 
   render() {

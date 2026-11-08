@@ -1,3 +1,5 @@
+import { handleDragStart } from "./WidgetContainerHandlers.js";
+
 class WidgetContainer extends HTMLElement {
   static get observedAttributes() {
     return [
@@ -5,7 +7,6 @@ class WidgetContainer extends HTMLElement {
       "start-y", 
       "start-width", 
       "start-height", 
-      "music-player"
     ];
   }
 
@@ -17,11 +18,22 @@ class WidgetContainer extends HTMLElement {
     this.y = 0;
     this.width = 0;
     this.height = 0;
+
+    this.onDragStart = (e) => handleDragStart(this, e);
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attachEventListeners() {
+    this.addEventListener("widget-drag", this.onDragStart);
+  }
+
+  detachEventListeners() {
+    this.removeEventListener("widget-drag", this.onDragStart);
+  }
+
+  attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
       this.render();
+      this.attachEventListeners();
     }
   }
 
@@ -30,7 +42,13 @@ class WidgetContainer extends HTMLElement {
     this.y = Number(this.getAttribute("start-y"));
     this.width = Number(this.getAttribute("start-width"));
     this.height = Number(this.getAttribute("start-height"));
+
     this.render();
+    this.attachEventListeners();
+  }
+
+  disconnectedCallback() {
+    this.detachEventListeners();
   }
   
   render() {

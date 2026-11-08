@@ -40,7 +40,7 @@ class TitleBar extends HTMLElement {
     this.removeEventListener("click", this.onMinimize);
   }
   
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
       this.render();
       this.attachEventListeners();
