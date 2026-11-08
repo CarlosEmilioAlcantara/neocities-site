@@ -25,3 +25,5 @@
 - []  Shareable blogs and microblogs
 - [*] Loading page
 - [*] Loading page styling
+- []  Style music player
+- []  Music player functionality

@@ -12,6 +12,10 @@ async function renderPage(path) {
         path: "./pages/Home/HomePage.js",
         name: "home-page",
     },
+    "/radio": {
+        path: "./pages/Radio/RadioPage.js",
+        name: "radio-page",
+    },
   }[path];
 
   await import(page.path);
