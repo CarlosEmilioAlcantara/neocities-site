@@ -1,4 +1,8 @@
-import { handleDragStart } from "./WidgetContainerHandlers.js";
+import { 
+  handleDragStart, 
+  handleDrag, 
+  handleDragEnd,
+} from "./WidgetContainerHandlers.js";
 
 class WidgetContainer extends HTMLElement {
   static get observedAttributes() {
@@ -20,6 +24,8 @@ class WidgetContainer extends HTMLElement {
     this.height = 0;
 
     this.onDragStart = (e) => handleDragStart(this, e);
+    this.onDrag = (e) => handleDrag(this, e);
+    this.onDragEnd = (e) => handleDragEnd(this);
   }
 
   attachEventListeners() {
