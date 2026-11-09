@@ -89,9 +89,6 @@ const handleDragStart = (component, e) => {
   component.startX = e.detail.x;
   component.startY = e.detail.y;
   
-  component.startWindowX = component.x;
-  component.startWindowY = component.y;
-  
   window.addEventListener("pointermove", component.onDrag);
   window.addEventListener("pointerup", component.onDragEnd);
 };
@@ -101,7 +98,7 @@ const handleDrag = (component, e) => {
     return;
   } else if ((e.clientX >= 1) || (e.clientX <= windowWidth)) {
     const dx = e.clientX - component.startX;
-    component.x = component.startWindowX + dx;
+    component.x = e.clientX + dx;
     component.style.left = `${component.x}px`;
   }
 
@@ -109,7 +106,7 @@ const handleDrag = (component, e) => {
     return;
   } else if ((e.clientY >= 1) || (e.clientY <= windowHeight)) {
     const dy = e.clientY - component.startY;
-    component.y = component.startWindowY + dy;
+    component.y = e.clientY + dy;
     component.style.top = `${component.y}px`;
   }
 };
@@ -131,44 +128,35 @@ const handleResizeStart = (component, e) => {
   
   component.resizeDirection = e.currentTarget.dataset.resize;
   
-  component.startX = e.clientX;
-  component.startY = e.clientY;
-  
-  component.startWindowX = component.x;
-  component.startWindowY = component.y;
-  
-  component.startWidth = component.width;
-  component.startHeight = component.height;
-  
   window.addEventListener("pointermove", component.onResize);
   window.addEventListener("pointerup", component.onResizeEnd);
 };
   
 const handleResize = (component, e) => {
-  const dx = e.clientX - component.startX;
-  const dy = e.clientY - component.startY;
+  const dx = e.clientX - e.clientX;
+  const dy = e.clientY - e.clientY;
   
-  let x = component.startWindowX;
-  let y = component.startWindowY;
-  let width = component.startWidth;
-  let height = component.startHeight;
+  let x = e.clientX;
+  let y = e.clientY;
+  let width = component.width;
+  let height = component.height;
   
   if (component.resizeDirection.includes("e")) {
-    width = component.startWidth + dx;
+    width = component.width + dx;
   }
   
   if (component.resizeDirection.includes("w")) {
-    width = component.startWidth - dx;
-    x = component.startWindowX + dx;
+    width = component.width - dx;
+    x = e.clientX + dx;
   }
   
   if (component.resizeDirection.includes("s")) {
-    height = component.startHeight + dy;
+    height = component.height + dy;
   }
   
   if (component.resizeDirection.includes("n")) {
-    height = component.startHeight - dy;
-    y = component.startWindowY + dy;
+    height = component.height - dy;
+    y = e.clientY + dy;
   }
   
   const minWidth = 200;
@@ -176,7 +164,7 @@ const handleResize = (component, e) => {
   
   if (width < minWidth) {
     if (component.resizeDirection.includes("w")) {
-      x = component.startWindowX + component.startWidth - minWidth;
+      x = e.clientX + component.width - minWidth;
     }
   
     width = minWidth;
@@ -184,7 +172,7 @@ const handleResize = (component, e) => {
   
   if (height < minHeight) {
     if (component.resizeDirection.includes("n")) {
-      y = component.startWindowY + component.startHeight - minHeight;
+      y = e.clientY + component.height - minHeight;
     }
   
     height = minHeight;

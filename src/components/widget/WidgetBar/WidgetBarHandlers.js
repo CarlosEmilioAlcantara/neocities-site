@@ -4,7 +4,6 @@ const handleDrag = (component, e) => {
   component.dispatchEvent(
     new CustomEvent("widget-drag", {
       bubbles: true,
-      composed: true,
       detail: {
         x: e.clientX,
         y: e.clientY,
