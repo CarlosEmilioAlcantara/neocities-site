@@ -6,7 +6,7 @@ import {
 
 class TitleBar extends HTMLElement {
   static get observedAttributes() {
-    return ['title'];
+    return ["title", "widget"];
   }
 
   constructor() {
@@ -58,6 +58,7 @@ class TitleBar extends HTMLElement {
 
   render() {
     const title = this.getAttribute("title");
+    const widget = this.hasAttribute("widget");
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -65,20 +66,26 @@ class TitleBar extends HTMLElement {
         @import url("${new URL("./TitleBar.css", import.meta.url)}");
       </style>
 
-      <div class="title-bar">
-        <div class="buttons">
-          <button tabindex="-1" class="button close-button">
-          </button>
+      ${!widget ? `
+        <div class="title-bar">
+          <div class="buttons">
+            <button tabindex="-1" class="button close-button">
+            </button>
 
-          <button tabindex="-1" class="button drag-button">
-          </button>
+            <button tabindex="-1" class="button drag-button">
+            </button>
 
-          <button tabindex="-1" class="button minimize-button">
-          </button>
+            <button tabindex="-1" class="button minimize-button">
+            </button>
+          </div>
+
+          ${title ? `<p class="title">${title}</p>` : ""}
         </div>
-
-        ${title ? `<p class="title">${title}</p>` : ""}
-      </div>
+      ` : `
+        <div class="widget-bar">
+          <label>${title}</label>
+        </div>
+      `}
     `;
   }
 }
