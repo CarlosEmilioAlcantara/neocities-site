@@ -1,7 +1,7 @@
 import "../../components/Player/Player.js";
-import "../../components/widget/WidgetBar/WidgetBar.js";
-import "../../components/widget/WidgetContainer/WidgetContainer.js";
-import "../../components/widget/WidgetContent/WidgetContent.js";
+import "../../components/window/TitleBar/TitleBar.js";
+import "../../components/window/WindowContainer/WindowContainer.js";
+import "../../components/window/WindowContent/WindowContent.js";
 
 class RadioPage extends HTMLElement {
   constructor() {
@@ -20,18 +20,24 @@ class RadioPage extends HTMLElement {
       </style>
 
       <div>
-        <widget-container
+        <window-container
           start-x="50" 
           start-y="50"
           start-width="762" 
+          widget
         >
-          <widget-bar title="Music Player" slot="widget-bar" music-player>
-          </widget-bar>
+          <title-bar 
+            title="Music Player" 
+            slot="title-bar" 
+            music-player
+            widget
+          >
+          </title-bar>
 
-          <widget-content slot="widget-content">
+          <window-content slot="window-content" widget>
             <music-player slot="music-player"></music-player>
-          </widget-content>
-        </widget-container>
+          </window-content>
+        </window-container>
       </div>
     `
   }

@@ -1,9 +1,9 @@
 class WindowContent extends HTMLElement {
   static get observedAttributes() {
-    return ["center", "right"];
+    return ["center", "right", "widget"];
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
       this.render();
     }
@@ -19,14 +19,17 @@ class WindowContent extends HTMLElement {
   }
 
   render() {
+    const widget = this.hasAttribute("widget");
+
     this.shadowRoot.innerHTML = `
       <style>
         @import url("${new URL("../../../index.css", import.meta.url)}");
         @import url("${new URL("./WindowContent.css", import.meta.url)}");
       </style>
 
-      <div class="window-content">
+      <div class="${widget ? 'widget-content' : 'window-content'}">
         <slot></slot>
+        <slot name="music-player" id="music-player"></slot>
       </div>
     `;
   }

@@ -21,6 +21,7 @@ class WindowContainer extends HTMLElement {
       "start-height", 
       "active",
       "closed",
+      "widget",
     ];
   }
 
@@ -31,6 +32,7 @@ class WindowContainer extends HTMLElement {
     this.x = 0;
     this.y = 0;
     this.contentVisible = true;
+    this.widget = false;
 
     this.onFocus = () => handleFocus(this);
     this.onUnfocus = (e) => handleUnfocus(this, e);
@@ -44,41 +46,49 @@ class WindowContainer extends HTMLElement {
     this.onResizeEnd = () => handleResizeEnd(this);
   }
 
-  attachEventListeners() {
-    this.addEventListener("window-close", this.onClose);
-    this.addEventListener("window-minimize", this.onMinimize);
-    this.addEventListener("window-drag", this.onDragStart);
+  attachEventListeners(widget) {
+    if (!widget) {
+      this.addEventListener("window-close", this.onClose);
+      this.addEventListener("window-minimize", this.onMinimize);
+      this.addEventListener("window-drag", this.onDragStart);
 
-    this.shadowRoot
-      .querySelectorAll(".resize")
-      .forEach((handle) => {
-        handle.addEventListener("pointerdown", this.onResizeStart);
-      });
+      this.shadowRoot
+        .querySelectorAll(".resize")
+        .forEach((handle) => {
+          handle.addEventListener("pointerdown", this.onResizeStart);
+        });
 
-    this.shadowRoot
-      .querySelector(".window")
-      .addEventListener("pointerdown", this.onFocus);
+      this.shadowRoot
+        .querySelector(".window")
+        .addEventListener("pointerdown", this.onFocus);
 
-    window.addEventListener("pointerdown", this.onUnfocus);
+      window.addEventListener("pointerdown", this.onUnfocus);
+    } else {
+      this.addEventListener("window-drag", this.onDragStart);
+    }
   }
 
-  detachEventListeners() {
-    this.removeEventListener("window-close", this.onClose);
-    this.removeEventListener("window-minimize", this.onMinimize);
-    this.removeEventListener("window-drag", this.onDragStart);
-    this.removeEventListener("pointerdown", this.onFocus);
+  detachEventListeners(widget) {
+    if (!widget) {
+      this.removeEventListener("window-close", this.onClose);
+      this.removeEventListener("window-minimize", this.onMinimize);
+      this.removeEventListener("window-drag", this.onDragStart);
+      this.removeEventListener("pointerdown", this.onFocus);
 
-    window.removeEventListener("pointermove", this.onResize);
-    window.removeEventListener("pointerup", this.onResizeEnd);
-    window.removeEventListener("pointermove", this.onDrag);
-    window.removeEventListener("pointerup", this.onDragEnd);
-    window.removeEventListener("pointerdown", this.onUnfocus);
+      window.removeEventListener("pointermove", this.onResize);
+      window.removeEventListener("pointerup", this.onResizeEnd);
+      window.removeEventListener("pointermove", this.onDrag);
+      window.removeEventListener("pointerup", this.onDragEnd);
+      window.removeEventListener("pointerdown", this.onUnfocus);
+    } else {
+      this.removeEventListener("window-drag", this.onDragStart);
+    }
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
       this.render();
-      this.attachEventListeners();
+      this.attachEventListeners(this.widget);
     }
   }
   
@@ -91,11 +101,13 @@ class WindowContainer extends HTMLElement {
 
     this.render();
     isActiveOnStart(this);
-    this.attachEventListeners();
+
+    this.widget = this.hasAttribute("widget");
+    this.attachEventListeners(this.widget);
   }
 
   disconnectedCallback() {
-    this.detachEventListeners();
+    this.detachEventListeners(this.widget);
   }
 
   render() {
@@ -111,25 +123,29 @@ class WindowContainer extends HTMLElement {
       this.style.height = `${this.height}px`;
     }
 
+    this.widget = this.hasAttribute("widget");
+
     this.shadowRoot.innerHTML = `
       <style>
         @import url("${new URL("../../../index.css", import.meta.url)}");
         @import url("${new URL("./WindowContainer.css", import.meta.url)}");
       </style>
 
-      <div class="window">
+      <div class="${this.widget ? 'widget' : 'window'}">
         <slot name="title-bar" id="title-bar"></slot>
         <slot name="window-content" class="window-content"></slot>
 
-        <div class="resize resize-n" data-resize="n"></div>
-        <div class="resize resize-e" data-resize="e"></div>
-        <div class="resize resize-s" data-resize="s"></div>
-        <div class="resize resize-w" data-resize="w"></div>
+        ${!this.widget ? `
+          <div class="resize resize-n" data-resize="n"></div>
+          <div class="resize resize-e" data-resize="e"></div>
+          <div class="resize resize-s" data-resize="s"></div>
+          <div class="resize resize-w" data-resize="w"></div>
 
-        <div class="resize resize-ne" data-resize="ne"></div>
-        <div class="resize resize-se" data-resize="se"></div>
-        <div class="resize resize-sw" data-resize="sw"></div>
-        <div class="resize resize-nw" data-resize="nw"></div>
+          <div class="resize resize-ne" data-resize="ne"></div>
+          <div class="resize resize-se" data-resize="se"></div>
+          <div class="resize resize-sw" data-resize="sw"></div>
+          <div class="resize resize-nw" data-resize="nw"></div>
+        ` : ``}
       </div>
     `;
 
