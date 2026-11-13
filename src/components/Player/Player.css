@@ -4,8 +4,8 @@
   flex-direction: column;
   align-items: center;
   gap: 1em;
-  width: 750px;
-  height: 600px;
+  width: 650px;
+  height: 500px;
   max-width: 750px;
   max-height: 600px;
   background: 
@@ -36,8 +36,8 @@
   position: absolute;
   top: -1px;
   right: -11px;
-  width: 762px;
-  height: 608px;
+  width: 662px;
+  height: 508px;
   background-color: var(--foreground-color);
   border-radius: 0 0 9.5px 9.5px;
   z-index: -10;
@@ -118,10 +118,8 @@
 
 .casette-body {
   position: relative;
-  width: 650px;
-  height: 350px;
-  max-width: 650px;
-  max-height: 350px;
+  width: 90%;
+  height: 90%;
   border-image: url("../../assets/ui/button.svg") 25 stretch;
   border-style: solid;
   border-width: 5.5px;
@@ -213,7 +211,7 @@
 .label {
   background-color: #ffffff;
   position: absolute;
-  top: 150px;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 91%;
@@ -228,14 +226,14 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 35%;
+  height: 20%;
   background-color: #ffffff;
 }
 
 .line {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 10px;
   background-color: #000000;
   height: 2px;
   width: 95%;

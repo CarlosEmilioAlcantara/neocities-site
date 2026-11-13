@@ -7,7 +7,6 @@ import "../../components/blog/BlogWindow/BlogWindow.js";
 import "../../components/MicroBlog/MicroBlog.js";
 import "../../components/Button/Button.js";
 import "../../components/Player/Player.js";
-import { navigate } from "../../main.js";
 import { getWindowWidth } from "../../utils/viewport/getWindowWidth.js";
 import { fetchBlogs } from "../../apis/fetchBlogs.js";
 import { fetchMicroBlogs } from "../../apis/fetchMicroBlogs.js";
@@ -127,6 +126,14 @@ class HomePage extends HTMLElement {
           window="micro-blogs"
         ></window-icon>
 
+        <window-icon
+          icon="${this.microBlogsIcn}"
+          title="Cassette Player"
+          bottom="1"
+          left="${getWindowWidth() >= 1536 ? 16 : 16}"
+          window="cassette-player"
+        ></window-icon>
+
         <window-container
           id="blogs"
           start-x="20" 
@@ -219,6 +226,26 @@ class HomePage extends HTMLElement {
             </div>
           </window-content>
         </window-container>
+
+        <window-container
+          id="cassette-player"
+          start-x="50" 
+          start-y="50"
+          start-width="662" 
+          widget
+        >
+          <title-bar 
+            title="Music Player" 
+            slot="title-bar" 
+            music-player
+            widget
+          >
+          </title-bar>
+
+          <window-content slot="window-content" widget>
+            <music-player slot="music-player"></music-player>
+          </window-content>
+        </window-container>        
 
         <blog-window closed></blog-window>
       </div>
