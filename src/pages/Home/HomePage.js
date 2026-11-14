@@ -102,6 +102,9 @@ class HomePage extends HTMLElement {
     import.meta.url
   ).href;
 
+  cassetteIcn = 
+    new URL("../../assets/icons/desktop/cassette.webp", import.meta.url).href;
+
   render() {
     this.shadowRoot.innerHTML = `
       <style>
@@ -127,11 +130,12 @@ class HomePage extends HTMLElement {
         ></window-icon>
 
         <window-icon
-          icon="${this.microBlogsIcn}"
+          icon="${this.cassetteIcn}"
           title="Cassette Player"
           bottom="1"
-          left="${getWindowWidth() >= 1536 ? 16 : 16}"
+          left="${getWindowWidth() >= 1536 ? 10.5 : 16}"
           window="cassette-player"
+          widget
         ></window-icon>
 
         <window-container

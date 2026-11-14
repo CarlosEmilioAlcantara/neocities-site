@@ -64,7 +64,12 @@ class WindowContainer extends HTMLElement {
 
       window.addEventListener("pointerdown", this.onUnfocus);
     } else {
+      this.addEventListener("window-close", this.onClose);
       this.addEventListener("window-drag", this.onDragStart);
+
+      this.shadowRoot
+        .querySelector(".widget")
+        .addEventListener("pointerdown", this.onFocus);
     }
   }
 
@@ -81,13 +86,23 @@ class WindowContainer extends HTMLElement {
       window.removeEventListener("pointerup", this.onDragEnd);
       window.removeEventListener("pointerdown", this.onUnfocus);
     } else {
+      this.addEventListener("window-close", this.onClose);
       this.removeEventListener("window-drag", this.onDragStart);
     }
   }
 
   attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
+      this.x = Number(this.getAttribute("start-x")) || 0;
+      this.y = Number(this.getAttribute("start-y")) || 0;
+
+      this.width = Number(this.getAttribute("start-width")) || 200;
+      this.height = Number(this.getAttribute("start-height")) || 100;
+
       this.render();
+      isActiveOnStart(this);
+
+      this.widget = this.hasAttribute("widget");
       this.attachEventListeners(this.widget);
     }
   }
@@ -148,7 +163,6 @@ class WindowContainer extends HTMLElement {
         ` : ``}
       </div>
     `;
-
   }
 }
 

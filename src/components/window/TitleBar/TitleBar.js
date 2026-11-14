@@ -36,6 +36,10 @@ class TitleBar extends HTMLElement {
         .addEventListener("click", this.onMinimize);
     } else {
       this.shadowRoot
+        .querySelector(".close-button")
+        .addEventListener("click", this.onClose);
+
+      this.shadowRoot
         .querySelector(".widget-bar")
         .addEventListener("pointerdown", this.onDrag);
     }
@@ -47,6 +51,7 @@ class TitleBar extends HTMLElement {
       this.removeEventListener("pointerdown", this.onDrag);
       this.removeEventListener("click", this.onMinimize);
     } else {
+      this.removeEventListener("click", this.onClose);
       this.removeEventListener("pointerdown", this.onDrag);
     }
   }
@@ -68,7 +73,7 @@ class TitleBar extends HTMLElement {
   }
 
   disconnectedCallback() {
-    this.attachEventListeners(this.widget);
+    this.detachEventListeners(this.widget);
   }
 
   render() {
@@ -98,6 +103,7 @@ class TitleBar extends HTMLElement {
         </div>
       ` : `
         <div class="widget-bar">
+          <button tabindex="-1" class="button close-button"></button>
           <label>${title}</label>
         </div>
       `}

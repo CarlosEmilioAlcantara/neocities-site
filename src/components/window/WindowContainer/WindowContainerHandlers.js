@@ -9,6 +9,8 @@ const isActiveOnStart = async (component) => {
 
   if (isActive) {
     await customElements.whenDefined("title-bar");
+
+    component.style.display = "block";
       
     const titleBar = component
       .shadowRoot
@@ -24,6 +26,8 @@ const isActiveOnStart = async (component) => {
 
 const handleFocus = (component) => {
   component.style.zIndex = 10;
+
+  if (component.widget) return; 
 
   const titleBar = component
     .shadowRoot

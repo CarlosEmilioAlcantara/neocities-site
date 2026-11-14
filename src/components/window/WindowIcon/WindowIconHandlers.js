@@ -7,18 +7,21 @@ export const handleOpen = (component) => {
       .getRootNode()
       .querySelector(`#${component.getAttribute("window")}`)
 
-    const titleBar = windowContainer
-      .shadowRoot
-      .querySelector('slot[name="title-bar"]')
-      .assignedElements()[0];
-
     windowContainer.style.display = "block";
     windowContainer.style.zIndex = 10;
 
-    titleBar
-      .shadowRoot
-      .querySelector(".title")
-      .style.color = "#000000";
+    if (!component.widget) {
+      const titleBar = windowContainer
+        .shadowRoot
+        .querySelector('slot[name="title-bar"]')
+        .assignedElements()[0];
+
+      titleBar
+        .shadowRoot
+        .querySelector(".title")
+        .style.color = "#000000";
+    }
+
   }
 
   component.shadowRoot

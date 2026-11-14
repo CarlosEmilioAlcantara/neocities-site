@@ -87,6 +87,10 @@
 }
 */
 
+:host {
+  display: none;
+}
+
 :host([widget]) .widget {
   position: relative;
   display: flex;

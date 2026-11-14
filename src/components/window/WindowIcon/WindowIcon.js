@@ -2,7 +2,16 @@ import { handleOpen } from "./WindowIconHandlers.js";
 
 class WindowIcon extends HTMLElement {
   static get observedAttributes() {
-    return ['icon', 'title', 'top', 'right', 'bottom', 'left', 'window'];
+    return [
+      "icon", 
+      "title", 
+      "top", 
+      "right", 
+      "bottom", 
+      "left", 
+      "window",
+      "widget",
+    ];
   }
 
   constructor() {
@@ -14,13 +23,24 @@ class WindowIcon extends HTMLElement {
     this.right = null;
     this.bottom = null;
     this.left = null;
+    this.widget = false;
 
     this.onOpen = () => handleOpen(this);
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
+      this.top = Number(this.getAttribute("top"));
+      this.right = Number(this.getAttribute("right"));
+      this.bottom = Number(this.getAttribute("bottom"));
+      this.left = Number(this.getAttribute("left"));
+      this.widget = this.hasAttribute("widget");
+
       this.render();
+
+      this.shadowRoot
+        .querySelector(".window-icon")
+        .addEventListener("click", this.onOpen);
     }
   }
 
@@ -29,6 +49,7 @@ class WindowIcon extends HTMLElement {
     this.right = Number(this.getAttribute("right"));
     this.bottom = Number(this.getAttribute("bottom"));
     this.left = Number(this.getAttribute("left"));
+    this.widget = this.hasAttribute("widget");
 
     this.render();
 
