@@ -72,6 +72,28 @@ body {
   overflow: hidden;
 }
 
+body::after {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  z-index: -10;
+  content: 
+    url("./assets/icons/titlebar/close.webp")
+    url("./assets/icons/titlebar/close-clicked.webp")
+    url("./assets/icons/titlebar/move.webp")
+    url("./assets/icons/titlebar/move-clicked.webp")
+    url("./assets/icons/action/down.webp")
+    url("./assets/icons/action/down-clicked.webp")
+    url("./assets/icons/player/skip1.webp")
+    url("./assets/icons/player/skip1-clicked.webp")
+    url("./assets/icons/player/seek-forwards.webp")
+    url("./assets/icons/player/seek-forwards-clicked.webp")
+    url("./assets/icons/player/pause2.webp")
+    url("./assets/icons/player/pause2-clicked.webp")
+    url("./assets/icons/player/slider2-clicked.webp");
+}
+
 img, 
 picture, 
 svg, 
