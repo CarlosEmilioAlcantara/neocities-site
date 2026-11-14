@@ -1,3 +1,5 @@
+import { handleTogglePlay, handleEndOfPlay } from "./PlayerHandlers.js";
+
 class Player extends HTMLElement {
   static get observedAttributes() {
     return ["playing", "volume"];
@@ -8,18 +10,37 @@ class Player extends HTMLElement {
     this.attachShadow({ mode: "open" });
 
     this.volume = 0;
+
+    this.onTogglePlay = () => handleTogglePlay(this);
+    this.onEndOfPlay = () => handleEndOfPlay(this);
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (oldValue !== newValue) {
       this.volume = Number(this.getAttribute("volume"));
       this.render();
+
+      this.shadowRoot
+        .querySelector("#play")
+        .addEventListener("click", this.onTogglePlay);
+
+      this.shadowRoot
+        .querySelector("#player")
+        .addEventListener("end", this.onEndOfPlay);
     }
   }
 
   connectedCallback() {
     this.volume = Number(this.getAttribute("volume"));
     this.render();
+
+    this.shadowRoot
+      .querySelector("#play")
+      .addEventListener("click", this.onTogglePlay);
+
+    this.shadowRoot
+      .querySelector("#player")
+      .addEventListener("ended", this.onEndOfPlay);
   }
 
   render() {
@@ -221,6 +242,8 @@ class Player extends HTMLElement {
             </div>
           </div>
         </div>
+
+        <audio id="player"></audio>
       </div>
     `
   }

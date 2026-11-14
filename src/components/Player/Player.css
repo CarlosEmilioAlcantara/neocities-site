@@ -390,7 +390,7 @@
 
 .left-to-right {
   position: absolute;
-  right: 85%;
+  right: 80%;
   animation: scroll-left linear 10s infinite;
 }
 
