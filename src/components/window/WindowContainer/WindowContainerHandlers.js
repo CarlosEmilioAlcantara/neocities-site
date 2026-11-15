@@ -38,6 +38,8 @@ const handleFocus = (component) => {
     .shadowRoot
     .querySelector(".title")
     .style.color = "#000000";
+
+  component.setAttribute("focused", "");
 };
 
 const handleUnfocus = (component, e) => {
@@ -55,7 +57,9 @@ const handleUnfocus = (component, e) => {
       .shadowRoot
       .querySelector(".title")
       .style.color = "#b5b5b5";
-    }
+
+    component.removeAttribute("focused");
+  }
 };
 
 const handleClose = (component) => {

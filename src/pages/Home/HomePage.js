@@ -25,6 +25,7 @@ class HomePage extends HTMLElement {
     this.blogsOffset = 0;
     this.microBlogsOffset = 0;
     this.limit = 2;
+    this.lastFocusedWindow = null;
 
     this.onBlogsClickNext = () => 
       handlePaginateNext(
@@ -33,7 +34,7 @@ class HomePage extends HTMLElement {
         "blogs", 
         fetchBlogs, 
         "#blogs",
-        ["#blogs", "#micro-blogs"]
+        ["#blogs", "#micro-blogs", "#cassette-player"]
       );
     this.onBlogsClickPrev = () => 
       handlePaginatePrev(
@@ -42,7 +43,7 @@ class HomePage extends HTMLElement {
         "blogs", 
         fetchBlogs, 
         "#blogs",
-        ["#blogs", "#micro-blogs"]
+        ["#blogs", "#micro-blogs", "#cassette-player"]
       );
     this.onMicroBlogsClickNext = () =>
       handlePaginateNext(
@@ -51,7 +52,7 @@ class HomePage extends HTMLElement {
         "microBlogs", 
         fetchMicroBlogs, 
         "#micro-blogs",
-        ["#blogs", "#micro-blogs"]
+        ["#blogs", "#micro-blogs", "#cassette-player"]
       );
     this.onMicroBlogsClickPrev = () =>
       handlePaginatePrev(
@@ -60,7 +61,7 @@ class HomePage extends HTMLElement {
         "microBlogs", 
         fetchMicroBlogs, 
         "#micro-blogs",
-        ["#blogs", "#micro-blogs"]
+        ["#blogs", "#micro-blogs", "#cassette-player"]
       );
   }
 
@@ -187,6 +188,7 @@ class HomePage extends HTMLElement {
           start-y="25" 
           start-width="400" 
           start-height="${getWindowWidth() >= 1536 ? 600 : 400}"
+          closed
         >
           <title-bar title="Microblogs" slot="title-bar"></title-bar>
 
@@ -233,10 +235,11 @@ class HomePage extends HTMLElement {
 
         <window-container
           id="cassette-player"
-          start-x="50" 
-          start-y="50"
+          start-x="${getWindowWidth() > 1536 ? 1220 : 680}" 
+          start-y="59"
           start-width="662" 
           widget
+          closed
         >
           <title-bar 
             title="Music Player" 
