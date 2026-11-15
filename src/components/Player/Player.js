@@ -1,4 +1,12 @@
-import { handleTogglePlay, handleEndOfPlay } from "./PlayerHandlers.js";
+import { 
+  handleTogglePlay, 
+  handleEndOfPlay, 
+  handleTogglePause,
+  handleToggleRewind,
+  handleToggleSeekBack,
+  handleToggleSeekForward,
+  handleToggleSkip,
+} from "./PlayerHandlers.js";
 
 class Player extends HTMLElement {
   static get observedAttributes() {
@@ -11,36 +19,67 @@ class Player extends HTMLElement {
 
     this.volume = 0;
 
+    this.onToggleRewind = () => handleToggleRewind(this);
+    this.onToggleSeekBack = () => handleToggleSeekBack(this);
     this.onTogglePlay = () => handleTogglePlay(this);
     this.onEndOfPlay = () => handleEndOfPlay(this);
+    this.onToggleSeekForward = () => handleToggleSeekForward(this);
+    this.onToggleSkip = () => handleToggleSkip(this);
+    this.onTogglePause = () => handleTogglePause(this);
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (oldValue !== newValue) {
-      this.volume = Number(this.getAttribute("volume"));
-      this.render();
+  attachEventListeners() {
+    this.shadowRoot
+      .querySelector("#rewind")
+      .addEventListener("click", this.onToggleRewind);
 
-      this.shadowRoot
-        .querySelector("#play")
-        .addEventListener("click", this.onTogglePlay);
-
-      this.shadowRoot
-        .querySelector("#player")
-        .addEventListener("end", this.onEndOfPlay);
-    }
-  }
-
-  connectedCallback() {
-    this.volume = Number(this.getAttribute("volume"));
-    this.render();
+    this.shadowRoot
+      .querySelector("#seek-backwards")
+      .addEventListener("click", this.onToggleSeekBack);
 
     this.shadowRoot
       .querySelector("#play")
       .addEventListener("click", this.onTogglePlay);
 
     this.shadowRoot
+      .querySelector("#seek-forwards")
+      .addEventListener("click", this.onToggleSeekForward);
+
+    this.shadowRoot
+      .querySelector("#skip")
+      .addEventListener("click", this.onToggleSkip);
+
+    this.shadowRoot
       .querySelector("#player")
       .addEventListener("ended", this.onEndOfPlay);
+
+    this.shadowRoot
+      .querySelector("#pause")
+      .addEventListener("click", this.onTogglePause);
+  }
+
+  detachEventListeners() {
+    this.shadowRoot.removeEventListener("click", this.onToggleRewind);
+    this.shadowRoot.removeEventListener("click", this.onToggleSeekBack);
+    this.shadowRoot.removeEventListener("click", this.onTogglePlay);
+    this.shadowRoot.removeEventListener("click", this.onToggleSeekForward);
+    this.shadowRoot.removeEventListener("click", this.onToggleSkip);
+    this.shadowRoot.removeEventListener("click", this.onTogglePause);
+    this.shadowRoot.removeEventListener("end", this.onEndOfPlay);
+  }
+
+  attributeChangedCallback(oldValue, newValue) {
+    if (oldValue !== newValue) {
+      this.volume = Number(this.getAttribute("volume"));
+      this.render();
+      this.attachEventListeners();
+    }
+  }
+
+  connectedCallback() {
+    this.volume = Number(this.getAttribute("volume"));
+    this.render();
+    this.attachEventListeners();
   }
 
   render() {
@@ -228,15 +267,15 @@ class Player extends HTMLElement {
                 <button class="play-button"></button>
               </div>
 
-              <div id="pause" class="control-container">
+              <div id="seek-forwards" class="control-container">
                 <button class="seek-forwards-button"></button>
               </div>
 
-              <div id="seek-forwards" class="control-container">
+              <div id="skip" class="control-container">
                 <button class="skip-button"></button>
               </div>
 
-              <div id="skip" class="control-container">
+              <div id="pause" class="control-container">
                 <button class="pause-button"></button>
               </div>
             </div>
