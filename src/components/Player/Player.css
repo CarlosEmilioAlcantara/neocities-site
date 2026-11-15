@@ -372,20 +372,14 @@
 }
 
 .window .song-info img {
-  max-width: 32px;
-  max-height: 32px;
+  max-width: 20px;
+  max-height: 20px;
   background-color: white;
   z-index: 10;
 }
 
-.window .song-info.song-info:nth-child(2) .icon {
-  padding-right: 0.1em;
-  padding-bottom: 0.1em;
-}
-
-.window .song-info:nth-child(2) img {
-  max-width: 26px;
-  max-height: 26px;
+.window .song-info:nth-child(1) .icon {
+  padding-right: 0.5em;
 }
 
 .left-to-right {

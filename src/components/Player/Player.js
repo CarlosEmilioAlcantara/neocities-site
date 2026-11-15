@@ -1,5 +1,4 @@
 import { 
-  handleAdjustVolume,
   handleTogglePlay, 
   handleEndOfPlay, 
   handleTogglePause,
@@ -21,7 +20,6 @@ class Player extends HTMLElement {
     this.isVolumeSet = false;
     this.volume = 6;
 
-    this.onAdjustVolume = () => handleAdjustVolume(this);
     this.onToggleRewind = () => handleToggleRewind(this);
     this.onToggleSeekBack = () => handleToggleSeekBack(this);
     this.onTogglePlay = () => handleTogglePlay(this);
