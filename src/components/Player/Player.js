@@ -1,4 +1,5 @@
 import { 
+  handleAdjustVolume,
   handleTogglePlay, 
   handleEndOfPlay, 
   handleTogglePause,
@@ -17,8 +18,10 @@ class Player extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
 
-    this.volume = 0;
+    this.isVolumeSet = false;
+    this.volume = 6;
 
+    this.onAdjustVolume = () => handleAdjustVolume(this);
     this.onToggleRewind = () => handleToggleRewind(this);
     this.onToggleSeekBack = () => handleToggleSeekBack(this);
     this.onTogglePlay = () => handleTogglePlay(this);
@@ -28,7 +31,24 @@ class Player extends HTMLElement {
     this.onTogglePause = () => handleTogglePause(this);
   }
 
+  getVolume() {
+    this.isVolumeSet = this.hasAttribute("volume");
+    this.player = this.shadowRoot.querySelector("#player");
+
+    if (this.isVolumeSet) this.volume = Number(this.getAttribute("volume"));
+    this.player.volume = (this.volume / 100) * 14.28;
+  }
+
+  adjustVolume(e) {
+    this.player = this.shadowRoot.querySelector("#player");
+    this.player.volume = (e.currentTarget.value / 100) * 14.28;
+  }
+
   attachEventListeners() {
+    this.shadowRoot
+      .querySelector("#volume-slider")
+      .addEventListener("change", (e) => this.adjustVolume(e));
+
     this.shadowRoot
       .querySelector("#rewind")
       .addEventListener("click", this.onToggleRewind);
@@ -59,6 +79,7 @@ class Player extends HTMLElement {
   }
 
   detachEventListeners() {
+    this.shadowRoot.removeEventListener("change", this.adjustVolume);
     this.shadowRoot.removeEventListener("click", this.onToggleRewind);
     this.shadowRoot.removeEventListener("click", this.onToggleSeekBack);
     this.shadowRoot.removeEventListener("click", this.onTogglePlay);
@@ -70,16 +91,20 @@ class Player extends HTMLElement {
 
   attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
-      this.volume = Number(this.getAttribute("volume"));
       this.render();
+      this.getVolume();
       this.attachEventListeners();
     }
   }
 
   connectedCallback() {
-    this.volume = Number(this.getAttribute("volume"));
     this.render();
+    this.getVolume();
     this.attachEventListeners();
+  }
+
+  disconnectedCallback() {
+    this.detachEventListeners();
   }
 
   render() {
@@ -208,6 +233,7 @@ class Player extends HTMLElement {
                   <div class="volume-slider-border-inner"></div>
 
                   <input 
+                    id="volume-slider"
                     type="range" 
                     min="0" 
                     max="7" 
