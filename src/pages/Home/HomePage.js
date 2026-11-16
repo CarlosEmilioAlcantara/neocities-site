@@ -235,7 +235,7 @@ class HomePage extends HTMLElement {
 
         <window-container
           id="cassette-player"
-          start-x="${getWindowWidth() > 1536 ? 1220 : 680}" 
+          start-x="${getWindowWidth() > 1536 ? 1180 : 680}" 
           start-y="59"
           start-width="662" 
           widget

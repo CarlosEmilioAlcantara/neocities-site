@@ -5,6 +5,7 @@
   align-items: center;
 }
 
+/*
 .cabinet-container {
   display: flex;
   justify-content: center;
@@ -14,13 +15,57 @@
   background-color: var(--background-color);
   border: 2.5px solid var(--foreground-color);
 }
+*/
 
 .cabinet {
   display: flex;
+  align-items: center;
+  width: 90%;
+  height: 80%;
+  background-color: var(--foreground-color);
+}
+
+.cabinet-side {
+  position: relative;
+  width: 1.5%;
+  height: 100%;
+  background-color: var(--background-color);
+  border: 2.5px solid var(--foreground-color);
+}
+
+.cabinet-middle {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 99.5%;
-  height: 99%;
+  width: 100%;
+  height: 100%;
+}
+
+.cabinet-contents {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.cabinet-top-and-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2em;
+  width: 100%;
+  height: 4%;
+  background-color: var(--background-color);
+  border-top: 2.5px solid var(--foreground-color);
+  border-bottom: 2.5px solid var(--foreground-color);
+}
+
+.cabinet-top-and-bottom .line {
+  width: 99%;
+  height: 2px;
   background-color: var(--foreground-color);
 }
 
@@ -35,10 +80,133 @@
 }
 
 .left {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   width: 98%;
   height: 99%;
+  padding: 1em 0.5em;
   border: 2.5px solid var(--foreground-color);
+}
+
+.cassette-info {
+  width: 98%;
+  height: 40%;
+  background: 
+    radial-gradient(
+      var(--background-color) 29%, 
+      transparent 16%
+    ), 
+    radial-gradient(
+      var(--background-color) 29%, 
+      transparent 16%
+    ),
+    radial-gradient(
+      var(--background-color) 0%, 
+      transparent 90%
+    )
+  ; 
+  background-color: var(--foreground-color);
+  background-size: 8px 8px; 
+  background-position: 0px 0px, 4px 4px;
+  border: 2.5px solid var(--foreground-color);
+}
+
+.cassette-storage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 98%;
+  height: 55%;
+  background: 
+    radial-gradient(
+      var(--background-color) 29%, 
+      transparent 16%
+    ), 
+    radial-gradient(
+      var(--background-color) 29%, 
+      transparent 16%
+    ),
+    radial-gradient(
+      var(--background-color) 0%, 
+      transparent 90%
+    )
+  ; 
+  background-color: var(--foreground-color);
+  background-size: 8px 8px; 
+  background-position: 0px 0px, 4px 4px;
+  border: 2.5px solid var(--foreground-color);
+}
+
+.cassette-storage .cassette-storage-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+  background-color: var(--background-color);
+  border-style: solid;
+  border-color: var(--foreground-color);
+  border-width: 2.5px 4px;
+}
+
+.cassette-storage-button button {
+  width: 90%;
+  height: 90%;
+  border: none;
+  background-image: url("../../assets/icons/action/arrow.webp");
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 2.5em;
+}
+
+.cassette-storage #storage-down button {
+  transform: rotate(180deg);
+}
+
+.cassettes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+  height: 100%;
+}
+
+.cassette-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 20%;
+  background-color: var(--background-color);
+  border: 2.5px solid var(--foreground-color);
+}
+
+.cassette {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 98%;
+  height: 95%;
+  background-color: var(--foreground-color);
+}
+
+.cassette .cassette-label {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  height: 85%;
+  padding: 1em;
+  background-color: var(--background-color);
+}
+
+.cassette-label p {
+  font-size: 3.2rem;
 }
 
 .player-container {
@@ -65,4 +233,10 @@
   width: 97.5%;
   height: 99%;
   border: 2.5px solid var(--foreground-color);
+}
+
+@media screen and (max-width: 769px) {
+  .cassette-label p {
+    font-size: 4.8rem;
+  }
 }
