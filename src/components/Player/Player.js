@@ -9,6 +9,7 @@ import {
   handleToggleSeekForward,
   handleToggleSkip,
 } from "./PlayerHandlers.js";
+import { navigate } from "../../main.js";
 
 class Player extends HTMLElement {
   static get observedAttributes() {
@@ -64,6 +65,10 @@ class Player extends HTMLElement {
     this.shadowRoot
       .querySelector("#pause")
       .addEventListener("click", this.onTogglePause);
+
+    this.shadowRoot
+      .querySelector("#radio")
+      .addEventListener("click", () => navigate("/radio"));
   }
 
   detachEventListeners() {

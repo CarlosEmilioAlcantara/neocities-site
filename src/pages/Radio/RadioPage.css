@@ -1,0 +1,68 @@
+.radio {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cabinet-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 80%;
+  background-color: var(--background-color);
+  border: 2.5px solid var(--foreground-color);
+}
+
+.cabinet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 99.5%;
+  height: 99%;
+  background-color: var(--foreground-color);
+}
+
+.left-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  height: 95%;
+  margin-left: 1em;
+  background-color: var(--background-color);
+}
+
+.left {
+  height: 100%;
+  width: 98%;
+  height: 99%;
+  border: 2.5px solid var(--foreground-color);
+}
+
+.player-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 1em;
+  background-color: var(--foreground-color);
+}
+
+.right-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35%;
+  height: 95%;
+  margin-right: 1em;
+  background-color: var(--background-color);
+}
+
+.right {
+  height: 100%;
+  width: 97.5%;
+  height: 99%;
+  border: 2.5px solid var(--foreground-color);
+}
