@@ -10,15 +10,15 @@
   max-height: 600px;
   background: 
     radial-gradient(
-      #ffffff 29%, 
+      var(--background-color) 29%, 
       transparent 16%
     ), 
     radial-gradient(
-      #ffffff 29%, 
+      var(--background-color) 29%, 
       transparent 16%
     ),
     radial-gradient(
-      #ffffff 0%, 
+      var(--background-color) 0%, 
       transparent 90%
     )
   ; 
@@ -27,7 +27,7 @@
   background-position: 0px 0px, 4px 4px;
   border-style: solid;
   border-width: 1px;
-  border-color: #000000;
+  border-color: var(--foreground-color);
   border-radius: 9.5px;
 }
 
@@ -50,10 +50,10 @@
   width: 95%;
   height: 65%;
   margin-top: 2em;
-  background-color: #ffffff;
+  background-color: var(--background-color);
   border-style: solid;
   border-width: 3.5px;
-  border-color: #000000;
+  border-color: var(--foreground-color);
 }
 
 .carriage {
@@ -64,7 +64,7 @@
   height: 98%;
   border-style: solid;
   border-width: 3.5px 6px;
-  border-color: #000000;
+  border-color: var(--foreground-color);
 }
 
 /*
@@ -72,7 +72,7 @@
   position: absolute;
   width: 4%;
   height: 103%;
-  background-color: #ffffff;
+  background-color: var(--background-color);
   clip-path: polygon(5% 5%, 100% 0%, 100% 100%, 0% 94%);
 }
 
@@ -81,7 +81,7 @@
   top: 5.5px;
   width: 100.5%;
   height: 97%;
-  background-color: #000000;
+  background-color: var(--foreground-color);
   clip-path: polygon(5% 5%, 100% 0, 100% 100%, 0% 94%);
 }
 
@@ -126,19 +126,19 @@
   border-radius: 5.5px;
   background: 
     radial-gradient(
-      #ffffff 29%, 
+      var(--background-color) 29%, 
       transparent 16%
     ), 
     radial-gradient(
-      #ffffff 29%, 
+      var(--background-color) 29%, 
       transparent 16%
     ),
     radial-gradient(
-      #ffffff 0%, 
+      var(--background-color) 0%, 
       transparent 90%
     )
   ; 
-  background-color: #000000;
+  background-color: var(--foreground-color);
   background-size: 8px 8px; 
   background-position: 0px 0px, 4px 4px;
 }
@@ -148,7 +148,7 @@
   top: 0;
   width: 30px;
   height: 30px;
-  background-color: #ffffff;
+  background-color: var(--background-color);
   border-image: url("../../assets/ui/button.svg") 12 stretch;
   border-style: solid;
   border-width: 5.5px;
@@ -160,7 +160,7 @@
   display: inline-block;
   width: 20px;
   height: 20px;
-  background-color: #ffffff;
+  background-color: var(--background-color);
   background-image: url("../../assets/icons/titlebar/close.webp");
   background-repeat: no-repeat;
   background-position: center;
@@ -209,7 +209,7 @@
 }
 
 .label {
-  background-color: #ffffff;
+  background-color: var(--background-color);
   position: absolute;
   top: 45%;
   left: 50%;
@@ -218,7 +218,7 @@
   height: 68%;
   border-style: solid;
   border-width: 5.5px;
-  border-color: #000000;
+  border-color: var(--foreground-color);
 }
 
 .label-descp {
@@ -227,14 +227,14 @@
   align-items: center;
   width: 100%;
   height: 30%;
-  background-color: #ffffff;
+  background-color: var(--background-color);
 }
 
 .line {
   display: flex;
   justify-content: center;
   margin-top: 17px;
-  background-color: #000000;
+  background-color: var(--foreground-color);
   height: 2px;
   width: 95%;
 }
@@ -244,11 +244,11 @@
   justify-content: center;
   width: 100%;
   height: 40%;
-  background-color: #ffffff;
+  background-color: var(--background-color);
 }
 
 .label-color {
-  background-color: #ffffff;
+  background-color: var(--background-color);
   height: 100px;
   width: 100%;
   margin-top: 10px;
@@ -263,19 +263,19 @@
   height: 105%;
   background: 
     radial-gradient(
-      #ffffff 29%, 
+      var(--background-color) 29%, 
       transparent 16%
     ), 
     radial-gradient(
-      #ffffff 29%, 
+      var(--background-color) 29%, 
       transparent 16%
     ),
     radial-gradient(
-      #ffffff 0%, 
+      var(--background-color) 0%, 
       transparent 90%
     )
   ; 
-  background-color: #000000;
+  background-color: var(--foreground-color);
   background-size: 8px 8px; 
   background-position: 0px 0px, 4px 4px;
   border-style: solid;
@@ -286,15 +286,15 @@
   position: relative;
   margin: 0 7px;
   padding: 0.3em 0.6em;
-  background-color: #000000;
+  background-color: var(--foreground-color);
 }
 
 .circle {
   height: 55px;
   width: 55px;
-  background-color: #000000;
+  background-color: var(--foreground-color);
   border-style: solid;
-  border-color: #ffffff;
+  border-color: var(--background-color);
   border-width: 5.5px;
   border-radius: 50%;
   animation: rotate 3s infinite linear;
@@ -305,7 +305,7 @@
   position: absolute;
   width: 7px;
   height: 7px;
-  background-color: #ffffff;
+  background-color: var(--background-color);
   left: 40%;
 }
 
@@ -353,7 +353,7 @@
   padding: 0.1em 0;
   border-style: solid;
   border-width: 5.5px;
-  background-color: #ffffff;
+  background-color: var(--background-color);
   font-size: 1.6rem;
   transform: translate(-50%, -50%);
 }
@@ -367,14 +367,14 @@
 
 .window .song-info .icon {
   padding: 0.3em;
-  background-color: white;
+  background-color: var(--background-color);
   z-index: 10;
 }
 
 .window .song-info img {
   max-width: 20px;
   max-height: 20px;
-  background-color: white;
+  background-color: var(--background-color);
   z-index: 10;
 }
 
@@ -394,7 +394,7 @@
   left: 15%;
   width: 70%;
   height: 23%;
-  background-color: #000000;
+  background-color: var(--foreground-color);
   clip-path: polygon(5% 1%, 95% 0, 100% 100%, 0% 100%);
 }
 
@@ -406,19 +406,19 @@
   height: 100%;
   background: 
     radial-gradient(
-      #ffffff 29%, 
+      var(--background-color) 29%, 
       transparent 16%
     ), 
     radial-gradient(
-      #ffffff 29%, 
+      var(--background-color) 29%, 
       transparent 16%
     ),
     radial-gradient(
-      #ffffff 0%, 
+      var(--background-color) 0%, 
       transparent 90%
     )
   ; 
-  background-color: #000000;
+  background-color: var(--foreground-color);
   background-size: 8px 8px; 
   background-position: 0px 0px, 4px 4px;
   clip-path: polygon(5% 1%, 95% 0, 100% 100%, 0% 100%);
@@ -456,7 +456,7 @@
 .tape-footer .holes > .hole {
   width: 30px;
   height: 30px;
-  background-color: #ffffff;
+  background-color: var(--background-color);
   border-style: solid;
   border-width: 5.5px;
   border-radius: 50%;
@@ -506,14 +506,20 @@
   height: 100%;
 }
 
+.controls .above {
+  display: flex;
+  height: 56%;
+  gap: 2em;
+}
+
 .controls .volume-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 66.5%;
-  height: 56%;
-  background-color: #ffffff;
-  border: 2.5px solid #000000;
+  width: 74%;
+  height: 100%;
+  background-color: var(--background-color);
+  border: 2.5px solid var(--foreground-color);
 }
 
 .controls .volume {
@@ -522,8 +528,8 @@
   align-items: center;
   width: 98.5%;
   height: 92%;
-  background-color: #ffffff;
-  border: 2.5px solid #000000;
+  background-color: var(--background-color);
+  border: 2.5px solid var(--foreground-color);
 }
 
 .controls .volume img {
@@ -542,7 +548,7 @@
   position: absolute;
   width: 322.5px;
   height: 32.5px;
-  background-color: #000000;
+  background-color: var(--foreground-color);
   clip-path: polygon(
     3% 0, 
     97% 0, 
@@ -559,7 +565,7 @@
   position: absolute;
   width: 320px;
   height: 30px;
-  background-color: #ffffff;
+  background-color: var(--background-color);
   clip-path: polygon(
     3% 0, 
     97% 0, 
@@ -580,22 +586,22 @@
   height: 25px;
   background: 
     radial-gradient(
-      #ffffff 29%, 
+      var(--background-color) 29%, 
       transparent 16%
     ), 
     radial-gradient(
-      #ffffff 29%, 
+      var(--background-color) 29%, 
       transparent 16%
     ),
     radial-gradient(
-      #ffffff 0%, 
+      var(--background-color) 0%, 
       transparent 90%
     )
   ; 
-  background-color: #000000;
+  background-color: var(--foreground-color);
   background-size: 8px 8px; 
   background-position: 0px 0px, 4px 4px;
-  border: 2.5px solid #000000;
+  border: 2.5px solid var(--foreground-color);
   z-index: 10;
 }
 
@@ -607,7 +613,7 @@
   content: "";
   width: 25px;
   height: 7px;
-  background-color: #000000;
+  background-color: var(--foreground-color);
   transform: rotate(90deg);
   clip-path: polygon(29% 0, 72% 0, 100% 100%, 0% 100%);
 }
@@ -620,7 +626,7 @@
   content: "";
   width: 25px;
   height: 7px;
-  background-color: #000000;
+  background-color: var(--foreground-color);
   transform: rotate(-90deg);
   clip-path: polygon(29% 0, 72% 0, 100% 100%, 0% 100%);
 }
@@ -752,7 +758,37 @@
   left: 284px;
 }
 
+.controls .mark-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33.5%;
+  height: 100%;
+  background-color: var(--background-color);
+  border: 2.5px solid var(--foreground-color);
+}
+
+.controls .mark {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 97%;
+  height: 92%;
+  background-color: var(--background-color);
+  border: 2.5px solid var(--foreground-color);
+}
+
+.controls .mark h3 {
+  font-size: 3.2rem;
+}
+
 .controls .below {
+  display: flex;
+  gap: 2em;
+}
+
+.controls .duration {
   display: flex;
   gap: 1em;
 }
@@ -763,8 +799,8 @@
   align-items: center;
   width: 6em;
   height: 6em;
-  background-color: #ffffff;
-  border: 2.5px solid #000000;
+  background-color: var(--background-color);
+  border: 2.5px solid var(--foreground-color);
 }
 
 .controls button {
@@ -774,7 +810,7 @@
   width: 90%;
   height: 90%;
   border-style: solid;
-  border-color: #000000;
+  border-color: var(--foreground-color);
   border-width: 2.5px 4px;
   background-color: transparent;
   background-position: center;
@@ -784,11 +820,11 @@
 }
 
 .controls button:hover {
-  background-color: #efefef;
+  background-color: var(--accent-color);
 }
 
 .controls button:active {
-  background-color: #000000;
+  background-color: var(--foreground-color);
   background-size: 2.0em;
 }
 
@@ -838,7 +874,7 @@
 
 .controls .play-button.active {
   background-image: url("../../assets/icons/action/down-clicked.webp");
-  background-color: #000000;
+  background-color: var(--foreground-color);
   background-size: 2.0em;
 }
 
@@ -848,19 +884,38 @@
 
 .controls .pause-button.active {
   background-image: url("../../assets/icons/player/pause2-clicked.webp");
-  background-color: #000000;
+  background-color: var(--foreground-color);
   background-size: 2.0em;
 }
+
+.controls .radio-button-container {
+  width: 100%;
+}
+
+.controls #radio {
+  width: 100%;
+}
+
+.controls #radio button {
+  width: 96.5%;
+  color: var(--foreground-color);
+  font-size: 2.4rem;
+}
+
+.controls #radio button:active {
+  color: var(--background-color);
+}
+
 
 .runtime {
   position: absolute;
   bottom: 0;
   width: 30%;
   height: 10%;
-  background-color: #ffffff;
+  background-color: var(--background-color);
   border-style: solid;
   border-width: 5.5px;
-  border-color: #000000;
+  border-color: var(--foreground-color);
 }
 
 /* Animations */
