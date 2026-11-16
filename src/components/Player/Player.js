@@ -1,4 +1,6 @@
 import { 
+  getVolume,
+  handleAdjustVolume,
   handleTogglePlay, 
   handleEndOfPlay, 
   handleTogglePause,
@@ -20,6 +22,7 @@ class Player extends HTMLElement {
     this.isVolumeSet = false;
     this.volume = 6;
 
+    this.onAdjustVolume = (e) => handleAdjustVolume(this, e);
     this.onToggleRewind = () => handleToggleRewind(this);
     this.onToggleSeekBack = () => handleToggleSeekBack(this);
     this.onTogglePlay = () => handleTogglePlay(this);
@@ -29,23 +32,10 @@ class Player extends HTMLElement {
     this.onTogglePause = () => handleTogglePause(this);
   }
 
-  getVolume() {
-    this.isVolumeSet = this.hasAttribute("volume");
-    this.player = this.shadowRoot.querySelector("#player");
-
-    if (this.isVolumeSet) this.volume = Number(this.getAttribute("volume"));
-    this.player.volume = (this.volume / 100) * 14.28;
-  }
-
-  adjustVolume(e) {
-    this.player = this.shadowRoot.querySelector("#player");
-    this.player.volume = (e.currentTarget.value / 100) * 14.28;
-  }
-
   attachEventListeners() {
     this.shadowRoot
       .querySelector("#volume-slider")
-      .addEventListener("change", (e) => this.adjustVolume(e));
+      .addEventListener("change", this.onAdjustVolume);
 
     this.shadowRoot
       .querySelector("#rewind")
@@ -77,7 +67,7 @@ class Player extends HTMLElement {
   }
 
   detachEventListeners() {
-    this.shadowRoot.removeEventListener("change", this.adjustVolume);
+    this.shadowRoot.removeEventListener("change", this.onAdjustVolume);
     this.shadowRoot.removeEventListener("click", this.onToggleRewind);
     this.shadowRoot.removeEventListener("click", this.onToggleSeekBack);
     this.shadowRoot.removeEventListener("click", this.onTogglePlay);
@@ -90,14 +80,14 @@ class Player extends HTMLElement {
   attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
       this.render();
-      this.getVolume();
+      getVolume(this);
       this.attachEventListeners();
     }
   }
 
   connectedCallback() {
     this.render();
-    this.getVolume();
+    getVolume(this);
     this.attachEventListeners();
   }
 

@@ -136,6 +136,21 @@ const getRandomTrack = () => {
   return music;
 };
 
+const getVolume = (component) => {
+  component.isVolumeSet = component.hasAttribute("volume");
+  const player = component.shadowRoot.querySelector("#player");
+
+  if (component.isVolumeSet) 
+    component.volume = Number(component.getAttribute("volume"));
+
+  player.volume = (component.volume / 100) * 14.28;
+};
+
+const handleAdjustVolume = (component, e) => {
+  const player = component.shadowRoot.querySelector("#player");
+  player.volume = (e.currentTarget.value / 100) * 14.28;
+};
+
 const handleTogglePlay = (component) => {
   if (isPlaying) return;
   isPlaying = true;
@@ -187,6 +202,8 @@ const handleEndOfPlay = (component) => {
 };
 
 export { 
+  getVolume,
+  handleAdjustVolume,
   handleTogglePlay, 
   handleEndOfPlay, 
   handleTogglePause,
