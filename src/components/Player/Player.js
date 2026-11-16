@@ -12,7 +12,7 @@ import {
 
 class Player extends HTMLElement {
   static get observedAttributes() {
-    return ["playing", "volume"];
+    return ["volume"];
   }
 
   constructor() {
@@ -96,8 +96,6 @@ class Player extends HTMLElement {
   }
 
   render() {
-    const playing = this.hasAttribute("playing");
-
     this.shadowRoot.innerHTML = `
       <style>
         @import url("${new URL("../../index.css", import.meta.url)}");

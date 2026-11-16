@@ -250,7 +250,7 @@ class HomePage extends HTMLElement {
           </title-bar>
 
           <window-content slot="window-content" widget>
-            <music-player slot="music-player"></music-player>
+            <music-player slot="music-player" playing></music-player>
           </window-content>
         </window-container>        
 
