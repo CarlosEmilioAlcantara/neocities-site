@@ -4,7 +4,7 @@ let playlist = NinetiesEmoPlaylist;
 
 let isPlaying = false;
 let isPaused = false;
-const RECENT_TRACKS_SIZE = 3;
+const RECENT_TRACKS_SIZE = 9;
 const recentTracks = [];
 
 const checkInnerLength = (element, length) => {
@@ -126,17 +126,14 @@ const addToRecentTracks = (index) => {
 
 const getRandomTrack = () => {
   const available = 
-    [...Array(playlist.length).keys()]
-    .filter((index) => !recentTracks.includes(index));
+    [...playlist]
+    .filter((track) => !recentTracks.includes(track));
 
-  const pool = available.length > 0 
-    ? available 
-    : [...Array(playlist.length).keys()];
-
+  const pool = available.length ? available : [...playlist];
   const index = Math.floor(Math.random() * pool.length);
-  const music = playlist[index];
+  const music = pool[index];
 
-  return {index, music};
+  return music;
 };
 
 const handleTogglePlay = (component) => {
@@ -144,8 +141,8 @@ const handleTogglePlay = (component) => {
   isPlaying = true;
 
   if (!isPaused) {
-    const {index: index, music: music} = getRandomTrack();
-    addToRecentTracks(index);
+    const music = getRandomTrack();
+    addToRecentTracks(music);
     changePlayerState(component, isPlaying, music);
   } else {
     changePlayerState(component, isPlaying);
