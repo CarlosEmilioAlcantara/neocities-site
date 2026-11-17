@@ -88,6 +88,8 @@ class RadioPage extends HTMLElement {
 
                 <div class="instructions-buttons-container">
                   <div class="instructions-buttons">
+                    <div class="instructions-buttons-inside">
+                    </div>
                   </div>
                 </div>
               </div>

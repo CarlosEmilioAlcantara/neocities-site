@@ -230,9 +230,36 @@
 }
 
 .instructions-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   width: 99%;
   height: 95%;
+  border: 2.5px solid var(--foreground-color);
+}
+
+.instructions-buttons-inside {
+  height: 100%;
+  width: 98%;
+  height: 90%;
+  background: 
+    radial-gradient(
+      var(--background-color) 29%, 
+      transparent 16%
+    ), 
+    radial-gradient(
+      var(--background-color) 29%, 
+      transparent 16%
+    ),
+    radial-gradient(
+      var(--background-color) 0%, 
+      transparent 90%
+    )
+  ; 
+  background-color: var(--foreground-color);
+  background-size: 8px 8px; 
+  background-position: 0px 0px, 4px 4px;
   border: 2.5px solid var(--foreground-color);
 }
 
