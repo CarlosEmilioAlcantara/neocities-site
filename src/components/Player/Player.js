@@ -1,6 +1,7 @@
 import { 
   getVolume,
   handleAdjustVolume,
+  handleTimeUpdate,
   handleTogglePlay, 
   handleEndOfPlay, 
   handleTogglePause,
@@ -24,6 +25,7 @@ class Player extends HTMLElement {
     this.volume = 6;
 
     this.onAdjustVolume = (e) => handleAdjustVolume(this, e);
+    this.onTimeUpdate = () => handleTimeUpdate(this);
     this.onToggleRewind = () => handleToggleRewind(this);
     this.onToggleSeekBack = () => handleToggleSeekBack(this);
     this.onTogglePlay = () => handleTogglePlay(this);
@@ -37,6 +39,10 @@ class Player extends HTMLElement {
     this.shadowRoot
       .querySelector("#volume-slider")
       .addEventListener("change", this.onAdjustVolume);
+
+    this.shadowRoot
+      .querySelector("#player")
+      .addEventListener("timeupdate", this.onTimeUpdate);
 
     this.shadowRoot
       .querySelector("#rewind")
@@ -148,29 +154,9 @@ class Player extends HTMLElement {
                     </div>
 
                     <div class="window">
-                      <div class="song-info">
-                        <div class="icon">
-                          <img 
-                            src="../assets/icons/player/note.webp" 
-                            alt="Song: " 
-                            title="Musical Note " 
-                          />
-                        </div>
-
-                        <p id="song">PAUSED</p>
-                      </div>
-
-                      <span class="song-info">
-                        <div class="icon">
-                          <img 
-                            src="../assets/icons/player/person.webp" 
-                            alt="Artist: " 
-                            title="Person " 
-                          />
-                        </div>
-
-                        <p id="artist">PAUSED</p>
-                      </span>
+                      <div id="song-time">00:00</div>
+                      <div> / </div>
+                      <div id="song-duration">00:00</div>
                     </div>
 
                     <div class="reel">
@@ -183,6 +169,32 @@ class Player extends HTMLElement {
                         <div class="teeth"></div>
                       </div>
                     </div>
+                  </div>
+                </div>
+
+                <div class="credits">
+                  <div class="song-info">
+                    <div class="icon">
+                      <img 
+                        src="../assets/icons/player/note.webp" 
+                        alt="Song: " 
+                        title="Musical Note " 
+                      />
+                    </div>
+
+                    <p id="song">PAUSED</p>
+                  </div>
+
+                  <div class="song-info">
+                    <div class="icon">
+                      <img 
+                        src="../assets/icons/player/person.webp" 
+                        alt="Artist: " 
+                        title="Person " 
+                      />
+                    </div>
+
+                    <p id="artist">PAUSED</p>
                   </div>
                 </div>
               </div>

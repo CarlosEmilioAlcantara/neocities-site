@@ -4,6 +4,10 @@ let playlist = NinetiesEmoPlaylist;
 
 let isPlaying = false;
 let isPaused = false;
+
+let minutes = 0;
+let seconds = 0;
+
 const RECENT_TRACKS_SIZE = 9;
 const recentTracks = [];
 
@@ -25,8 +29,8 @@ const changeSongArtist = (component, music) => {
 
   song.innerText = music.title;
   artist.innerText = music.artist;
-  checkInnerLength(song, 10);
-  checkInnerLength(artist, 10);
+  checkInnerLength(song, 23);
+  checkInnerLength(artist, 23);
 };
 
 const playPauseMusic = (component, isPlaying, music = null) => {
@@ -81,7 +85,7 @@ const seekForwardsBackwards = (component, backwards, length = 5) => {
     normalizeReelSpeed();
     clearNormalizeReelSpeed();
   }
-}
+};
 
 const changePlayerState = (component, isPlaying, music = null) => {
   const circle1 = component.shadowRoot
@@ -146,9 +150,43 @@ const getVolume = (component) => {
   player.volume = (component.volume / 100) * 14.28;
 };
 
+const formatTime = (time) => {
+  if (!isNaN(time)) {
+    minutes = Math.floor(time / 60);
+    seconds = Math.floor(time % 60);
+
+    if (minutes < 10) minutes = "0" + minutes;
+    if (seconds < 10) seconds = "0" + seconds;
+
+    return { minutes, seconds };
+  }
+};
+
 const handleAdjustVolume = (component, e) => {
   const player = component.shadowRoot.querySelector("#player");
   player.volume = (e.currentTarget.value / 100) * 14.28;
+};
+
+const handleTimeUpdate = (component) => {
+  const player = component.shadowRoot
+    .querySelector("#player");
+  const songTime = component.shadowRoot
+    .querySelector("#song-time");
+  const songDuration = component.shadowRoot
+    .querySelector("#song-duration");
+
+  let time = { 
+    minutes, 
+    seconds 
+  } = formatTime(player.currentTime);
+
+  let duration = { 
+    minutes, 
+    seconds 
+  } = formatTime(player.duration);
+
+  songTime.textContent = `${time.minutes}:${time.seconds}`;
+  songDuration.textContent = `${duration.minutes}:${duration.seconds}`;
 };
 
 const handleTogglePlay = (component) => {
@@ -204,6 +242,7 @@ const handleEndOfPlay = (component) => {
 export { 
   getVolume,
   handleAdjustVolume,
+  handleTimeUpdate,
   handleTogglePlay, 
   handleEndOfPlay, 
   handleTogglePause,
