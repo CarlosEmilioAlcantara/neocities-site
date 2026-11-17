@@ -20,8 +20,8 @@
 .cabinet {
   display: flex;
   align-items: center;
-  width: 90%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   background-color: var(--foreground-color);
 }
 
@@ -211,18 +211,36 @@
 
 .player-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  padding: 1em;
+  gap: 1em;
+  height: 95%;
+  padding: 0 1em;
   background-color: var(--foreground-color);
+}
+
+.instructions-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-color);
+}
+
+.instructions-buttons {
+  height: 100%;
+  width: 99%;
+  height: 95%;
+  border: 2.5px solid var(--foreground-color);
 }
 
 .right-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35%;
+  width: 41%;
   height: 95%;
   margin-right: 1em;
   background-color: var(--background-color);
@@ -235,8 +253,13 @@
   border: 2.5px solid var(--foreground-color);
 }
 
-@media screen and (max-width: 769px) {
+@media only screen and (min-width: 1367px) {
   .cassette-label p {
-    font-size: 4.8rem;
+    font-size: 3.6rem;
+  }
+
+  .cabinet {
+    width: 95%;
+    height: 90%;
   }
 }

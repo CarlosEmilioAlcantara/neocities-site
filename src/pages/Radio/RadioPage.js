@@ -1,7 +1,4 @@
 import "../../components/Player/Player.js";
-import "../../components/window/TitleBar/TitleBar.js";
-import "../../components/window/WindowContainer/WindowContainer.js";
-import "../../components/window/WindowContent/WindowContent.js";
 
 class RadioPage extends HTMLElement {
   constructor() {
@@ -87,8 +84,11 @@ class RadioPage extends HTMLElement {
               </div>
 
               <div class="player-container">
-                <div class="player-inside">
-                  <music-player></music-player>
+                <music-player></music-player>
+
+                <div class="instructions-buttons-container">
+                  <div class="instructions-buttons">
+                  </div>
                 </div>
               </div>
 
