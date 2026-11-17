@@ -154,9 +154,9 @@ class Player extends HTMLElement {
                     </div>
 
                     <div class="window">
-                      <div id="song-time">00:00</div>
-                      <div> / </div>
-                      <div id="song-duration">00:00</div>
+                      <div id="song-time" class="seek-time">00:00</div>
+                      <div style="padding: 0 0.2em"> / </div>
+                      <div id="song-duration" class="seek-time">00:00</div>
                     </div>
 
                     <div class="reel">

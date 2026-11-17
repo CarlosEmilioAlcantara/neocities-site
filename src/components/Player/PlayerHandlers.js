@@ -48,17 +48,14 @@ const playPauseMusic = (component, isPlaying, music = null) => {
   }
 };
 
-const seekForwardsBackwards = (component, backwards, length = 5) => {
-  const player = component.shadowRoot
-    .querySelector("#player");
-
+const adjustReels = (component, seconds, backwards = false) => {
   const circle1 = component.shadowRoot
     .querySelector("#circle1");
   const circle2 = component.shadowRoot
     .querySelector("#circle2");
 
-  circle1.style.animationDuration = "1s";
-  circle2.style.animationDuration = "1s";
+  circle1.style.animationDuration = `${seconds}s`;
+  circle2.style.animationDuration = `${seconds}s`;
 
   const reelBackward = () => {
     circle1.style.animationDirection = "reverse";
@@ -72,18 +69,25 @@ const seekForwardsBackwards = (component, backwards, length = 5) => {
     circle2.style.animationDirection = "normal";
   };
 
+  if (backwards) reelBackward();
+
   const normalizeReelSpeed = () => setTimeout(returnToNormal, 500);
   const clearNormalizeReelSpeed = () => clearTimeout(normalizeReelSpeed);
 
+  normalizeReelSpeed();
+  clearNormalizeReelSpeed();
+};
+
+const seekForwardsBackwards = (component, backwards, length = 5) => {
+  const player = component.shadowRoot
+    .querySelector("#player");
+
   if (backwards) {
     player.currentTime -= length;
-    reelBackward();
-    normalizeReelSpeed();
-    clearNormalizeReelSpeed();
+    adjustReels(component, 1, true);
   } else {
     player.currentTime += length;
-    normalizeReelSpeed();
-    clearNormalizeReelSpeed();
+    adjustReels(component, 1);
   }
 };
 
@@ -175,18 +179,24 @@ const handleTimeUpdate = (component) => {
   const songDuration = component.shadowRoot
     .querySelector("#song-duration");
 
-  let time = { 
-    minutes, 
-    seconds 
-  } = formatTime(player.currentTime);
+  try {
+    let time = { 
+      minutes, 
+      seconds 
+    } = formatTime(player.currentTime);
 
-  let duration = { 
-    minutes, 
-    seconds 
-  } = formatTime(player.duration);
+    let duration = { 
+      minutes, 
+      seconds 
+    } = formatTime(player.duration);
 
-  songTime.textContent = `${time.minutes}:${time.seconds}`;
-  songDuration.textContent = `${duration.minutes}:${duration.seconds}`;
+    songTime.textContent = `${time.minutes}:${time.seconds}`;
+    songDuration.textContent = `${duration.minutes}:${duration.seconds}`;
+  } catch { /* 
+    For some reason, duration.minutes get's reported as undefined
+    when it is, this try/catch block is for silencing that faulty
+    error :^)
+  */ }
 };
 
 const handleTogglePlay = (component) => {
@@ -213,9 +223,10 @@ const handleTogglePause = (component) => {
 
 const handleToggleRewind = (component) => {
   if (!isPlaying) return;
-  const index = recentTracks.at(-2);
-  const music = playlist[index];
+  const previousTrack = recentTracks.at(-2);
+  const music = playlist[playlist.indexOf(previousTrack)];
 
+  adjustReels(component, 0.5, true);
   changePlayerState(component, isPlaying, music);
 };
 
@@ -231,6 +242,7 @@ const handleToggleSeekForward = (component) => {
 const handleToggleSkip = (component) => {
   if (!isPlaying) return;
   isPlaying = false;
+  adjustReels(component, 0.5);
   handleTogglePlay(component);
 };
 

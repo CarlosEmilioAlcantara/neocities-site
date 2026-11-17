@@ -357,6 +357,10 @@
   transform: translate(-50%, -50%);
 }
 
+.window .seek-time {
+  width: 35%;
+}
+
 .credits {
   overflow: hidden;
   position: absolute;
