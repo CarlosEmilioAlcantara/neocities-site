@@ -54,9 +54,19 @@
   src: url(./assets/fonts/ChiKareGo.ttf);
 }
 
+@font-face {
+  font-family: BrownBagLunch;
+  src: url(./assets/fonts/BrownBagLunch.ttf);
+}
+
+@font-face {
+  font-family: Taytex;
+  src: url(./assets/fonts/Taytex.ttf);
+}
+
 html {
   color-scheme: light dark;
-  font-family: ChiKareGo;
+  font-family: 'ChiKareGo', Arial, sans-serif;
   font-size: 10px;
 }
 

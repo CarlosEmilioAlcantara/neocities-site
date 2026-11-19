@@ -10,7 +10,6 @@ import {
   handleToggleSeekForward,
   handleToggleSkip,
 } from "./PlayerHandlers.js";
-import { navigate } from "../../main.js";
 
 class Player extends HTMLElement {
   static get observedAttributes() {

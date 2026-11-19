@@ -21,9 +21,14 @@ class BlogItem extends HTMLElement {
     this.onOpen = () => handleOpen(this);
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
       this.render();
+
+      const button = this.shadowRoot
+        .querySelector("ui-button");
+
+      button.action = () => this.onOpen();
     }
   }
 
