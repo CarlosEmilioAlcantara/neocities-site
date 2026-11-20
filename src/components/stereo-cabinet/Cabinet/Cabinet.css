@@ -166,21 +166,43 @@
   border-style: solid;
   border-color: var(--foreground-color);
   border-width: 2.5px 4px;
+  cursor: pointer;
 }
 
-.cassette-storage-button button {
+.cassette-storage .cassette-storage-button:hover {
+  background-color: var(--accent-color);
+}
+
+.cassette-storage-button-disabled {
+  background-color: var(--unfocused) !important;
+  pointer-events: none;
+}
+
+.cassette-storage-button .arrow {
   width: 90%;
   height: 90%;
   border: none;
   background-image: url("../../../assets/icons/action/arrow.webp");
-  background-color: transparent;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 2.5em;
+  cursor: pointer;
 }
 
-.cassette-storage #storage-down button {
+.cassette-storage-button-disabled .arrow {
+  background-image: url("../../../assets/icons/action/arrow-clicked.webp");
+}
+
+.cassette-storage-button:active .arrow {
+  background-image: url("../../../assets/icons/action/arrow-clicked.webp");
+}
+
+.cassette-storage #storage-down {
   transform: rotate(180deg);
+}
+
+.cassette-storage-button button:active {
+  background-image: url("../../../assets/icons/action/arrow-clicked.webp");
 }
 
 .cassettes {

@@ -15,8 +15,17 @@ class Cabinet extends HTMLElement {
     this.name = "";
     this.info = "";
     this.playlistIndex = 0;
+    this.cassetteStorageIndex = 2;
 
-    this.onCassetesFlip = () => handleCassettesFlip(this, 2);
+    this.onCassettesFlipUp = () => handleCassettesFlip(
+      this, 
+      this.cassetteStorageIndex, 
+      true
+    );
+    this.onCassettesFlipDown = () => handleCassettesFlip(
+      this, 
+      this.cassetteStorageIndex
+    );
   }
 
   getPlaylist() {
@@ -25,16 +34,37 @@ class Cabinet extends HTMLElement {
     this.playlistIndex = Number(this.getAttribute("playlist-index")) || 0;
   }
 
+  attachEventListeners() {
+    this.shadowRoot
+      .querySelector("#storage-up")
+      .addEventListener("click", this.onCassettesFlipUp);
+    this.shadowRoot
+      .querySelector("#storage-down")
+      .addEventListener("click", this.onCassettesFlipDown);
+  }
+
+  detachEventListeners() {
+    this.shadowRoot.removeEventListener("click", this.onCassettesFlipUp);
+    this.shadowRoot.removeEventListener("click", this.onCassettesFlipDown);
+  }
+
   attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
       this.getPlaylist();
       this.render();
+      this.attachEventListeners();
     }
   }
 
   connectedCallback() {
     this.getPlaylist();
     this.render();
+    this.attachEventListeners();
+    console.log(playlists.length);
+  }
+
+  disconnectedCallback() {
+    this.detachEventListeners();
   }
 
   render() {
@@ -71,9 +101,12 @@ class Cabinet extends HTMLElement {
                 </div>
 
                 <div class="cassette-storage">
-                  <div id="storage-up" class="cassette-storage-button">
-                    <button></button>
-                    <button></button>
+                  <div 
+                    id="storage-up" 
+                    class="cassette-storage-button"
+                  >
+                    <div class="arrow arrow1"></div>
+                    <div class="arrow arrow2"></div>
                   </div>
 
                   <div class="cassettes">
@@ -87,9 +120,9 @@ class Cabinet extends HTMLElement {
                     `).join("")}
                   </div>
 
-                  <div id="storage-down" class="cassette-storage-button">
-                    <button></button>
-                    <button></button>
+                  <div id="storage-down" class="cassette-storage-button ">
+                    <div class="arrow arrow1"></div>
+                    <div class="arrow arrow2"></div>
                   </div>
                 </div>
               </div>
