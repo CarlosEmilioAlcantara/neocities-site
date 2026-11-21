@@ -1,28 +1,70 @@
-const handleCassettesFlip = (component, index, up = false) => {
-  const cassettes = component
+const hideCassettes = (component) => {
+  let cassettes = Array.prototype.slice.call(component
     .shadowRoot
-    .querySelectorAll(".playlist");
+    .querySelectorAll(".playlist"));
   
   cassettes.forEach((cassette) => {
     cassette.style.display = "none";
   });
 
-  console.log(index);
-  if ((index + 1) === cassettes.length) return;
+  cassettes = cassettes.slice(
+    component.offset, 
+    (component.limit + component.offset)
+  );
 
-  if (up) {
-    cassettes[index - 1].style.display = "block";
-    cassettes[index].style.display = "block";
-    cassettes[index - 2].style.display = "block";
-    component.cassetteStorageIndex -= 1;
-    return;
-  }
-
-  cassettes[index - 1].style.display = "block";
-  cassettes[index].style.display = "block";
-  cassettes[index + 1].style.display = "block";
-  component.cassetteStorageIndex += 1;
-
+  cassettes.forEach((cassette) => {
+    cassette.style.display = "block";
+  });
 };
 
-export { handleCassettesFlip };
+const checkPlaylistsLength = (component) => {
+  console.log(component.offset, component.limit);
+  if ((component.offset - component.limit) < 0) {
+    component.shadowRoot
+      .querySelector("#storage-up")
+      .classList.add("cassette-storage-button-disabled");
+  } else {
+    component.shadowRoot
+      .querySelector("#storage-up")
+      .classList.remove("cassette-storage-button-disabled");
+  }
+
+  if ((component.offset + component.limit) >= component.playlists.length) {
+    component.shadowRoot
+      .querySelector("#storage-down")
+      .classList.add("cassette-storage-button-disabled");
+  } else {
+    component.shadowRoot
+      .querySelector("#storage-down")
+      .classList.remove("cassette-storage-button-disabled");
+  }
+};
+
+const handleCassettesFlip = (component, up = false) => {
+  let cassettes = Array.prototype.slice.call(component
+    .shadowRoot
+    .querySelectorAll(".playlist"));
+  
+  cassettes.forEach((cassette) => {
+    cassette.style.display = "none";
+  });
+
+  if (up) {
+    component.offset = component.offset - component.limit;
+  } else {
+    component.offset = component.offset + component.limit;
+  }
+
+  cassettes = cassettes.slice(
+    component.offset, 
+    (component.limit + component.offset)
+  );
+
+  cassettes.forEach((cassette) => {
+    cassette.style.display = "block";
+  });
+
+  checkPlaylistsLength(component);
+};
+
+export { hideCassettes, checkPlaylistsLength, handleCassettesFlip };

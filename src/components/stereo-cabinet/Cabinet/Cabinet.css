@@ -215,9 +215,9 @@
   height: 100%;
 }
 
-.cassettes .playlist:nth-last-child(-n+3) {
+/* .cassettes .playlist:nth-last-child(-n+3) {
   display: none;
-}
+} */
 
 .player-container {
   display: flex;

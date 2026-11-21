@@ -1,6 +1,10 @@
 import "../../Player/Player.js";
 import "../Cassette/Cassette.js";
-import { handleCassettesFlip } from "./CabinetHandlers.js";
+import { 
+  hideCassettes, 
+  checkPlaylistsLength, 
+  handleCassettesFlip 
+} from "./CabinetHandlers.js";
 import { playlists } from "../../../stores/playlists.js";
 
 class Cabinet extends HTMLElement {
@@ -14,18 +18,14 @@ class Cabinet extends HTMLElement {
 
     this.name = "";
     this.info = "";
+    this.playlists = playlists;
+    this.offset = 0;
+    this.limit = 3;
     this.playlistIndex = 0;
     this.cassetteStorageIndex = 2;
 
-    this.onCassettesFlipUp = () => handleCassettesFlip(
-      this, 
-      this.cassetteStorageIndex, 
-      true
-    );
-    this.onCassettesFlipDown = () => handleCassettesFlip(
-      this, 
-      this.cassetteStorageIndex
-    );
+    this.onCassettesFlipUp = () => handleCassettesFlip(this, true);
+    this.onCassettesFlipDown = () => handleCassettesFlip(this);
   }
 
   getPlaylist() {
@@ -53,6 +53,8 @@ class Cabinet extends HTMLElement {
       this.getPlaylist();
       this.render();
       this.attachEventListeners();
+      hideCassettes(this);
+      checkPlaylistsLength(this);
     }
   }
 
@@ -60,7 +62,8 @@ class Cabinet extends HTMLElement {
     this.getPlaylist();
     this.render();
     this.attachEventListeners();
-    console.log(playlists.length);
+    hideCassettes(this);
+    checkPlaylistsLength(this);
   }
 
   disconnectedCallback() {
@@ -120,7 +123,13 @@ class Cabinet extends HTMLElement {
                     `).join("")}
                   </div>
 
-                  <div id="storage-down" class="cassette-storage-button ">
+                  <div 
+                    id="storage-down" 
+                    class="${(this.offset - this.limit) < 0
+                      ? 'cassette-storage-button cassette-storage-button-disabled'
+                      : 'cassette-storage-button'
+                    }"
+                  >
                     <div class="arrow arrow1"></div>
                     <div class="arrow arrow2"></div>
                   </div>
