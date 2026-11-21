@@ -18,7 +18,6 @@ const hideCassettes = (component) => {
 };
 
 const checkPlaylistsLength = (component) => {
-  console.log(component.offset, component.limit);
   if ((component.offset - component.limit) < 0) {
     component.shadowRoot
       .querySelector("#storage-up")
@@ -67,4 +66,27 @@ const handleCassettesFlip = (component, up = false) => {
   checkPlaylistsLength(component);
 };
 
-export { hideCassettes, checkPlaylistsLength, handleCassettesFlip };
+const handlePlaylistSelected = (component, e) => {
+  component.shadowRoot
+    .querySelector(".info-paragraph")
+    .innerText = e.detail.info;
+
+  component.name = e.detail.name;
+  component.playlistIndex = e.detail.playlistIndex;
+
+  const player = component
+    .shadowRoot
+    .querySelector("music-player");
+
+  player.name = component.name;
+  player.playlistIndex = component.playlistIndex;
+  console.log(player.playlistIndex);
+  player.onPlaylistChange();
+};
+
+export { 
+  hideCassettes, 
+  checkPlaylistsLength, 
+  handleCassettesFlip,
+  handlePlaylistSelected,
+};

@@ -1,4 +1,4 @@
-export const NinetiesEmoPlaylist = [
+export const playlist = [
   {
     "title": "Disco Hijack",
     "artist": "125, Rue Montmartre",

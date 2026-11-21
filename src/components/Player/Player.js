@@ -1,5 +1,6 @@
 import { 
   getVolume,
+  getPlaylist,
   handleAdjustVolume,
   handleTimeUpdate,
   handleTogglePlay, 
@@ -9,6 +10,7 @@ import {
   handleToggleSeekBack,
   handleToggleSeekForward,
   handleToggleSkip,
+  handlePlaylistChange,
 } from "./PlayerHandlers.js";
 import { navigate } from "../../main.js";
 
@@ -23,6 +25,8 @@ class Player extends HTMLElement {
 
     this.isVolumeSet = false;
     this.volume = 6;
+    this.name = "";
+    this.playlistIndex = 0;
 
     this.onAdjustVolume = (e) => handleAdjustVolume(this, e);
     this.onTimeUpdate = () => handleTimeUpdate(this);
@@ -33,6 +37,7 @@ class Player extends HTMLElement {
     this.onToggleSeekForward = () => handleToggleSeekForward(this);
     this.onToggleSkip = () => handleToggleSkip(this);
     this.onTogglePause = () => handleTogglePause(this);
+    this.onPlaylistChange = async () => await handlePlaylistChange(this);
   }
 
   attachEventListeners() {
@@ -88,17 +93,19 @@ class Player extends HTMLElement {
     this.shadowRoot.removeEventListener("end", this.onEndOfPlay);
   }
 
-  attributeChangedCallback(oldValue, newValue) {
+  async attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
       this.render();
       getVolume(this);
+      await getPlaylist(this);
       this.attachEventListeners();
     }
   }
 
-  connectedCallback() {
+  async connectedCallback() {
     this.render();
     getVolume(this);
+    await getPlaylist(this);
     this.attachEventListeners();
   }
 

@@ -1,6 +1,6 @@
-import { NinetiesEmoPlaylist } from "../../stores/playlists/emo/90s-emo.js";
+import { playlists } from "../../stores/playlists.js";
 
-let playlist = NinetiesEmoPlaylist;
+let playlist = null;
 
 let isPlaying = false;
 let isPaused = false;
@@ -10,6 +10,12 @@ let seconds = 0;
 
 const RECENT_TRACKS_SIZE = 9;
 const recentTracks = [];
+
+const getPlaylist = async (component) => {
+  let data = null;
+  data = await import(playlists[component.playlistIndex].url);
+  playlist = (data.playlist);
+};
 
 const checkInnerLength = (element, length) => {
   const elementLength = element.innerHTML.length;
@@ -199,8 +205,8 @@ const handleTimeUpdate = (component) => {
   */ }
 };
 
-const handleTogglePlay = (component) => {
-  if (isPlaying) return;
+const handleTogglePlay = (component, switchedPlaylist = false) => {
+  if (isPlaying && !switchedPlaylist) return;
   isPlaying = true;
 
   if (!isPaused) {
@@ -251,8 +257,15 @@ const handleEndOfPlay = (component) => {
   handleTogglePlay(component);
 };
 
+const handlePlaylistChange = async (component) => {
+  await getPlaylist(component);
+  isPaused = false;
+  handleTogglePlay(component, true);
+};
+
 export { 
   getVolume,
+  getPlaylist,
   handleAdjustVolume,
   handleTimeUpdate,
   handleTogglePlay, 
@@ -262,4 +275,5 @@ export {
   handleToggleSeekBack,
   handleToggleSeekForward,
   handleToggleSkip,
+  handlePlaylistChange,
 };

@@ -1,13 +1,15 @@
-import { playlists } from "../../../stores/playlists.js";
-
 const handlePlaylistSelect = (component) => {
-  const cabinet = component
-    .getRootNode()
-    .querySelector(".cabinet");
-
-  cabinet.setAttribute("name", component.getAttribute("name"));
-  cabinet.setAttribute("info", component.getAttribute("info"));
-  cabinet.setAttribute("playlist-index", component.getAttribute("playlist-index"));
+  component.dispatchEvent(
+    new CustomEvent("playlist-selected", {
+      bubbles: true,
+      composed: true,
+      detail: {
+        name: component.getAttribute("name"),
+        info: component.getAttribute("info"),
+        playlistIndex: component.getAttribute("playlist-index"),
+      },
+    }) 
+  );
 };
 
 export { handlePlaylistSelect };

@@ -42,10 +42,8 @@ class Cassette extends HTMLElement {
       </style>
 
       <div class="cassette-container">
-        <div class="cassette">
-          <div class="cassette-label">
-            <p>${name}</p>
-          </div>
+        <div class="cassette-label">
+          <p>${name}</p>
         </div>
       </div>
     `;

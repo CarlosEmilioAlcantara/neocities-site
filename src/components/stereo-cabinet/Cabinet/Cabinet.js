@@ -3,35 +3,25 @@ import "../Cassette/Cassette.js";
 import { 
   hideCassettes, 
   checkPlaylistsLength, 
-  handleCassettesFlip 
+  handleCassettesFlip,
+  handlePlaylistSelected,
 } from "./CabinetHandlers.js";
 import { playlists } from "../../../stores/playlists.js";
 
 class Cabinet extends HTMLElement {
-  static get observedAttributes() {
-    return ["name", "info", "playlist-index"];
-  }
-
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
 
-    this.name = "";
-    this.info = "";
     this.playlists = playlists;
     this.offset = 0;
     this.limit = 3;
+    this.name = "";
     this.playlistIndex = 0;
-    this.cassetteStorageIndex = 2;
 
     this.onCassettesFlipUp = () => handleCassettesFlip(this, true);
     this.onCassettesFlipDown = () => handleCassettesFlip(this);
-  }
-
-  getPlaylist() {
-    this.name = this.getAttribute("name") || playlists[0].name;
-    this.info = this.getAttribute("info") || playlists[0].info;
-    this.playlistIndex = Number(this.getAttribute("playlist-index")) || 0;
+    this.onPlaylistSelected = (e) => handlePlaylistSelected(this, e);
   }
 
   attachEventListeners() {
@@ -41,16 +31,18 @@ class Cabinet extends HTMLElement {
     this.shadowRoot
       .querySelector("#storage-down")
       .addEventListener("click", this.onCassettesFlipDown);
+
+    this.addEventListener("playlist-selected", this.onPlaylistSelected);
   }
 
   detachEventListeners() {
     this.shadowRoot.removeEventListener("click", this.onCassettesFlipUp);
     this.shadowRoot.removeEventListener("click", this.onCassettesFlipDown);
+    this.removeEventListener("playlist-selected", this.onPlaylistSelected);
   }
 
   attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
-      this.getPlaylist();
       this.render();
       this.attachEventListeners();
       hideCassettes(this);
@@ -59,7 +51,6 @@ class Cabinet extends HTMLElement {
   }
 
   connectedCallback() {
-    this.getPlaylist();
     this.render();
     this.attachEventListeners();
     hideCassettes(this);
@@ -93,7 +84,7 @@ class Cabinet extends HTMLElement {
               <div class="left">
                 <div class="cassette-info">
                   <div class="info">
-                    <p>${this.info}</p>
+                    <p class="info-paragraph">${this.playlists[0].info}</p>
                     <div class="line"></div>
                     <div class="line"></div>
                     <div class="line"></div>
@@ -125,10 +116,7 @@ class Cabinet extends HTMLElement {
 
                   <div 
                     id="storage-down" 
-                    class="${(this.offset - this.limit) < 0
-                      ? 'cassette-storage-button cassette-storage-button-disabled'
-                      : 'cassette-storage-button'
-                    }"
+                    class="cassette-storage-button"
                   >
                     <div class="arrow arrow1"></div>
                     <div class="arrow arrow2"></div>
