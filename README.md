@@ -7,7 +7,7 @@
 - [*] See if we could move component logic to different file
 - [*] Window open icon
 - [*] Routing
-- [*]  Custom 404 page
+- [*] Custom 404 page
 - [*] Change pathname on navigate so when user refreshes we don't go back to welcome
 - []  Restyle for 1366x768
 - [*] Scrollbar
@@ -25,5 +25,9 @@
 - []  Shareable blogs and microblogs
 - [*] Loading page
 - [*] Loading page styling
-- []  Style music player
-- []  Music player functionality
+- [*] Style music player
+- [*] Music player functionality
+- []  Bug fixes (active window)
+- []  Cassette icon (too small)
+- []  Radio chatbox
+- []  Radio playlists

@@ -14,6 +14,7 @@ const recentTracks = [];
 const getPlaylist = async (component) => {
   let data = null;
   data = await import(playlists[component.playlistIndex].url);
+  component.name = playlists[component.playlistIndex].name;
   playlist = (data.playlist);
 };
 
@@ -261,6 +262,11 @@ const handlePlaylistChange = async (component) => {
   await getPlaylist(component);
   isPaused = false;
   handleTogglePlay(component, true);
+
+  component
+    .shadowRoot
+    .querySelector("#playlist-name")
+    .innerText = component.name;
 };
 
 export { 

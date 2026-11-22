@@ -120,7 +120,7 @@
   line-height: 1.15em;
 }
 
-.cassette-info .line {
+.info .line {
   display: flex;
   justify-content: center;
   margin-top: 17px;
@@ -250,9 +250,13 @@
 }
 
 .instructions-buttons-inside {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 100%;
   width: 98%;
   height: 90%;
+  padding: 0.3em;
   background: 
     radial-gradient(
       var(--background-color) 29%, 
@@ -271,6 +275,66 @@
   background-size: 8px 8px; 
   background-position: 0px 0px, 4px 4px;
   border: 2.5px solid var(--foreground-color);
+}
+
+.instructions-buttons-inside .info {
+  width: 66.5%;
+  gap: 0.5em;
+}
+
+.instructions-buttons-inside .info p {
+  top: 4px;
+  font-size: 2.6rem;
+  line-height: 1em;
+}
+
+.instructions-buttons-inside .info p:nth-child(2) {
+  top: 51px;
+}
+
+.instructions-buttons-inside .info p:nth-child(3) {
+  display: none;
+}
+
+.instructions-buttons-inside .info .line:nth-last-child(-n+4) {
+  display: none;
+}
+
+#back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 95%;
+  background-color: var(--background-color);
+  border: 2.5px solid var(--foreground-color);
+}
+
+#back button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 90%;
+  border-style: solid;
+  border-color: var(--foreground-color);
+  border-width: 4.5px 6px;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 2.5em;
+  cursor: pointer;
+  font-size: 3.2rem;
+  color: var(--foreground-color);
+}
+
+#back button:hover {
+  background-color: var(--accent-color);
+}
+
+#back button:active {
+  background-color: var(--foreground-color);
+  color: var(--background-color);
 }
 
 .right-container {
@@ -294,5 +358,28 @@
   .cabinet {
     width: 95vw;
     height: 90vh;
+  }
+
+  .instructions-buttons-inside .info p {
+    top: 0;
+    font-size: 3.2rem;
+    line-height: 0.85em;
+  }
+
+  .instructions-buttons-inside .info p:nth-child(2) {
+    top: 50px;
+  }
+
+  .instructions-buttons-inside .info p:nth-child(3) {
+    top: 99px;
+    display: block;
+  }
+
+  .instructions-buttons-inside .info .line:nth-last-child(-n+4) {
+    display: block;
+  }
+
+  #back {
+    height: 35%;
   }
 }

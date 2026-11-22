@@ -16,7 +16,7 @@ import { navigate } from "../../main.js";
 
 class Player extends HTMLElement {
   static get observedAttributes() {
-    return ["volume"];
+    return ["volume", "radio"];
   }
 
   constructor() {
@@ -77,9 +77,11 @@ class Player extends HTMLElement {
       .querySelector("#pause")
       .addEventListener("click", this.onTogglePause);
 
-    this.shadowRoot
-      .querySelector("#radio")
-      .addEventListener("click", () => navigate("/radio"));
+    if (!this.hasAttribute("radio")) {
+      this.shadowRoot
+        .querySelector("#radio")
+        .addEventListener("click", () => navigate("/radio"));
+    }
   }
 
   detachEventListeners() {
@@ -95,17 +97,17 @@ class Player extends HTMLElement {
 
   async attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
+      await getPlaylist(this);
       this.render();
       getVolume(this);
-      await getPlaylist(this);
       this.attachEventListeners();
     }
   }
 
   async connectedCallback() {
+    await getPlaylist(this);
     this.render();
     getVolume(this);
-    await getPlaylist(this);
     this.attachEventListeners();
   }
 
@@ -143,6 +145,7 @@ class Player extends HTMLElement {
               <div class="screw"><div></div></div>
               <div class="label">
                 <div class="label-descp">
+                  <p id="playlist-name">${this.name}</p>
                   <div class="line"></div>
                   <div class="line"></div>
                 </div>

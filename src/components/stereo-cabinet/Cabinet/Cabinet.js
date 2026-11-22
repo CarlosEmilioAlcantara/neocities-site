@@ -7,6 +7,7 @@ import {
   handlePlaylistSelected,
 } from "./CabinetHandlers.js";
 import { playlists } from "../../../stores/playlists.js";
+import { navigate } from "../../../main.js";
 
 class Cabinet extends HTMLElement {
   constructor() {
@@ -33,6 +34,10 @@ class Cabinet extends HTMLElement {
       .addEventListener("click", this.onCassettesFlipDown);
 
     this.addEventListener("playlist-selected", this.onPlaylistSelected);
+
+    this.shadowRoot
+      .querySelector("#back")
+      .addEventListener("click", () => navigate("/home"));
   }
 
   detachEventListeners() {
@@ -126,11 +131,27 @@ class Cabinet extends HTMLElement {
             </div>
 
             <div class="player-container">
-              <music-player></music-player>
+              <music-player radio></music-player>
 
               <div class="instructions-buttons-container">
                 <div class="instructions-buttons">
                   <div class="instructions-buttons-inside">
+                    <div class="info">
+                      <p>1. The top left has a brief description of the playlist</p>
+                      <p>2. Select a cassette at the bottom left to play</p>
+                      <p>3. Playback controls are above on the cassette player</p>
+                      <div class="line"></div>
+                      <div class="line"></div>
+                      <div class="line"></div>
+                      <div class="line"></div>
+                      <div class="line"></div>
+                      <div class="line"></div>
+                      <div class="line"></div>
+                    </div>
+
+                    <div id="back">
+                      <button>HOME</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -138,7 +159,7 @@ class Cabinet extends HTMLElement {
 
             <div class="right-container">
               <div class="right">
-                <p>eeeeee</p>
+                <p>This is supposed to be a chatbox :^)</p>
               </div>
             </div>
           </div>
