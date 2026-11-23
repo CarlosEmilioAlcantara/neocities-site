@@ -98,3 +98,7 @@
 :host([closed]) {
   display: none;
 }
+
+:host([focused]) #title-bar .title {
+  color: var(--foreground-color);
+}

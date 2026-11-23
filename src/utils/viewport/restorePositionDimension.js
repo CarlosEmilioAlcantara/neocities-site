@@ -7,12 +7,16 @@ const restorePositionDimension = async (component, windowPrev, window) => {
   const activeWindow = windowCur.getRootNode().querySelector("[active]");
   const isFocused = windowPrev.hasAttribute("focused");
 
-  const activeTitle = activeWindow
-    .shadowRoot
-    .querySelector('slot[name="title-bar"]')
-    .assignedElements()[0]
-    .shadowRoot
-    .querySelector(".title");
+  if (activeWindow) {
+    const activeTitle = activeWindow
+      .shadowRoot
+      .querySelector('slot[name="title-bar"]')
+      .assignedElements()[0]
+      .shadowRoot
+      .querySelector(".title");
+    
+      activeTitle.style.color = "#b5b5b5";
+  }
 
   const title = windowCur
     .shadowRoot
@@ -21,8 +25,11 @@ const restorePositionDimension = async (component, windowPrev, window) => {
     .shadowRoot
     .querySelector(".title");
 
-  activeTitle.style.color = "#b5b5b5";
-  if (isFocused) title.style.color = "#000000";
+  if (isFocused) {
+    windowCur.removeAttribute("active");
+    windowCur.setAttribute("focused", "");
+    title.style.color = "#000000";
+  }
 
   windowCur.style.display = windowPrev.style.display;
   windowCur.style.left = windowPrev.style.left;
