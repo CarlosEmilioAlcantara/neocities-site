@@ -70,6 +70,8 @@ class WindowContainer extends HTMLElement {
       this.shadowRoot
         .querySelector(".widget")
         .addEventListener("pointerdown", this.onFocus);
+
+      window.addEventListener("pointerdown", this.onUnfocus);
     }
   }
 
@@ -88,6 +90,7 @@ class WindowContainer extends HTMLElement {
     } else {
       this.addEventListener("window-close", this.onClose);
       this.removeEventListener("window-drag", this.onDragStart);
+      window.removeEventListener("pointerdown", this.onUnfocus);
     }
   }
 

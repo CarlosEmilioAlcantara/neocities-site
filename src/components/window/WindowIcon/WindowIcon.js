@@ -1,4 +1,8 @@
-import { handleOpen } from "./WindowIconHandlers.js";
+import { 
+  handleOpen, 
+  handleIconFocus, 
+  handleIconUnfocus,
+} from "./WindowIconHandlers.js";
 
 class WindowIcon extends HTMLElement {
   static get observedAttributes() {
@@ -26,6 +30,8 @@ class WindowIcon extends HTMLElement {
     this.widget = false;
 
     this.onOpen = () => handleOpen(this);
+    this.onIconFocus = () => handleIconFocus(this);
+    this.onIconUnfocus = (e) => handleIconUnfocus(this, e);
   }
 
   attributeChangedCallback(oldValue, newValue) {
@@ -40,7 +46,12 @@ class WindowIcon extends HTMLElement {
 
       this.shadowRoot
         .querySelector(".window-icon")
-        .addEventListener("click", this.onOpen);
+        .addEventListener("pointerdown", this.onIconFocus);
+      this.shadowRoot
+        .querySelector(".window-icon")
+        .addEventListener("pointerdown", this.onOpen);
+      
+      window.addEventListener("pointerdown", this.onIconUnfocus);
     }
   }
 
@@ -55,11 +66,18 @@ class WindowIcon extends HTMLElement {
 
     this.shadowRoot
       .querySelector(".window-icon")
-      .addEventListener("click", this.onOpen);
+      .addEventListener("pointerdown", this.onIconFocus);
+    this.shadowRoot
+      .querySelector(".window-icon")
+      .addEventListener("pointerdown", this.onOpen);
+    
+    window.addEventListener("pointerdown", this.onIconUnfocus);
   }
 
   disconnectedCallback() {
-    this.removeEventListener("click", this.onOpen);
+    this.removeEventListener("pointerdown", this.onOpen);
+    this.removeEventListener("pointerdown", this.onIconFocus);
+    window.removeEventListener("pointerdown", this.onIconUnfocus);
   }
 
   render() {

@@ -1,5 +1,4 @@
-export const handleOpen = (component) => {
-  component.clickCount++;
+const handleOpen = (component) => {
   if (component.clickCount >= 2) component.clickCount = 0;
 
   if (component.clickCount === 0) {
@@ -21,8 +20,11 @@ export const handleOpen = (component) => {
         .querySelector(".title")
         .style.color = "#000000";
     }
-
   }
+};
+
+const handleIconFocus = (component) => {
+  component.clickCount++;
 
   component.shadowRoot
     .querySelector(".title")
@@ -36,3 +38,19 @@ export const handleOpen = (component) => {
       ${component.clickCount === 1 ? '#ffffff' : '#000000'}
     `;
 };
+
+const handleIconUnfocus = (component, e) => {
+  const insideIcon = e.composedPath().includes(component);
+
+  if (!insideIcon) {
+    component.shadowRoot
+      .querySelector(".title")
+      .style.backgroundColor = "#ffffff";
+
+    component.shadowRoot
+      .querySelector(".title")
+      .style.color = "#000000";
+  }
+};
+
+export { handleOpen, handleIconFocus, handleIconUnfocus };
