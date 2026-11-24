@@ -3,7 +3,7 @@ class MicroBlog extends HTMLElement {
     return ["date", "post"];
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
       this.render();
     }

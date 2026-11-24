@@ -27,8 +27,6 @@ const isActiveOnStart = async (component) => {
 const handleFocus = (component) => {
   component.style.zIndex = 10;
 
-  if (component.widget) return; 
-
   const titleBar = component
     .shadowRoot
     .querySelector('slot[name="title-bar"]')

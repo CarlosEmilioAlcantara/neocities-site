@@ -9,17 +9,31 @@ const handleOpen = (component) => {
     windowContainer.style.display = "block";
     windowContainer.style.zIndex = 10;
 
-    if (!component.widget) {
-      const titleBar = windowContainer
+    let titleBar;
+
+    if (component.hasAttribute("app")) {
+      windowContainer
+        .shadowRoot
+        .querySelector("window-container")
+        .style.display = "block";
+
+      titleBar = windowContainer
+        .shadowRoot
+        .querySelector("window-container")
         .shadowRoot
         .querySelector('slot[name="title-bar"]')
         .assignedElements()[0];
-
-      titleBar
+    } else {
+      titleBar = windowContainer
         .shadowRoot
-        .querySelector(".title")
-        .style.color = "#000000";
+        .querySelector('slot[name="title-bar"]')
+        .assignedElements()[0];
     }
+
+    titleBar
+      .shadowRoot
+      .querySelector(".title")
+      .style.color = "#000000";
   }
 };
 

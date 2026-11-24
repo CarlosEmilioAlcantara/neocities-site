@@ -7,6 +7,7 @@ import "../../components/blog/BlogWindow/BlogWindow.js";
 import "../../components/MicroBlog/MicroBlog.js";
 import "../../components/Button/Button.js";
 import "../../components/Player/Player.js";
+import "../../components/Changelog/Changelog.js";
 import { getWindowWidth } from "../../utils/viewport/getWindowWidth.js";
 import { fetchBlogs } from "../../apis/fetchBlogs.js";
 import { fetchMicroBlogs } from "../../apis/fetchMicroBlogs.js";
@@ -116,6 +117,16 @@ class HomePage extends HTMLElement {
       <div class="home">
         <window-icon
           icon="${this.blogsIcn}"
+          title="Changelogs"
+          bottom="13"
+          left="1"
+          window="changelogs"
+          widget
+          app
+        ></window-icon>
+
+        <window-icon
+          icon="${this.blogsIcn}"
           title="Blogs"
           bottom="1"
           left="1"
@@ -145,7 +156,7 @@ class HomePage extends HTMLElement {
           start-y="25" 
           start-width="400" 
           start-height="${getWindowWidth() >= 1536 ? 600 : 400}"
-          active
+          closed
         >
           <title-bar title="Blogs" slot="title-bar"></title-bar>
 
@@ -253,6 +264,8 @@ class HomePage extends HTMLElement {
             <music-player slot="music-player" playing></music-player>
           </window-content>
         </window-container>        
+
+        <change-logs id="changelogs"></change-logs>
 
         <blog-window closed></blog-window>
       </div>

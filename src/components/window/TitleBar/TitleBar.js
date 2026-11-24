@@ -99,12 +99,12 @@ class TitleBar extends HTMLElement {
             </button>
           </div>
 
-          ${title ? `<p class="title">${title}</p>` : ""}
+          ${title ? `<label class="title">${title}</label>` : ""}
         </div>
       ` : `
         <div class="widget-bar">
           <button tabindex="-1" class="button close-button"></button>
-          <label>${title}</label>
+          ${title ? `<label class="title">${title}</label>` : ""}
         </div>
       `}
     `;

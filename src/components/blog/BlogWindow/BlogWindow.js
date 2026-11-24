@@ -57,7 +57,6 @@ class BlogWindow extends HTMLElement {
         start-y="25" 
         start-width="600" 
         start-height="${getWindowWidth() >= 1536 ? 800 : 700}"
-        active
       >
         <title-bar title="${title}" slot="title-bar"></title-bar>
 

@@ -933,7 +933,6 @@
   color: var(--background-color);
 }
 
-
 .runtime {
   position: absolute;
   bottom: 0;
@@ -989,26 +988,6 @@
 
     100% {
         transform: scale(1);
-    }
-}
-
-/* Responsive */
-
-@media screen and (max-width: 600px) {
-    .page-container {
-        gap: 0px;
-    }
-
-    .casette-body {
-        transform: scale(0.65);
-    }
-
-    .button {
-        transform: scale(0.7);
-    }
-
-    .button:hover {
-        transform: scale(0.8);
     }
 }
 

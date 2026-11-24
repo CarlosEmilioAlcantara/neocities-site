@@ -15,6 +15,7 @@ class WindowIcon extends HTMLElement {
       "left", 
       "window",
       "widget",
+      "app",
     ];
   }
 
