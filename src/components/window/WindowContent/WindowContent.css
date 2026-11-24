@@ -26,3 +26,8 @@
   min-width: 0;
   min-height: 0;
 }
+
+:host([file-manager]) .window-content {
+  padding: 0;
+  gap: 0;
+}

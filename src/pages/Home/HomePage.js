@@ -7,6 +7,8 @@ import "../../components/blog/BlogWindow/BlogWindow.js";
 import "../../components/MicroBlog/MicroBlog.js";
 import "../../components/Button/Button.js";
 import "../../components/Player/Player.js";
+import "../../components/Player/PlayerApp.js";
+import "../../components/file-manager/FileManager/FileManager.js";
 import "../../components/Changelog/Changelog.js";
 import { getWindowWidth } from "../../utils/viewport/getWindowWidth.js";
 import { fetchBlogs } from "../../apis/fetchBlogs.js";
@@ -35,7 +37,7 @@ class HomePage extends HTMLElement {
         "blogs", 
         fetchBlogs, 
         "#blogs",
-        ["#blogs", "#micro-blogs", "#cassette-player"]
+        ["#blogs", "#micro-blogs", "#cassette-player", "#changelogs"]
       );
     this.onBlogsClickPrev = () => 
       handlePaginatePrev(
@@ -44,7 +46,7 @@ class HomePage extends HTMLElement {
         "blogs", 
         fetchBlogs, 
         "#blogs",
-        ["#blogs", "#micro-blogs", "#cassette-player"]
+        ["#blogs", "#micro-blogs", "#cassette-player", "#changelogs"]
       );
     this.onMicroBlogsClickNext = () =>
       handlePaginateNext(
@@ -53,7 +55,7 @@ class HomePage extends HTMLElement {
         "microBlogs", 
         fetchMicroBlogs, 
         "#micro-blogs",
-        ["#blogs", "#micro-blogs", "#cassette-player"]
+        ["#blogs", "#micro-blogs", "#cassette-player", "#changelogs"]
       );
     this.onMicroBlogsClickPrev = () =>
       handlePaginatePrev(
@@ -62,7 +64,7 @@ class HomePage extends HTMLElement {
         "microBlogs", 
         fetchMicroBlogs, 
         "#micro-blogs",
-        ["#blogs", "#micro-blogs", "#cassette-player"]
+        ["#blogs", "#micro-blogs", "#cassette-player", "#changelogs"]
       );
   }
 
@@ -148,6 +150,7 @@ class HomePage extends HTMLElement {
           left="${getWindowWidth() >= 1536 ? 10.5 : 16}"
           window="cassette-player"
           widget
+          app
         ></window-icon>
 
         <window-container
@@ -244,27 +247,8 @@ class HomePage extends HTMLElement {
           </window-content>
         </window-container>
 
-        <window-container
-          id="cassette-player"
-          start-x="${getWindowWidth() > 1536 ? 1180 : 680}" 
-          start-y="59"
-          start-width="662" 
-          widget
-          closed
-        >
-          <title-bar 
-            title="Music Player" 
-            slot="title-bar" 
-            music-player
-            widget
-          >
-          </title-bar>
-
-          <window-content slot="window-content" widget>
-            <music-player slot="music-player" playing></music-player>
-          </window-content>
-        </window-container>        
-
+        <file-manager></file-manager>
+        <player-widget id="cassette-player"></player-widget>
         <change-logs id="changelogs"></change-logs>
 
         <blog-window closed></blog-window>

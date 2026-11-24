@@ -59,11 +59,6 @@
   src: url(./assets/fonts/BrownBagLunch.ttf);
 }
 
-@font-face {
-  font-family: Taytex;
-  src: url(./assets/fonts/Taytex.ttf);
-}
-
 html {
   color-scheme: light dark;
   font-family: 'ChiKareGo', Arial, sans-serif;

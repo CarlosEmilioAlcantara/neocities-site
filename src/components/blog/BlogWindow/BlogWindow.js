@@ -23,7 +23,7 @@ class BlogWindow extends HTMLElement {
       .action = () => window.location.href = blogPage;
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
       this.render();
       this.attachBlogPageLink();
