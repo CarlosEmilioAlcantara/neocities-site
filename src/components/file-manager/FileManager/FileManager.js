@@ -26,6 +26,8 @@ class FileManager extends HTMLElement {
         start-y="59"
         start-width="662" 
         start-height="300"
+        file-manager
+        closed
       >
         <title-bar 
           title="File Manager" 
@@ -43,6 +45,8 @@ class FileManager extends HTMLElement {
           </div>
 
           <div class="files">
+            <div class="file-icon"></div>
+            <div class="file-icon"></div>
             <div class="file-icon"></div>
             <div class="file-icon"></div>
             <div class="file-icon"></div>

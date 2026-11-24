@@ -98,6 +98,11 @@ class HomePage extends HTMLElement {
     this.attachButtonActions();
   }
 
+  changelogsIcn = 
+    new URL(
+      "../../assets/icons/desktop/changelogs.webp", import.meta.url
+    ).href;
+
   blogsIcn = 
     new URL("../../assets/icons/desktop/blogs.webp", import.meta.url).href;
 
@@ -105,6 +110,9 @@ class HomePage extends HTMLElement {
     "../../assets/icons/desktop/micro-blogs.webp", 
     import.meta.url
   ).href;
+
+  filesIcn = 
+    new URL("../../assets/icons/desktop/files.webp", import.meta.url).href;
 
   cassetteIcn = 
     new URL("../../assets/icons/desktop/cassette.webp", import.meta.url).href;
@@ -118,7 +126,7 @@ class HomePage extends HTMLElement {
 
       <div class="home">
         <window-icon
-          icon="${this.blogsIcn}"
+          icon="${this.changelogsIcn}"
           title="Changelogs"
           bottom="13"
           left="1"
@@ -152,6 +160,17 @@ class HomePage extends HTMLElement {
           widget
           app
         ></window-icon>
+
+        <window-icon
+          icon="${this.filesIcn}"
+          title="File Manager"
+          bottom="1"
+          left="${getWindowWidth() >= 1536 ? 17.5 : 26}"
+          window="file-manager"
+          widget
+          app
+        ></window-icon>
+
 
         <window-container
           id="blogs"
@@ -247,7 +266,7 @@ class HomePage extends HTMLElement {
           </window-content>
         </window-container>
 
-        <file-manager></file-manager>
+        <file-manager id="file-manager"></file-manager>
         <player-widget id="cassette-player"></player-widget>
         <change-logs id="changelogs"></change-logs>
 

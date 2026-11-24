@@ -106,3 +106,7 @@
 :host([focused]) #title-bar .title {
   color: var(--foreground-color);
 }
+
+:host([file-manager]) {
+  max-height: 243px;
+}
