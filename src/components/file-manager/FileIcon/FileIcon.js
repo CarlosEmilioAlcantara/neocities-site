@@ -6,7 +6,7 @@ import {
 
 class FileIcon extends HTMLElement {
   static get observedAttributes() {
-    return ["filename"];
+    return ["filename", "content"];
   }
 
   constructor() {

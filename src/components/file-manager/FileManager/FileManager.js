@@ -51,7 +51,10 @@ class FileManager extends HTMLElement {
 
           <div class="files">
             ${this.files.map((file) => 
-              `<file-icon filename=${file.name}></file-icon>`
+              `<file-icon 
+                filename="${file.name}"
+                content="${file.content}"
+              ></file-icon>`
             ).join("")}
           </div>
 

@@ -2,11 +2,20 @@ const handleOpen = (component) => {
   if (component.clickCount >= 2) component.clickCount = 0;
 
   if (component.clickCount === 0) {
-    const filename = component
-    .shadowRoot
-    .querySelector(".filename");
+    const page = document.documentElement
+      .querySelector("home-page");
 
-    filename.style.color = "#000000";
+    const fileWindow = page
+      .shadowRoot
+      .querySelector("file-window");
+
+    fileWindow.style.display = "block";
+    fileWindow.shadowRoot
+      .querySelector("window-container")
+      .style.display = "block";
+
+    fileWindow.setAttribute("filename", component.getAttribute("filename"));
+    fileWindow.setAttribute("content", component.getAttribute("content"));
   }
 };
 

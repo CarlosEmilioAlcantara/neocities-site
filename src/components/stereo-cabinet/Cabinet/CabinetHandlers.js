@@ -80,7 +80,6 @@ const handlePlaylistSelected = (component, e) => {
 
   player.name = component.name;
   player.playlistIndex = component.playlistIndex;
-  console.log(player.playlistIndex);
   player.onPlaylistChange();
 };
 

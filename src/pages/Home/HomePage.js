@@ -9,6 +9,7 @@ import "../../components/Button/Button.js";
 import "../../components/Player/Player.js";
 import "../../components/Player/PlayerApp.js";
 import "../../components/file-manager/FileManager/FileManager.js";
+import "../../components/file-manager/FileWindow/FileWindow.js";
 import "../../components/Changelog/Changelog.js";
 import { getWindowWidth } from "../../utils/viewport/getWindowWidth.js";
 import { fetchBlogs } from "../../apis/fetchBlogs.js";
@@ -271,6 +272,7 @@ class HomePage extends HTMLElement {
         <change-logs id="changelogs"></change-logs>
 
         <blog-window closed></blog-window>
+        <file-window></file-window>
       </div>
     `
   }
