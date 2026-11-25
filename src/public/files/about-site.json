@@ -1,8 +1,7 @@
 {
   "name": "about-this-site.txt",
   "content": [
-    "<p>This is a text.</p>",
-    "<img src='' alt='alt text'></img>",
-    "<p>This is a text.</p>"
+    "<p>This site is Snibbenings' little cozy space on the internet.</p>",
+    "<p>He'll add more `files` here soon to explain more.</p>"
   ]
 }

@@ -62,7 +62,7 @@ class FileIcon extends HTMLElement {
       </style>
 
       <div class="file-icon">
-        <img src="../../../assets/icons/notification/Warning.svg" alt="File" />
+        <img src="../../../assets/icons/desktop/text-file.webp" alt="File" />
         ${filename ? `<p class="filename">${filename}</p>` : ""}
       </div>
     `
