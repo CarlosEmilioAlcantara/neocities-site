@@ -27,8 +27,8 @@ class FileManager extends HTMLElement {
 
       <window-container
         id="file-manager"
-        start-x="${getWindowWidth() > 1536 ? 1180 : 680}" 
-        start-y="59"
+        start-x="${getWindowWidth() > 1536 ? 350 : 240}" 
+        start-y="392"
         start-width="662" 
         start-height="300"
         file-manager

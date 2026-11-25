@@ -175,10 +175,10 @@ class HomePage extends HTMLElement {
 
         <window-container
           id="blogs"
-          start-x="20" 
-          start-y="25" 
-          start-width="400" 
-          start-height="${getWindowWidth() >= 1536 ? 600 : 400}"
+          start-x="${getWindowWidth() >= 1536 ? 20 : 351}" 
+          start-y="${getWindowWidth() >= 1536 ? 391 : 25}" 
+          start-width="${getWindowWidth() >= 1536 ? 300 : 335}" 
+          start-height="${getWindowWidth() >= 1536 ? 385 : 335}"
           closed
         >
           <title-bar title="Blogs" slot="title-bar"></title-bar>
@@ -218,10 +218,10 @@ class HomePage extends HTMLElement {
 
         <window-container
           id="micro-blogs"
-          start-x="450" 
+          start-x="${getWindowWidth() >= 1536 ? 350 : 716}" 
           start-y="25" 
           start-width="400" 
-          start-height="${getWindowWidth() >= 1536 ? 600 : 400}"
+          start-height="${getWindowWidth() >= 1536 ? 337 : 335}"
           closed
         >
           <title-bar title="Microblogs" slot="title-bar"></title-bar>
@@ -270,7 +270,6 @@ class HomePage extends HTMLElement {
         <file-manager id="file-manager"></file-manager>
         <player-widget id="cassette-player"></player-widget>
         <change-logs id="changelogs"></change-logs>
-
         <blog-window closed></blog-window>
         <file-window></file-window>
       </div>
