@@ -24,6 +24,7 @@ class WindowIcon extends HTMLElement {
     this.attachShadow({ mode: "open" });
 
     this.clickCount = 0;
+    this.unclickCount = 0;
     this.top = null;
     this.right = null;
     this.bottom = null;
@@ -96,7 +97,6 @@ class WindowIcon extends HTMLElement {
         @import url("${new URL("../../../index.css", import.meta.url)}");
         @import url("${new URL("./WindowIcon.css", import.meta.url)}");
       </style>
-
 
       <div class="window-icon">
         ${icon 

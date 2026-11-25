@@ -1,0 +1,9 @@
+.file-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.file-icon img {
+  width: 6.0rem;
+}

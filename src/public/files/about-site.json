@@ -1,0 +1,8 @@
+{
+  "name": "about-this-site.txt",
+  "content": [
+    "<p>This is a text.</p>",
+    "<img src='' alt='alt text'></img>",
+    "<p>This is a text.</p>"
+  ]
+}

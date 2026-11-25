@@ -57,13 +57,15 @@ const handleIconUnfocus = (component, e) => {
   const insideIcon = e.composedPath().includes(component);
 
   if (!insideIcon) {
-    component.shadowRoot
-      .querySelector(".title")
-      .style.backgroundColor = "#ffffff";
+    if (component.clickCount > 0) component.clickCount--;
 
     component.shadowRoot
       .querySelector(".title")
-      .style.color = "#000000";
+      .style.backgroundColor =  '#ffffff';
+
+    component.shadowRoot
+      .querySelector(".title")
+      .style.color = '#000000';
   }
 };
 

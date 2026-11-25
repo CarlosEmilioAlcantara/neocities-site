@@ -1,15 +1,20 @@
 import "../../window/WindowContainer/WindowContainer.js";
 import "../../window/WindowContent/WindowContent.js";
 import "../../window/TitleBar/TitleBar.js";
+import "../FileIcon/FileIcon.js";
 import { getWindowWidth } from "../../../utils/viewport/getWindowWidth.js";
+import { fetchFiles } from "../../../apis/fetchFiles.js";
 
 class FileManager extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
+
+    this.files = [];
   }
 
-  connectedCallback() {
+  async connectedCallback() {
+    this.files = await fetchFiles();
     this.render();
   }
 
@@ -45,13 +50,9 @@ class FileManager extends HTMLElement {
           </div>
 
           <div class="files">
-            <div class="file-icon"></div>
-            <div class="file-icon"></div>
-            <div class="file-icon"></div>
-            <div class="file-icon"></div>
-            <div class="file-icon"></div>
-            <div class="file-icon"></div>
-            <div class="file-icon"></div>
+            ${this.files.map((file) => 
+              `<file-icon filename=${file.name}></file-icon>`
+            ).join("")}
           </div>
 
         </window-content>
