@@ -43,7 +43,10 @@ class FileManager extends HTMLElement {
         <window-content slot="window-content" file-manager>
           <div class="header-container">
             <div class="header">
-              <p>5 items</p>
+              <p>
+                ${this.files.length} 
+                ${this.files.length > 1 ? "items" : "item"}
+              </p>
               <p>232K in disk</p>
               <p>167k available</p>
             </div>
