@@ -12,7 +12,7 @@ export const fetchMicroBlogs = async ({
     const indexedMicroBlogs = 
       rolling 
         ? microBlogsRolling
-        : microBlogsHome.slice(offset, (limit + offset));
+        : microBlogsHome;
 
     const responses = await Promise.all(
       indexedMicroBlogs.map((response) => fetch(response))

@@ -3,9 +3,9 @@ import { fetchBlogContent } from "./fetchBlogContent.js";
 
 export const fetchBlogs = async ({offset = 0, limit = 2}) => {
   try {
-    const indexedBlogs = blogs.slice(offset, (limit + offset));
+    // const indexedBlogs = blogs.slice(offset, (limit + offset));
     const responses = await Promise.all(
-      indexedBlogs.map((response) => fetch(response))
+      blogs.map((response) => fetch(response))
     );
 
     const blogTexts = await Promise.all(

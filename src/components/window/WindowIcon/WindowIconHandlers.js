@@ -17,6 +17,11 @@ const handleOpen = (component) => {
         .querySelector("window-container")
         .style.display = "block";
 
+      windowContainer
+        .shadowRoot
+        .querySelector("window-container")
+        .style.zIndex = 10;
+
       titleBar = windowContainer
         .shadowRoot
         .querySelector("window-container")

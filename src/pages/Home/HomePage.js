@@ -18,6 +18,7 @@ import {
   handlePaginateNext, 
   handlePaginatePrev 
 } from "../../utils/pagination/handlePagination.js";
+import { hideBlogItems, checkBlogItemsLength } from "./HomePageHandlers.js";
 
 class HomePage extends HTMLElement {
   constructor() {
@@ -31,42 +32,24 @@ class HomePage extends HTMLElement {
     this.limit = 2;
     this.lastFocusedWindow = null;
 
-    this.onBlogsClickNext = () => 
-      handlePaginateNext(
-        this, 
-        "blogsOffset", 
-        "blogs", 
-        fetchBlogs, 
-        "#blogs",
-        ["#blogs", "#micro-blogs", "#cassette-player", "#changelogs"]
-      );
-    this.onBlogsClickPrev = () => 
-      handlePaginatePrev(
-        this, 
-        "blogsOffset", 
-        "blogs", 
-        fetchBlogs, 
-        "#blogs",
-        ["#blogs", "#micro-blogs", "#cassette-player", "#changelogs"]
-      );
-    this.onMicroBlogsClickNext = () =>
-      handlePaginateNext(
-        this, 
-        "microBlogsOffset", 
-        "microBlogs", 
-        fetchMicroBlogs, 
-        "#micro-blogs",
-        ["#blogs", "#micro-blogs", "#cassette-player", "#changelogs"]
-      );
-    this.onMicroBlogsClickPrev = () =>
-      handlePaginatePrev(
-        this, 
-        "microBlogsOffset", 
-        "microBlogs", 
-        fetchMicroBlogs, 
-        "#micro-blogs",
-        ["#blogs", "#micro-blogs", "#cassette-player", "#changelogs"]
-      );
+    this.onBlogsClickNext = () => {
+      handlePaginateNext(this, "blogsOffset");
+      checkBlogItemsLength(this);
+      console.log("next blogs");
+    }
+    this.onBlogsClickPrev = () => {
+      handlePaginatePrev(this, "blogsOffset");
+      checkBlogItemsLength(this);
+      console.log("prev blogs");
+    }
+    this.onMicroBlogsClickNext = () => {
+      handlePaginateNext(this, "microBlogsOffset", true);
+      checkBlogItemsLength(this, true);
+    }
+    this.onMicroBlogsClickPrev = () => {
+      handlePaginatePrev(this, "microBlogsOffset", true);
+      checkBlogItemsLength(this, true);
+    }
   }
 
   attachButtonActions () {
@@ -96,6 +79,10 @@ class HomePage extends HTMLElement {
     this.blogs = await fetchBlogs({});
     this.microBlogs = await fetchMicroBlogs({});
     this.render();
+    hideBlogItems(this);
+    hideBlogItems(this, true);
+    checkBlogItemsLength(this);
+    checkBlogItemsLength(this, true);
     this.attachButtonActions();
   }
 
@@ -201,16 +188,12 @@ class HomePage extends HTMLElement {
                 id="prev-blogs-page" 
                 page-control
                 page-control-left
-                ${(this.blogsOffset - this.limit) < 0 && 'disabled'}
               ></ui-button>
 
               <ui-button 
                 id="next-blogs-page" 
                 page-control
                 page-control-right
-                ${((this.blogsOffset + this.limit) >= 
-                  this.blogs.length) && 'disabled'
-                }
               ></ui-button>
             </div>
           </window-content>
@@ -251,16 +234,12 @@ class HomePage extends HTMLElement {
                   id="prev-microblogs-page" 
                   page-control
                   page-control-left
-                  ${(this.microBlogsOffset - this.limit) < 0 && 'disabled'}
                 ></ui-button>
 
                 <ui-button 
                   id="next-microblogs-page" 
                   page-control
                   page-control-right
-                  ${((this.microBlogsOffset + this.limit) >= 
-                    this.microBlogs.length) && 'disabled'
-                  }
                 ></ui-button>
               </div>
             </div>

@@ -19,7 +19,7 @@ class Button extends HTMLElement {
     this.attachShadow({ mode: "open" });
   }
     
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
       this.render();
     }

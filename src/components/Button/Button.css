@@ -111,6 +111,11 @@
   background-color: var(--unfocused);
 }
 
-:host([page-control][disabled]) .button .arrow {
+:host(.disabled) .button {
+  pointer-events: none;
+  background-color: var(--unfocused);
+}
+
+:host(.disabled) .button .arrow {
   background-image: url("../../assets/icons/action/arrow-clicked.webp");
 }

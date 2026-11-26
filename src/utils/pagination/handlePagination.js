@@ -1,65 +1,19 @@
 import { paginateNext } from "./paginateNext.js";
-import { paginatePrev } from "./paginatePrev.js";
-import { 
-  restorePositionDimension 
-} from "../viewport/restorePositionDimension.js";
 
-const handlePaginateNext = async (
+const handlePaginateNext = (
   component, 
   offset, 
-  dict, 
-  getFunc, 
-  window,
-  windows
+  microblogs = false,
 ) => {
-  await paginateNext(component, offset, dict, getFunc);
-
-  const previousWindows = windows.map((window) => {
-    return component
-      .shadowRoot
-      .querySelector(window);
-  });
-
-  component.render();
-
-  for (let i = 0; i < windows.length; i++) {
-    restorePositionDimension(component, previousWindows[i], windows[i]);
-  }
-
-  component.shadowRoot
-    .querySelector(window)
-    .style.zIndex = 10;
-
-  component.attachButtonActions();
+  paginateNext(component, offset, false, microblogs);
 }
 
-const handlePaginatePrev = async (
+const handlePaginatePrev = (
   component, 
   offset, 
-  dict, 
-  getFunc, 
-  window,
-  windows
+  microblogs = false,
 ) => {
-  await paginatePrev(component, offset, dict, getFunc);
-
-  const previousWindows = windows.map((window) => {
-    return component
-      .shadowRoot
-      .querySelector(window);
-  });
-
-  component.render();
-
-  for (let i = 0; i < windows.length; i++) {
-    restorePositionDimension(component, previousWindows[i], windows[i]);
-  }
-
-  component.shadowRoot
-    .querySelector(window)
-    .style.zIndex = 10;
-
-  component.attachButtonActions();
+  paginateNext(component, offset, true, microblogs);
 }
 
 export { handlePaginateNext, handlePaginatePrev };

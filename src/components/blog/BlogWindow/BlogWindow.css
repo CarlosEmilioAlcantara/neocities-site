@@ -29,6 +29,8 @@
   margin-bottom: 1em;
 }
 
+
 img {
   width: 60%;
+  max-width: 400px;
 }
