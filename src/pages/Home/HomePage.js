@@ -1,14 +1,7 @@
-import "../../components/window/WindowContainer/WindowContainer.js";
-import "../../components/window/TitleBar/TitleBar.js";
-import "../../components/window/WindowContent/WindowContent.js";
 import "../../components/window/WindowIcon/WindowIcon.js";
-import "../../components/blog/BlogItem/BlogItem.js";
 import "../../components/blog/BlogWindow/BlogWindow.js";
-import "../../components/MicroBlog/MicroBlog.js";
 import "../../components/Blogs/Blogs.js";
 import "../../components/MicroBlogs/MicroBlogs.js";
-import "../../components/Button/Button.js";
-import "../../components/Player/Player.js";
 import "../../components/Player/PlayerApp.js";
 import "../../components/file-manager/FileManager/FileManager.js";
 import "../../components/file-manager/FileWindow/FileWindow.js";

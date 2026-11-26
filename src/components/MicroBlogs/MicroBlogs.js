@@ -1,7 +1,7 @@
 import "../window/WindowContainer/WindowContainer.js";
 import "../window/TitleBar/TitleBar.js";
 import "../window/WindowContent/WindowContent.js";
-import "../blog/BlogItem/BlogItem.js";
+import "../MicroBlog/MicroBlog.js";
 import "../Button/Button.js";
 import { getWindowWidth } from "../../utils/viewport/getWindowWidth.js";
 import { fetchMicroBlogs } from "../../apis/fetchMicroBlogs.js";
@@ -14,7 +14,7 @@ class MicroBlogs extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
 
-    this.blogs = {};
+    this.items = {};
     this.offset = 0;
     this.limit = 2;
 
@@ -44,7 +44,7 @@ class MicroBlogs extends HTMLElement {
   }
 
   async connectedCallback() {
-    this.blogs = await fetchMicroBlogs({});
+    this.items = await fetchMicroBlogs({});
     this.render();
     hideItems({component: this, microblogs: true});
     checkItemsLength({component: this, microblogs: true});
@@ -69,7 +69,7 @@ class MicroBlogs extends HTMLElement {
         <title-bar title="Microblogs" slot="title-bar"></title-bar>
 
         <window-content slot="window-content">
-          ${this.blogs.microBlogData.map((blog) => `
+          ${this.items.microBlogData.map((blog) => `
             <micro-blog 
               date="${blog.date}"
               post="${blog.post}"

@@ -14,7 +14,7 @@ class Blogs extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
 
-    this.blogs = {};
+    this.items = {};
     this.offset = 0;
     this.limit = 2;
 
@@ -39,7 +39,7 @@ class Blogs extends HTMLElement {
   }
 
   async connectedCallback() {
-    this.blogs = await fetchBlogs({});
+    this.items = await fetchBlogs({});
     this.render();
     hideItems({component: this});
     checkItemsLength({component: this});
@@ -64,7 +64,7 @@ class Blogs extends HTMLElement {
         <title-bar title="Blogs" slot="title-bar"></title-bar>
 
         <window-content slot="window-content">
-          ${this.blogs.blogData.map((blog) => `
+          ${this.items.blogData.map((blog) => `
             <blog-item 
               date="${blog.date}"
               title="${blog.title}"

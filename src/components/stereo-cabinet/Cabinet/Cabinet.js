@@ -1,12 +1,12 @@
 import "../../Player/Player.js";
 import "../Cassette/Cassette.js";
-import { 
-  hideCassettes, 
-  checkPlaylistsLength, 
-  handleCassettesFlip,
-  handlePlaylistSelected,
-} from "./CabinetHandlers.js";
+import { handlePlaylistSelected } from "./CabinetHandlers.js";
 import { playlists } from "../../../stores/playlists.js";
+import { 
+  checkItemsLength 
+} from "../../../utils/pagination/checkItemsLength.js";
+import { hideItems } from "../../../utils/pagination/hideItems.js";
+import { paginate } from "../../../utils/pagination/paginate.js";
 import { navigate } from "../../../main.js";
 
 class Cabinet extends HTMLElement {
@@ -14,14 +14,20 @@ class Cabinet extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
 
-    this.playlists = playlists;
+    this.items = playlists;
     this.offset = 0;
     this.limit = 3;
     this.name = "";
     this.playlistIndex = 0;
 
-    this.onCassettesFlipUp = () => handleCassettesFlip(this, true);
-    this.onCassettesFlipDown = () => handleCassettesFlip(this);
+    this.onCassettesFlipUp = () => {
+      paginate({component: this, prev: true, cassettes: true});
+      checkItemsLength({component: this, cassettes: true});
+    }
+    this.onCassettesFlipDown = () => {
+      paginate({component: this, cassettes: true});
+      checkItemsLength({component: this, cassettes: true});
+    }
     this.onPlaylistSelected = (e) => handlePlaylistSelected(this, e);
   }
 
@@ -49,17 +55,17 @@ class Cabinet extends HTMLElement {
   attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
       this.render();
+      hideItems({component: this, cassettes: true});
+      checkItemsLength({component: this, cassettes: true});
       this.attachEventListeners();
-      hideCassettes(this);
-      checkPlaylistsLength(this);
     }
   }
 
   connectedCallback() {
     this.render();
+    hideItems({component: this, cassettes: true});
+    checkItemsLength({component: this, cassettes: true});
     this.attachEventListeners();
-    hideCassettes(this);
-    checkPlaylistsLength(this);
   }
 
   disconnectedCallback() {
@@ -89,7 +95,7 @@ class Cabinet extends HTMLElement {
               <div class="left">
                 <div class="cassette-info">
                   <div class="info">
-                    <p class="info-paragraph">${this.playlists[0].info}</p>
+                    <p class="info-paragraph">${this.items[0].info}</p>
                     <div class="line"></div>
                     <div class="line"></div>
                     <div class="line"></div>
@@ -109,7 +115,7 @@ class Cabinet extends HTMLElement {
                   </div>
 
                   <div class="cassettes">
-                    ${playlists.map((playlist, index) => `
+                    ${this.items.map((playlist, index) => `
                       <playlist-cassette 
                         name="${playlist.name}"
                         info="${playlist.info}"

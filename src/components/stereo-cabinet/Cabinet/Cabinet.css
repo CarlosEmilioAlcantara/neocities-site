@@ -173,7 +173,7 @@
   background-color: var(--accent-color);
 }
 
-.cassette-storage-button-disabled {
+.disabled {
   background-color: var(--unfocused) !important;
   pointer-events: none;
 }
@@ -189,7 +189,7 @@
   cursor: pointer;
 }
 
-.cassette-storage-button-disabled .arrow {
+.disabled .arrow {
   background-image: url("../../../assets/icons/action/arrow-clicked.webp");
 }
 

@@ -1,8 +1,22 @@
-export const hideItems = ({component, microblogs = false}) => {
+export const hideItems = ({
+  component, 
+  microblogs = false, 
+  cassettes = false,
+}) => {
+  let toQuery;
+
+  if (microblogs) {
+    toQuery = "micro-blog"
+  } else if (cassettes) {
+    toQuery = ".playlist"
+  } else {
+    toQuery = "blog-item"
+  }
+
   let items = Array.prototype.slice.call(component
     .shadowRoot
-    .querySelectorAll(microblogs ? "micro-blog" : "blog-item"));
-  
+    .querySelectorAll(toQuery));
+
   items.forEach((item) => {
     item.style.display = "none";
   });
