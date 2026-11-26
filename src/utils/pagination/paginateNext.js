@@ -1,10 +1,7 @@
 const paginateNext = (component, offset, prev = false, microblogs = false) => {
-  console.log("paginating");
   let blogItems = Array.prototype.slice.call(component
     .shadowRoot
     .querySelectorAll(microblogs ? "micro-blog": "blog-item"));
-
-  console.log(blogItems);
 
   blogItems.forEach((blogItem) => {
     blogItem.style.display = "none";

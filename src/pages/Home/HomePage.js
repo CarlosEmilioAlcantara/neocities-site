@@ -5,6 +5,8 @@ import "../../components/window/WindowIcon/WindowIcon.js";
 import "../../components/blog/BlogItem/BlogItem.js";
 import "../../components/blog/BlogWindow/BlogWindow.js";
 import "../../components/MicroBlog/MicroBlog.js";
+import "../../components/Blogs/Blogs.js";
+import "../../components/MicroBlogs/MicroBlogs.js";
 import "../../components/Button/Button.js";
 import "../../components/Player/Player.js";
 import "../../components/Player/PlayerApp.js";
@@ -12,78 +14,15 @@ import "../../components/file-manager/FileManager/FileManager.js";
 import "../../components/file-manager/FileWindow/FileWindow.js";
 import "../../components/Changelog/Changelog.js";
 import { getWindowWidth } from "../../utils/viewport/getWindowWidth.js";
-import { fetchBlogs } from "../../apis/fetchBlogs.js";
-import { fetchMicroBlogs } from "../../apis/fetchMicroBlogs.js";
-import { 
-  handlePaginateNext, 
-  handlePaginatePrev 
-} from "../../utils/pagination/handlePagination.js";
-import { hideBlogItems, checkBlogItemsLength } from "./HomePageHandlers.js";
 
 class HomePage extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-
-    this.blogs = {};
-    this.microBlogs = {};
-    this.blogsOffset = 0;
-    this.microBlogsOffset = 0;
-    this.limit = 2;
-    this.lastFocusedWindow = null;
-
-    this.onBlogsClickNext = () => {
-      handlePaginateNext(this, "blogsOffset");
-      checkBlogItemsLength(this);
-      console.log("next blogs");
-    }
-    this.onBlogsClickPrev = () => {
-      handlePaginatePrev(this, "blogsOffset");
-      checkBlogItemsLength(this);
-      console.log("prev blogs");
-    }
-    this.onMicroBlogsClickNext = () => {
-      handlePaginateNext(this, "microBlogsOffset", true);
-      checkBlogItemsLength(this, true);
-    }
-    this.onMicroBlogsClickPrev = () => {
-      handlePaginatePrev(this, "microBlogsOffset", true);
-      checkBlogItemsLength(this, true);
-    }
   }
 
-  attachButtonActions () {
-    this.shadowRoot
-      .querySelector("#next-blogs-page")
-      .action = () => this.onBlogsClickNext();
-
-    this.shadowRoot
-      .querySelector("#prev-blogs-page")
-      .action = () => this.onBlogsClickPrev();
-
-    this.shadowRoot
-      .querySelector("#next-microblogs-page")
-      .action = () => this.onMicroBlogsClickNext();
-
-    this.shadowRoot
-      .querySelector("#prev-microblogs-page")
-      .action = () => this.onMicroBlogsClickPrev();
-
-    this.shadowRoot
-      .querySelector("#to-rolling-blogs")
-      .action = () => 
-        window.location.href = "../../public/microblogs/rolling-blogs.html";
-  }
-
-  async connectedCallback() {
-    this.blogs = await fetchBlogs({});
-    this.microBlogs = await fetchMicroBlogs({});
+  connectedCallback() {
     this.render();
-    hideBlogItems(this);
-    hideBlogItems(this, true);
-    checkBlogItemsLength(this);
-    checkBlogItemsLength(this, true);
-    this.attachButtonActions();
   }
 
   changelogsIcn = 
@@ -129,6 +68,7 @@ class HomePage extends HTMLElement {
           bottom="1"
           left="1"
           window="blogs"
+          app
         ></window-icon>
 
         <window-icon
@@ -137,6 +77,7 @@ class HomePage extends HTMLElement {
           bottom="1"
           left="${getWindowWidth() >= 1536 ? 5 : 7}"
           window="micro-blogs"
+          app
         ></window-icon>
 
         <window-icon
@@ -159,93 +100,8 @@ class HomePage extends HTMLElement {
           app
         ></window-icon>
 
-
-        <window-container
-          id="blogs"
-          start-x="${getWindowWidth() >= 1536 ? 20 : 351}" 
-          start-y="${getWindowWidth() >= 1536 ? 391 : 25}" 
-          start-width="${getWindowWidth() >= 1536 ? 300 : 335}" 
-          start-height="${getWindowWidth() >= 1536 ? 385 : 335}"
-          closed
-        >
-          <title-bar title="Blogs" slot="title-bar"></title-bar>
-
-          <window-content slot="window-content">
-            ${this.blogs.blogData.map((blog) => `
-              <blog-item 
-                date="${blog.date}"
-                title="${blog.title}"
-                image="${blog.image}"
-                image-alt="${blog.imageAlt}"
-                description="${blog.description}"
-                content='${blog.content}'
-                link="${blog.link}"
-              ></blog-item>
-            `).join("")}
-
-            <div style="display: flex; gap: 2em; justify-content: end;">
-              <ui-button 
-                id="prev-blogs-page" 
-                page-control
-                page-control-left
-              ></ui-button>
-
-              <ui-button 
-                id="next-blogs-page" 
-                page-control
-                page-control-right
-              ></ui-button>
-            </div>
-          </window-content>
-        </window-container>
-
-        <window-container
-          id="micro-blogs"
-          start-x="${getWindowWidth() >= 1536 ? 350 : 716}" 
-          start-y="25" 
-          start-width="400" 
-          start-height="${getWindowWidth() >= 1536 ? 337 : 335}"
-          closed
-        >
-          <title-bar title="Microblogs" slot="title-bar"></title-bar>
-
-          <window-content slot="window-content">
-            ${this.microBlogs.microBlogData.map((blog) => `
-              <micro-blog 
-                date="${blog.date}"
-                post="${blog.post}"
-              ></micro-blog>
-            `).join("")}
-
-            <div 
-              style="
-                display: flex; 
-                justify-content: space-between;
-                align-items: center;
-              "
-            >
-              <ui-button 
-                label="Visit Rolling Microblogs Page" 
-                id="to-rolling-blogs"
-              ></ui-button>
-
-              <div style="display: flex; gap: 2em;">
-                <ui-button 
-                  id="prev-microblogs-page" 
-                  page-control
-                  page-control-left
-                ></ui-button>
-
-                <ui-button 
-                  id="next-microblogs-page" 
-                  page-control
-                  page-control-right
-                ></ui-button>
-              </div>
-            </div>
-          </window-content>
-        </window-container>
-
+        <blogs-window id="blogs"></blogs-window>
+        <microblogs-window id="micro-blogs"></microblogs-window>
         <file-manager id="file-manager"></file-manager>
         <player-widget id="cassette-player"></player-widget>
         <change-logs id="changelogs"></change-logs>

@@ -20,7 +20,7 @@ class BlogWindow extends HTMLElement {
 
     this.shadowRoot
       .querySelector("#open-blog-btn")
-      .action = () => window.location.href = blogPage;
+      .action = () => window.open(blogPage, "_blank").focus();
   }
 
   attributeChangedCallback(oldValue, newValue) {

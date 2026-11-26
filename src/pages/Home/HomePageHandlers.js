@@ -21,8 +21,6 @@ const checkBlogItemsLength = (component, microblogs = false) => {
   let blogItemsOffset;
   let blogs;
 
-  console.log("checking");
-
   if (microblogs) {
     blogItemsOffset = component.microBlogsOffset;
     blogs = component.microBlogs;
