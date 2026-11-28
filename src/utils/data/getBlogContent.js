@@ -1,4 +1,4 @@
-const fetchBlogContent = (text) => {
+const getBlogContent = (text) => {
   const parsedFile = new DOMParser().parseFromString(text, 'text/html');
 
   const description = 
@@ -23,4 +23,4 @@ const fetchBlogContent = (text) => {
   };
 }
 
-export { fetchBlogContent };
+export { getBlogContent };

@@ -1,16 +1,15 @@
-export const fetchAPI = async (items) => {
+export const fetchAPI = async (items, json = false) => {
   try {
     const responses = await Promise.all(
       items.map((response) => fetch(response))
     );
 
     const data = await Promise.all(
-      responses.map((response) => response.text())
+      responses.map((response) => 
+        (json) ? response.json() : response.text())
     );
 
-    const blogData = blogTexts.map((text) => fetchBlogContent(text));
-
-    return blogData;
+    return data;
   } catch (err) {
     console.log(err);
   }     

@@ -1,19 +1,12 @@
 import { blogs } from "../public/blogs/blogs.js";
-import { fetchBlogContent } from "./fetchBlogContent.js";
+import { getBlogContent } from "../utils/data/getBlogContent.js";
+import { fetchAPI } from "./fetchAPI.js";
 
 export const fetchBlogs = async () => {
   try {
-    const responses = await Promise.all(
-      blogs.map((response) => fetch(response))
-    );
-
-    const blogTexts = await Promise.all(
-      responses.map((response) => response.text())
-    );
-
-    const blogData = blogTexts.map((text) => fetchBlogContent(text));
-
-    return blogData;
+    const text = await fetchAPI(blogs);
+    const data = text.map((text) => getBlogContent(text));
+    return data;
   } catch (err) {
     console.log(err);
   }     
