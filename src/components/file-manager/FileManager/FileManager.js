@@ -47,8 +47,8 @@ class FileManager extends HTMLElement {
                 ${this.files.length} 
                 ${this.files.length > 1 ? "items" : "item"}
               </p>
-              <p>232K in disk</p>
-              <p>167k available</p>
+              <p>${this.files.length * 3.2}K in disk</p>
+              <p>${7168 - (this.files.length * 3.2)}K available</p>
             </div>
           </div>
 

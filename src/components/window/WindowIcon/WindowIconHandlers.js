@@ -8,19 +8,18 @@ const handleOpen = (component) => {
 
     windowContainer.style.display = "block";
     windowContainer.style.zIndex = 10;
+    windowContainer.setAttribute("focused", "");
 
     let titleBar;
 
     if (component.hasAttribute("app")) {
-      windowContainer
-        .shadowRoot
-        .querySelector("window-container")
-        .style.display = "block";
+      const actualWindow = 
+        windowContainer
+          .shadowRoot
+          .querySelector("window-container")
 
-      windowContainer
-        .shadowRoot
-        .querySelector("window-container")
-        .style.zIndex = 10;
+      actualWindow.style.display = "block";
+      actualWindow.style.zIndex = 10;
 
       titleBar = windowContainer
         .shadowRoot
@@ -28,6 +27,7 @@ const handleOpen = (component) => {
         .shadowRoot
         .querySelector('slot[name="title-bar"]')
         .assignedElements()[0];
+
     } else {
       titleBar = windowContainer
         .shadowRoot
