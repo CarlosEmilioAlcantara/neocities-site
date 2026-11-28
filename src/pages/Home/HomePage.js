@@ -3,6 +3,7 @@ import "../../components/blogs/BlogWindow/BlogWindow.js";
 import "../../components/blogs/Blogs/Blogs.js";
 import "../../components/microblogs/MicroBlogs/MicroBlogs.js";
 import "../../components/apps/Player/PlayerApp.js";
+import "../../components/apps/Calculator/CalculatorApp.js";
 import "../../components/file-manager/FileManager/FileManager.js";
 import "../../components/file-manager/FileWindow/FileWindow.js";
 import "../../components/apps/Changelog/Changelog.js";
@@ -97,6 +98,7 @@ class HomePage extends HTMLElement {
         <microblogs-window id="micro-blogs"></microblogs-window>
         <file-manager id="file-manager"></file-manager>
         <player-widget id="cassette-player"></player-widget>
+        <calculator-widget></calculator-widget>
         <change-logs id="changelogs"></change-logs>
         <blog-window closed></blog-window>
         <file-window></file-window>

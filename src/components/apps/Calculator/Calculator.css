@@ -1,0 +1,101 @@
+.calculator {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2em;
+  width: 330px;
+  height: 440px;
+  background: 
+    radial-gradient(
+      var(--background-color) 29%, 
+      transparent 16%
+    ), 
+    radial-gradient(
+      var(--background-color) 29%, 
+      transparent 16%
+    ),
+    radial-gradient(
+      var(--background-color) 0%, 
+      transparent 90%
+    )
+  ; 
+  background-color: var(--foreground-color);
+  background-size: 8px 8px; 
+  background-position: 0px 0px, 4px 4px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--foreground-color);
+  border-radius: 9.5px;
+}
+
+.calculator::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -7.5px;
+  width: 338.5px;
+  height: 444px;
+  background-color: var(--foreground-color);
+  border-radius: 0 0 9.5px 9.5px;
+  z-index: -10;
+}
+
+.screen {
+  width: 77%;
+  height: 6em;
+  padding: 1em;
+  background-color: var(--background-color);
+  border: 3.5px solid var(--foreground-color);
+}
+
+.screen p {
+  font-size: 3.6rem;
+  text-align: end;
+}
+
+.buttons {
+  display: flex;
+  gap: 1.2em;
+}
+
+.buttons button {
+  width: 55px;
+  height: 55px;
+  background-color: var(--background-color);
+  border: 3.5px solid var(--foreground-color);
+  box-shadow: 6px 6px 0 0 var(--foreground-color);
+  color: var(--foreground-color);
+  font-size: 3.4rem;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  background-color: var(--accent-color);
+}
+
+.buttons button:active {
+  background-color: var(--foreground-color);
+  color: var(--background-color);
+  border-color: var(--background-color);
+}
+
+.bottom {
+  display: flex;
+  gap: 1em;
+}
+
+.bottom .left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+#zero {
+  width: 65%;
+}
+
+#equal {
+  height: 100%;
+}
