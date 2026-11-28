@@ -1,11 +1,11 @@
 import "../../components/window/WindowIcon/WindowIcon.js";
-import "../../components/blog/BlogWindow/BlogWindow.js";
-import "../../components/Blogs/Blogs.js";
-import "../../components/MicroBlogs/MicroBlogs.js";
-import "../../components/Player/PlayerApp.js";
+import "../../components/blogs/BlogWindow/BlogWindow.js";
+import "../../components/blogs/Blogs/Blogs.js";
+import "../../components/microblogs/MicroBlogs/MicroBlogs.js";
+import "../../components/apps/Player/PlayerApp.js";
 import "../../components/file-manager/FileManager/FileManager.js";
 import "../../components/file-manager/FileWindow/FileWindow.js";
-import "../../components/Changelog/Changelog.js";
+import "../../components/apps/Changelog/Changelog.js";
 import { getWindowWidth } from "../../utils/viewport/getWindowWidth.js";
 
 class HomePage extends HTMLElement {

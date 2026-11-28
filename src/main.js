@@ -18,7 +18,12 @@ async function renderPage(path) {
     },
   }[path];
 
-  await import(page.path);
+  try {
+    await import(page.path);
+  } catch (err) {
+    console.log(err);
+    window.location.href = "./not_found.html";
+  }
 
   const root = document.querySelector("root");
 

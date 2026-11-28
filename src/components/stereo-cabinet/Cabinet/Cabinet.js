@@ -1,13 +1,15 @@
-import "../../Player/Player.js";
+import "../../apps/Player/Player.js";
 import "../Cassette/Cassette.js";
-import { handlePlaylistSelected } from "./CabinetHandlers.js";
+import { 
+  handlePlaylistSelected, 
+  handleNavigateToHome,
+} from "./CabinetHandlers.js";
 import { playlists } from "../../../stores/playlists.js";
 import { 
   checkItemsLength 
 } from "../../../utils/pagination/checkItemsLength.js";
 import { hideItems } from "../../../utils/pagination/hideItems.js";
 import { paginate } from "../../../utils/pagination/paginate.js";
-import { navigate } from "../../../main.js";
 
 class Cabinet extends HTMLElement {
   constructor() {
@@ -29,6 +31,7 @@ class Cabinet extends HTMLElement {
       checkItemsLength({component: this, cassettes: true});
     }
     this.onPlaylistSelected = (e) => handlePlaylistSelected(this, e);
+    this.onNavigateToHome = () => handleNavigateToHome(this);
   }
 
   attachEventListeners() {
@@ -43,13 +46,14 @@ class Cabinet extends HTMLElement {
 
     this.shadowRoot
       .querySelector("#back")
-      .addEventListener("click", () => navigate("/home"));
+      .addEventListener("click", this.onNavigateToHome);
   }
 
   detachEventListeners() {
     this.shadowRoot.removeEventListener("click", this.onCassettesFlipUp);
     this.shadowRoot.removeEventListener("click", this.onCassettesFlipDown);
     this.removeEventListener("playlist-selected", this.onPlaylistSelected);
+    this.shadowRoot.removeEventListener("click", this.onNavigateToHome);
   }
 
   attributeChangedCallback(oldValue, newValue) {

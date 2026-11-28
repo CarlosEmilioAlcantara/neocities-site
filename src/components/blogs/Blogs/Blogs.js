@@ -1,13 +1,13 @@
-import "../window/WindowContainer/WindowContainer.js";
-import "../window/TitleBar/TitleBar.js";
-import "../window/WindowContent/WindowContent.js";
-import "../blog/BlogItem/BlogItem.js";
-import "../Button/Button.js";
-import { getWindowWidth } from "../../utils/viewport/getWindowWidth.js";
-import { fetchBlogs } from "../../apis/fetchBlogs.js";
-import { checkItemsLength } from "../../utils/pagination/checkItemsLength.js";
-import { hideItems } from "../../utils/pagination/hideItems.js";
-import { paginate } from "../../utils/pagination/paginate.js";
+import "../../window/WindowContainer/WindowContainer.js";
+import "../../window/TitleBar/TitleBar.js";
+import "../../window/WindowContent/WindowContent.js";
+import "../BlogItem/BlogItem.js";
+import "../../ui/Button/Button.js";
+import { getWindowWidth } from "../../../utils/viewport/getWindowWidth.js";
+import { fetchBlogs } from "../../../apis/fetchBlogs.js";
+import { checkItemsLength } from "../../../utils/pagination/checkItemsLength.js";
+import { hideItems } from "../../../utils/pagination/hideItems.js";
+import { paginate } from "../../../utils/pagination/paginate.js";
 
 class Blogs extends HTMLElement {
   constructor() {
@@ -49,7 +49,7 @@ class Blogs extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
       <style>
-        @import url("${new URL("../../index.css", import.meta.url)}");
+        @import url("${new URL("../../../index.css", import.meta.url)}");
         @import url("${new URL("./Blogs.css", import.meta.url)}");
       </style>
 

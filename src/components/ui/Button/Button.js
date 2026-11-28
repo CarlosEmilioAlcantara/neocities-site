@@ -43,7 +43,7 @@ class Button extends HTMLElement {
 
     this.shadowRoot.innerHTML = `
       <style>
-        @import url("${new URL("../../index.css", import.meta.url)}");
+        @import url("${new URL("../../../index.css", import.meta.url)}");
         @import url("${new URL("./Button.css", import.meta.url)}");
       </style>
 

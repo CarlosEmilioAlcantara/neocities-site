@@ -17,10 +17,7 @@
 
     microBlogs = await fetchMicroBlogs({ rolling: true });
     
-    microBlogData = microBlogs.microBlogData;
-    microBlogsLength = microBlogs.length;
-
-    microBlogData.map((blog) => {
+    microBlogs.map((blog) => {
       const microBlog = document.createElement("div");
       microBlog.classList.add("content-border");
 

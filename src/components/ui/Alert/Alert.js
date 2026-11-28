@@ -10,9 +10,15 @@ class Alert extends HTMLElement {
     this.attachShadow({ mode: "open" });
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(oldValue, newValue) {
     if (oldValue !== newValue) {
       this.render();
+
+      this.shadowRoot
+        .querySelector("ui-button")
+        .action = () => {
+          this.style.display = "none";
+        }
     }
   }
 
@@ -32,7 +38,7 @@ class Alert extends HTMLElement {
 
     this.shadowRoot.innerHTML = `
       <style>
-        @import url("${new URL("../../index.css", import.meta.url)}");
+        @import url("${new URL("../../../index.css", import.meta.url)}");
         @import url("${new URL("./Alert.css", import.meta.url)}");
       </style>
 

@@ -11,8 +11,8 @@ import {
   handleToggleSeekForward,
   handleToggleSkip,
   handlePlaylistChange,
+  handleNavigateToRadio,
 } from "./PlayerHandlers.js";
-import { navigate } from "../../main.js";
 
 class Player extends HTMLElement {
   static get observedAttributes() {
@@ -27,6 +27,8 @@ class Player extends HTMLElement {
     this.volume = 6;
     this.name = "";
     this.playlistIndex = 0;
+    this.isPlaying = false;
+    this.isPaused = false;
 
     this.onAdjustVolume = (e) => handleAdjustVolume(this, e);
     this.onTimeUpdate = () => handleTimeUpdate(this);
@@ -38,6 +40,7 @@ class Player extends HTMLElement {
     this.onToggleSkip = () => handleToggleSkip(this);
     this.onTogglePause = () => handleTogglePause(this);
     this.onPlaylistChange = async () => await handlePlaylistChange(this);
+    this.onNavigateToRadio = () => handleNavigateToRadio(this);
   }
 
   attachEventListeners() {
@@ -80,7 +83,7 @@ class Player extends HTMLElement {
     if (!this.hasAttribute("radio")) {
       this.shadowRoot
         .querySelector("#radio")
-        .addEventListener("click", () => navigate("/radio"));
+        .addEventListener("click", this.onNavigateToRadio);
     }
   }
 
@@ -118,7 +121,7 @@ class Player extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
       <style>
-        @import url("${new URL("../../index.css", import.meta.url)}");
+        @import url("${new URL("../../../index.css", import.meta.url)}");
         @import url("${new URL("./Player.css", import.meta.url)}");
       </style>
 
@@ -186,7 +189,7 @@ class Player extends HTMLElement {
                   <div class="song-info">
                     <div class="icon">
                       <img 
-                        src="../assets/icons/player/note.webp" 
+                        src="../../../assets/icons/player/note.webp" 
                         alt="Song: " 
                         title="Musical Note " 
                       />
@@ -198,7 +201,7 @@ class Player extends HTMLElement {
                   <div class="song-info">
                     <div class="icon">
                       <img 
-                        src="../assets/icons/player/person.webp" 
+                        src="../../../assets/icons/player/person.webp" 
                         alt="Artist: " 
                         title="Person " 
                       />
@@ -240,7 +243,7 @@ class Player extends HTMLElement {
             <div class="above">
               <div class="volume-container">
                 <div class="volume">
-                  <img src="../../assets/icons/player/sound.webp" />
+                  <img src="../../../assets/icons/player/sound.webp" />
 
                   <div class="volume-slider-container">
                     <div class="volume-slider-border-outer"></div>
@@ -290,7 +293,7 @@ class Player extends HTMLElement {
                     </datalist>
                   </div>
 
-                  <img src="../../assets/icons/player/sound.webp" />
+                  <img src="../../../assets/icons/player/sound.webp" />
                 </div>
               </div>
 

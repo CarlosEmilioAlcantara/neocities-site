@@ -120,7 +120,7 @@
   position: relative;
   width: 90%;
   height: 90%;
-  border-image: url("../../assets/ui/button.svg") 25 stretch;
+  border-image: url("../../../assets/ui/button.svg") 25 stretch;
   border-style: solid;
   border-width: 5.5px;
   border-radius: 5.5px;
@@ -149,7 +149,7 @@
   width: 30px;
   height: 30px;
   background-color: var(--background-color);
-  border-image: url("../../assets/ui/button.svg") 12 stretch;
+  border-image: url("../../../assets/ui/button.svg") 12 stretch;
   border-style: solid;
   border-width: 5.5px;
   border-radius: 100%;
@@ -161,7 +161,7 @@
   width: 20px;
   height: 20px;
   background-color: var(--background-color);
-  background-image: url("../../assets/icons/titlebar/close.webp");
+  background-image: url("../../../assets/icons/titlebar/close.webp");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -490,11 +490,11 @@
 }
 
 .tape-footer .holes > .radial {
-  border-image: url("../../assets/ui/button.svg") 12 stretch;
+  border-image: url("../../../assets/ui/button.svg") 12 stretch;
 }
 
 .tape-footer .holes > .square {
-  border-image: url("../../assets/ui/button.svg") 20 stretch;
+  border-image: url("../../../assets/ui/button.svg") 20 stretch;
 }
 
 .tape-footer .holes-1 > .square {
@@ -664,7 +664,7 @@
   position: relative;
   width: 28px;
   height: 45px;
-  background-image: url("../../assets/icons/player/slider2.webp");
+  background-image: url("../../../assets/icons/player/slider2.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 40px;
@@ -672,13 +672,13 @@
 }
 
 .volume-slider::-webkit-slider-thumb:hover {
-  background-image: url("../../assets/icons/player/slider2-clicked.webp");
+  background-image: url("../../../assets/icons/player/slider2-clicked.webp");
 }
 
 .volume-slider::-moz-range-thumb {
   width: 28px;
   height: 45px;
-  background-image: url("../../assets/icons/player/slider2.webp");
+  background-image: url("../../../assets/icons/player/slider2.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 40px;
@@ -686,7 +686,7 @@
 }
 
 .volume-slider::-moz-range-thumb:hover {
-  background-image: url("../../assets/icons/player/slider2-clicked.webp");
+  background-image: url("../../../assets/icons/player/slider2-clicked.webp");
 }
 
 .volume-range {
@@ -856,61 +856,61 @@
 }
 
 .controls .rewind-button {
-  background-image: url("../../assets/icons/player/skip1.webp");
+  background-image: url("../../../assets/icons/player/skip1.webp");
   transform: rotate(-180deg);
 }
 
 .controls .seek-backwards-button {
-  background-image: url("../../assets/icons/player/seek-forwards.webp");
+  background-image: url("../../../assets/icons/player/seek-forwards.webp");
   transform: rotate(-180deg);
 }
 
 .controls .play-button {
-  background-image: url("../../assets/icons/action/down.webp");
+  background-image: url("../../../assets/icons/action/down.webp");
   border-width: 4px 2.5px;
   transform: rotate(-90deg);
 }
 
 .controls .seek-forwards-button {
-  background-image: url("../../assets/icons/player/seek-forwards.webp");
+  background-image: url("../../../assets/icons/player/seek-forwards.webp");
 }
 
 .controls .skip-button {
-  background-image: url("../../assets/icons/player/skip1.webp");
+  background-image: url("../../../assets/icons/player/skip1.webp");
 }
 
 .controls .pause-button {
-  background-image: url("../../assets/icons/player/pause2.webp");
+  background-image: url("../../../assets/icons/player/pause2.webp");
 }
 
 .controls .rewind-button:active,
 .controls .skip-button:active {
-  background-image: url("../../assets/icons/player/skip1-clicked.webp");
+  background-image: url("../../../assets/icons/player/skip1-clicked.webp");
 }
 
 .controls .seek-backwards-button:active,
 .controls .seek-forwards-button:active {
   background-image: url(
-    "../../assets/icons/player/seek-forwards-clicked.webp"
+    "../../../assets/icons/player/seek-forwards-clicked.webp"
   );
 }
 
 .controls .play-button:active {
-  background-image: url("../../assets/icons/action/down-clicked.webp");
+  background-image: url("../../../assets/icons/action/down-clicked.webp");
 }
 
 .controls .play-button.active {
-  background-image: url("../../assets/icons/action/down-clicked.webp");
+  background-image: url("../../../assets/icons/action/down-clicked.webp");
   background-color: var(--foreground-color);
   background-size: 2.0em;
 }
 
 .controls .pause-button:active {
-  background-image: url("../../assets/icons/player/pause2-clicked.webp");
+  background-image: url("../../../assets/icons/player/pause2-clicked.webp");
 }
 
 .controls .pause-button.active {
-  background-image: url("../../assets/icons/player/pause2-clicked.webp");
+  background-image: url("../../../assets/icons/player/pause2-clicked.webp");
   background-color: var(--foreground-color);
   background-size: 2.0em;
 }

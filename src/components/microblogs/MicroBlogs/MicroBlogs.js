@@ -1,13 +1,15 @@
-import "../window/WindowContainer/WindowContainer.js";
-import "../window/TitleBar/TitleBar.js";
-import "../window/WindowContent/WindowContent.js";
-import "../MicroBlog/MicroBlog.js";
-import "../Button/Button.js";
-import { getWindowWidth } from "../../utils/viewport/getWindowWidth.js";
-import { fetchMicroBlogs } from "../../apis/fetchMicroBlogs.js";
-import { checkItemsLength } from "../../utils/pagination/checkItemsLength.js";
-import { hideItems } from "../../utils/pagination/hideItems.js";
-import { paginate } from "../../utils/pagination/paginate.js";
+import "../../window/WindowContainer/WindowContainer.js";
+import "../../window/TitleBar/TitleBar.js";
+import "../../window/WindowContent/WindowContent.js";
+import "../MicroBlogItem/MicroBlogItem.js";
+import "../../ui/Button/Button.js";
+import { getWindowWidth } from "../../../utils/viewport/getWindowWidth.js";
+import { fetchMicroBlogs } from "../../../apis/fetchMicroBlogs.js";
+import { 
+  checkItemsLength 
+} from "../../../utils/pagination/checkItemsLength.js";
+import { hideItems } from "../../../utils/pagination/hideItems.js";
+import { paginate } from "../../../utils/pagination/paginate.js";
 
 class MicroBlogs extends HTMLElement {
   constructor() {
@@ -54,7 +56,7 @@ class MicroBlogs extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
       <style>
-        @import url("${new URL("../../index.css", import.meta.url)}");
+        @import url("${new URL("../../../index.css", import.meta.url)}");
         @import url("${new URL("./MicroBlogs.css", import.meta.url)}");
       </style>
 
@@ -69,7 +71,7 @@ class MicroBlogs extends HTMLElement {
         <title-bar title="Microblogs" slot="title-bar"></title-bar>
 
         <window-content slot="window-content">
-          ${this.items.microBlogData.map((blog) => `
+          ${this.items.map((blog) => `
             <micro-blog 
               date="${blog.date}"
               post="${blog.post}"

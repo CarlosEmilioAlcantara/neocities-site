@@ -1,5 +1,5 @@
 import "./Player.js";
-import { getWindowWidth } from "../../utils/viewport/getWindowWidth.js";
+import { getWindowWidth } from "../../../utils/viewport/getWindowWidth.js";
 
 class PlayerWidget extends HTMLElement {
   constructor() {

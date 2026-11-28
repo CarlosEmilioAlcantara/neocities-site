@@ -1,7 +1,7 @@
-import "../window/WindowContainer/WindowContainer.js";
-import "../window/WindowContent/WindowContent.js";
-import "../window/TitleBar/TitleBar.js";
-import { changelogs } from "../../public/changelogs.js";
+import "../../window/WindowContainer/WindowContainer.js";
+import "../../window/WindowContent/WindowContent.js";
+import "../../window/TitleBar/TitleBar.js";
+import { changelogs } from "../../../public/changelogs.js";
 
 class Changelogs extends HTMLElement {
   constructor() {
@@ -22,7 +22,7 @@ class Changelogs extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
       <style>
-        @import url("${new URL("../../index.css", import.meta.url)}");
+        @import url("${new URL("../../../index.css", import.meta.url)}");
         @import url("${new URL("./Changelog.css", import.meta.url)}");
       </style>
 

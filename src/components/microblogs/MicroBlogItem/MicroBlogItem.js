@@ -24,8 +24,8 @@ class MicroBlog extends HTMLElement {
 
     this.shadowRoot.innerHTML = `
       <style>
-        @import url("${new URL("../../index.css", import.meta.url)}");
-        @import url("${new URL("./MicroBlog.css", import.meta.url)}");
+        @import url("${new URL("../../../index.css", import.meta.url)}");
+        @import url("${new URL("./MicroBlogItem.css", import.meta.url)}");
       </style>
 
       <blockquote class="micro-blog">

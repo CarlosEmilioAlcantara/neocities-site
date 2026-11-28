@@ -25,7 +25,7 @@ class Banner extends HTMLElement {
 
     this.shadowRoot.innerHTML = `
       <style>
-        @import url("${new URL("../../index.css", import.meta.url)}");
+        @import url("${new URL("../../../index.css", import.meta.url)}");
         @import url("${new URL("./Banner.css", import.meta.url)}");
       </style>
 
@@ -36,7 +36,7 @@ class Banner extends HTMLElement {
               ${warning && `
                 <img 
                   class="warning icon" 
-                  src="../../assets/icons/notification/warning.svg" 
+                  src="../../../assets/icons/notification/warning.svg" 
                 />
               `}
 
@@ -45,7 +45,7 @@ class Banner extends HTMLElement {
               ${warning && `
                 <img 
                   class="warning icon" 
-                  src="../../assets/icons/notification/warning.svg" 
+                  src="../../../assets/icons/notification/warning.svg" 
                 />
               `}
             </div>

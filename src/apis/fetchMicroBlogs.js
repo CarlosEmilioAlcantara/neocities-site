@@ -11,7 +11,7 @@ export const fetchMicroBlogs = async ({rolling = false}) => {
         ? microBlogsRolling
         : microBlogsHome;
 
-    const data = await fetchAPI(microBlogs);
+    const data = await fetchAPI(microBlogs, true);
     return data;
   } catch (err) {
     console.log(err);

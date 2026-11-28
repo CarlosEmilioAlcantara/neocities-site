@@ -1,9 +1,7 @@
-import { playlists } from "../../stores/playlists.js";
+import { playlists } from "../../../stores/playlists.js";
+import { navigate } from "../../../main.js";
 
 let playlist = null;
-
-let isPlaying = false;
-let isPaused = false;
 
 let minutes = 0;
 let seconds = 0;
@@ -207,66 +205,73 @@ const handleTimeUpdate = (component) => {
 };
 
 const handleTogglePlay = (component, switchedPlaylist = false) => {
-  if (isPlaying && !switchedPlaylist) return;
-  isPlaying = true;
+  if (component.isPlaying && !switchedPlaylist) return;
+  component.isPlaying = true;
 
-  if (!isPaused) {
+  if (!component.isPaused) {
     const music = getRandomTrack();
     addToRecentTracks(music);
-    changePlayerState(component, isPlaying, music);
+    changePlayerState(component, component.isPlaying, music);
   } else {
-    changePlayerState(component, isPlaying);
+    changePlayerState(component, component.isPlaying);
   }
   
-  isPaused = false;
+  component.isPaused = false;
 }
 
 const handleTogglePause = (component) => {
-  if (!isPlaying) return;
-  isPlaying = false;
-  isPaused = true;
-  changePlayerState(component, isPlaying);
+  if (!component.isPlaying) return;
+  component.isPlaying = false;
+  component.isPaused = true;
+  changePlayerState(component, component.isPlaying);
 };
 
 const handleToggleRewind = (component) => {
-  if (!isPlaying) return;
+  if (!component.isPlaying) return;
   const previousTrack = recentTracks.at(-2);
   const music = playlist[playlist.indexOf(previousTrack)];
 
   adjustReels(component, 0.5, true);
-  changePlayerState(component, isPlaying, music);
+  changePlayerState(component, component.isPlaying, music);
 };
 
 const handleToggleSeekBack = (component) => {
+  if (!component.isPlaying) return;
   seekForwardsBackwards(component, true, 10);
 };
 
 const handleToggleSeekForward = (component) => {
-  if (!isPlaying) return;
+  if (!component.isPlaying) return;
   seekForwardsBackwards(component, false, 10);
 };
 
 const handleToggleSkip = (component) => {
-  if (!isPlaying) return;
-  isPlaying = false;
+  if (!component.isPlaying) return;
+  component.isPlaying = false;
   adjustReels(component, 0.5);
   handleTogglePlay(component);
 };
 
 const handleEndOfPlay = (component) => {
-  isPlaying = false;
+  component.isPlaying = false;
   handleTogglePlay(component);
 };
 
 const handlePlaylistChange = async (component) => {
   await getPlaylist(component);
-  isPaused = false;
+  component.isPaused = false;
   handleTogglePlay(component, true);
 
   component
     .shadowRoot
     .querySelector("#playlist-name")
     .innerText = component.name;
+};
+
+const handleNavigateToRadio = (component) => {
+  component.isPlaying = false;
+  component.isPaused = false;
+  navigate("/radio");
 };
 
 export { 
@@ -282,4 +287,5 @@ export {
   handleToggleSeekForward,
   handleToggleSkip,
   handlePlaylistChange,
+  handleNavigateToRadio,
 };

@@ -1,5 +1,5 @@
 import { handleOpen } from "./BlogItemHandlers.js";
-import "../../Button/Button.js";
+import "../../ui/Button/Button.js";
 
 class BlogItem extends HTMLElement {
   static get observedAttributes() {

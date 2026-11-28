@@ -1,3 +1,5 @@
+import { navigate } from "../../../main.js";
+
 const handlePlaylistSelected = (component, e) => {
   component.shadowRoot
     .querySelector(".info-paragraph")
@@ -15,4 +17,14 @@ const handlePlaylistSelected = (component, e) => {
   player.onPlaylistChange();
 };
 
-export { handlePlaylistSelected };
+const handleNavigateToHome = (component) => {
+  const player = component
+    .shadowRoot
+    .querySelector("music-player");
+
+  player.isPlaying = false;
+  player.isPaused = false;
+  navigate("/home");
+};
+
+export { handlePlaylistSelected, handleNavigateToHome };

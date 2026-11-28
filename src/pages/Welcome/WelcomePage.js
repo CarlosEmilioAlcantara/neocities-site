@@ -1,9 +1,9 @@
-import "../../components/Banner/Banner.js";
+import "../../components/ui/Banner/Banner.js";
 import "../../components/window/WindowContainer/WindowContainer.js";
 import "../../components/window/TitleBar/TitleBar.js";
 import "../../components/window/WindowContent/WindowContent.js";
 import "../../components/window/WindowIcon/WindowIcon.js";
-import "../../components/Button/Button.js";
+import "../../components/ui/Button/Button.js";
 import { navigate } from "../../main.js";
 import { getWindowWidth } from "../../utils/viewport/getWindowWidth.js";
 
